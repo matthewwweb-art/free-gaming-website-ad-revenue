@@ -399,7 +399,7 @@ export default async function CategoryPage({ params }) {
         </div>
       </section>
 
-      <section style={styles.adBanner}>Advertisement Placeholder</section>
+      <section style={styles.adBanner}>Ad space reserved</section>
 
       <section style={styles.content}>
         <div style={styles.intro}>

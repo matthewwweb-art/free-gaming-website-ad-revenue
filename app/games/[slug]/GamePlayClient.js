@@ -100,7 +100,7 @@ export default function GamePlayClient({ game, games }) {
           ← Back to Games
         </Link>
 
-        <div style={styles.adSmall}>Ad Space</div>
+        <div style={styles.adSmall}>Sponsored Area</div>
       </section>
 
       <section style={styles.hero}>
@@ -146,7 +146,7 @@ export default function GamePlayClient({ game, games }) {
       )}
 
       <section id="play-game" style={styles.gameShell}>
-        <div style={styles.sideAd}>Advertisement</div>
+        <div style={styles.sideAd}>Ad space reserved</div>
 
         <div style={styles.gameBox}>
           <iframe
@@ -161,10 +161,10 @@ export default function GamePlayClient({ game, games }) {
           />
         </div>
 
-        <div style={styles.sideAd}>Advertisement</div>
+        <div style={styles.sideAd}>Ad space reserved</div>
       </section>
 
-      <section style={styles.bottomAd}>Advertisement Placeholder</section>
+      <section style={styles.bottomAd}>Ad space reserved</section>
 
       <section style={styles.about}>
         <div style={styles.aboutGrid}>
@@ -228,6 +228,19 @@ export default function GamePlayClient({ game, games }) {
           </aside>
         </div>
 
+        <div style={styles.reportBox}>
+          <h2>Report or Request Game Removal</h2>
+          <p>
+            If you are a game developer, publisher, or rights holder and believe
+            a game should be reviewed or removed, please contact us through the
+            DMCA and game removal page.
+          </p>
+
+          <Link href="/dmca" style={styles.reportButton}>
+            DMCA / Game Removal
+          </Link>
+        </div>
+
         <div style={styles.categoryLinksBox}>
           <h2>Browse More Game Categories</h2>
 
@@ -259,11 +272,10 @@ export default function GamePlayClient({ game, games }) {
         </div>
 
         <div style={styles.adNote}>
-          <h3>Ad layout note</h3>
+          <h3>Advertising note</h3>
           <p>
-            Ads should stay outside the game controls and should not look like
-            play buttons. This keeps the page cleaner and helps reduce accidental
-            ad clicks.
+            Sponsored areas are kept separate from game controls and play buttons.
+            This helps keep the page clear and reduces accidental clicks.
           </p>
         </div>
       </section>
@@ -529,5 +541,24 @@ const styles = {
   },
   relatedBody: {
     padding: "16px",
+  },
+    reportBox: {
+    marginTop: "34px",
+    background: "#f8fafc",
+    borderWidth: "1px",
+    borderStyle: "solid",
+    borderColor: "#e5e7eb",
+    borderRadius: "20px",
+    padding: "22px",
+  },
+  reportButton: {
+    display: "inline-block",
+    marginTop: "10px",
+    background: "#111827",
+    color: "#ffffff",
+    padding: "12px 16px",
+    borderRadius: "14px",
+    textDecoration: "none",
+    fontWeight: "900",
   },
 };

@@ -9,6 +9,10 @@ export default function SiteFooter() {
           Free browser games, clean casual games, puzzle games, racing games,
           action games, and no-download games you can play online.
         </p>
+
+        <p style={styles.copyright}>
+          © {new Date().getFullYear()} FreeGameHub. All rights reserved.
+        </p>
       </div>
 
       <div style={styles.links}>
@@ -63,6 +67,11 @@ const styles = {
     color: "#cbd5e1",
     lineHeight: "1.7",
     margin: 0,
+  },
+  copyright: {
+    marginTop: "18px",
+    color: "#94a3b8",
+    fontSize: "14px",
   },
   links: {
     display: "flex",

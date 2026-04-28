@@ -80,7 +80,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section style={styles.adBanner}>Advertisement Placeholder</section>
+      <section style={styles.adBanner}>Ad space reserved</section>
 
       <section id="new-games" style={styles.section}>
         <div style={styles.sectionHeader}>

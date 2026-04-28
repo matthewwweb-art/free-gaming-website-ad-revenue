@@ -73,12 +73,11 @@ export default function GamesPageClient() {
         </div>
 
         <div style={styles.adBox}>
-          <span style={styles.adLabel}>Ad Placeholder</span>
-          <h2 style={styles.adTitle}>Ad-Friendly Layout</h2>
+          <span style={styles.adLabel}>Sponsored Area</span>
+          <h2 style={styles.adTitle}>Ad space reserved</h2>
           <p style={styles.adText}>
-            Ads should stay away from game buttons and controls. Clean casual
-            games are separated from action games so visitors can choose the
-            type of experience they want.
+            This area is reserved for future sponsor or advertising placements.
+            Ads will stay separate from game controls and play buttons.
           </p>
         </div>
       </section>
@@ -121,7 +120,7 @@ export default function GamesPageClient() {
         </button>
       </section>
 
-      <section style={styles.adBanner}>Advertisement Placeholder</section>
+      <section style={styles.adBanner}>Ad space reserved</section>
       <section style={styles.categorySeoLinks}>
         <h2 style={styles.categorySeoTitle}>Browse Popular Game Categories</h2>
 

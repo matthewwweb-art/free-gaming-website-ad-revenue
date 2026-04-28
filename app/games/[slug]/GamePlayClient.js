@@ -2,15 +2,99 @@
 
 import Link from "next/link";
 
+const siteUrl = "https://free-gaming-website-ad-revenue.vercel.app";
+
+function getCategorySlug(game) {
+  if (game.audience === "Clean Casual") {
+    return "clean-casual";
+  }
+
+  if (game.audience === "Action") {
+    return "action";
+  }
+
+  return String(game.category || "")
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+}
+
 export default function GamePlayClient({ game, games }) {
   const relatedGames = games
     .filter((item) => item.slug !== game.slug && item.audience === game.audience)
     .slice(0, 3);
 
   const gameHeight = game.height > game.width ? 760 : 620;
+  const gameUrl = `${siteUrl}/games/${game.slug}`;
+  const categorySlug = getCategorySlug(game);
+
+  const videoGameSchema = {
+    "@context": "https://schema.org",
+    "@type": "VideoGame",
+    name: game.title,
+    description: game.description,
+    image: game.thumbnail,
+    url: gameUrl,
+    gamePlatform: "Web Browser",
+    applicationCategory: "Browser Game",
+    genre: game.category,
+    playMode: "SinglePlayer",
+    isAccessibleForFree: true,
+    inLanguage: "en",
+    publisher: {
+      "@type": "Organization",
+      name: "FreeGameHub",
+      url: siteUrl,
+    },
+  };
+
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: siteUrl,
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Games",
+        item: `${siteUrl}/games`,
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: game.audience,
+        item: `${siteUrl}/games/category/${categorySlug}`,
+      },
+      {
+        "@type": "ListItem",
+        position: 4,
+        name: game.title,
+        item: gameUrl,
+      },
+    ],
+  };
 
   return (
     <main style={styles.page}>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(videoGameSchema),
+        }}
+      />
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(breadcrumbSchema),
+        }}
+      />
+
       <section style={styles.topBar}>
         <Link href="/games" style={styles.backLink}>
           ← Back to Games
@@ -37,6 +121,20 @@ export default function GamePlayClient({ game, games }) {
           <span>Category: {game.category}</span>
           <span>Mood: {game.mood}</span>
           <span>Play time: {game.duration}</span>
+          <span>No download</span>
+        </div>
+
+        <div style={styles.heroButtons}>
+          <a href="#play-game" style={styles.primaryButton}>
+            Play Now
+          </a>
+
+          <Link
+            href={`/games/category/${categorySlug}`}
+            style={styles.secondaryButton}
+          >
+            More {game.audience} Games
+          </Link>
         </div>
       </section>
 
@@ -47,7 +145,7 @@ export default function GamePlayClient({ game, games }) {
         </section>
       )}
 
-      <section style={styles.gameShell}>
+      <section id="play-game" style={styles.gameShell}>
         <div style={styles.sideAd}>Advertisement</div>
 
         <div style={styles.gameBox}>
@@ -69,18 +167,105 @@ export default function GamePlayClient({ game, games }) {
       <section style={styles.bottomAd}>Advertisement Placeholder</section>
 
       <section style={styles.about}>
-        <h2>About {game.title}</h2>
-        <p>{game.description}</p>
+        <div style={styles.aboutGrid}>
+          <div>
+            <h2>Play {game.title} Online</h2>
+            <p>
+              {game.title} is a free browser game you can play online without
+              downloading or installing anything. This game is listed in the{" "}
+              {game.category} category and is part of the {game.audience} game
+              collection on FreeGameHub.
+            </p>
 
-        <h3>How to play</h3>
-        <p>{game.instructions}</p>
+            <h3>About This Game</h3>
+            <p>{game.description}</p>
 
-        <h3>Ad layout note</h3>
-        <p>
-          Ads should stay outside the game controls and should not look like
-          play buttons. This keeps the page cleaner and helps reduce accidental
-          ad clicks.
-        </p>
+            <h3>How to Play</h3>
+            <p>{game.instructions}</p>
+
+            <h3>Why Play Browser Games?</h3>
+            <p>
+              Browser games are quick to open, simple to play, and work directly
+              from a web page. FreeGameHub organizes games by category and play
+              style so visitors can quickly find clean casual games, puzzle
+              games, relaxing games, racing games, educational games, and action
+              games.
+            </p>
+          </div>
+
+          <aside style={styles.infoCard}>
+            <h2>Game Details</h2>
+
+            <div style={styles.infoRow}>
+              <strong>Title</strong>
+              <span>{game.title}</span>
+            </div>
+
+            <div style={styles.infoRow}>
+              <strong>Category</strong>
+              <span>{game.category}</span>
+            </div>
+
+            <div style={styles.infoRow}>
+              <strong>Collection</strong>
+              <span>{game.audience}</span>
+            </div>
+
+            <div style={styles.infoRow}>
+              <strong>Mood</strong>
+              <span>{game.mood}</span>
+            </div>
+
+            <div style={styles.infoRow}>
+              <strong>Play Time</strong>
+              <span>{game.duration}</span>
+            </div>
+
+            <div style={styles.infoRow}>
+              <strong>Download</strong>
+              <span>Not required</span>
+            </div>
+          </aside>
+        </div>
+
+        <div style={styles.categoryLinksBox}>
+          <h2>Browse More Game Categories</h2>
+
+          <div style={styles.categoryLinks}>
+            <Link href="/games/category/clean-casual" style={styles.categoryLink}>
+              Clean Casual Games
+            </Link>
+
+            <Link href="/games/category/puzzle" style={styles.categoryLink}>
+              Puzzle Games
+            </Link>
+
+            <Link href="/games/category/racing" style={styles.categoryLink}>
+              Racing Games
+            </Link>
+
+            <Link href="/games/category/action" style={styles.categoryLink}>
+              Action Games
+            </Link>
+
+            <Link href="/games/category/educational" style={styles.categoryLink}>
+              Educational Games
+            </Link>
+
+            <Link href="/games/category/relaxing" style={styles.categoryLink}>
+              Relaxing Games
+            </Link>
+          </div>
+        </div>
+
+        <div style={styles.adNote}>
+          <h3>Ad layout note</h3>
+          <p>
+            Ads should stay outside the game controls and should not look like
+            play buttons. This keeps the page cleaner and helps reduce accidental
+            ad clicks.
+          </p>
+        </div>
       </section>
 
       <section style={styles.related}>
@@ -134,7 +319,9 @@ const styles = {
     fontWeight: "900",
   },
   adSmall: {
-    border: "2px dashed #cbd5e1",
+    borderWidth: "2px",
+    borderStyle: "dashed",
+    borderColor: "#cbd5e1",
     borderRadius: "12px",
     padding: "10px 18px",
     color: "#64748b",
@@ -183,6 +370,28 @@ const styles = {
     gap: "12px",
     marginTop: "20px",
   },
+  heroButtons: {
+    display: "flex",
+    flexWrap: "wrap",
+    gap: "14px",
+    marginTop: "24px",
+  },
+  primaryButton: {
+    background: "#f97316",
+    color: "#ffffff",
+    padding: "13px 20px",
+    borderRadius: "14px",
+    textDecoration: "none",
+    fontWeight: "900",
+  },
+  secondaryButton: {
+    background: "#ffffff",
+    color: "#111827",
+    padding: "13px 20px",
+    borderRadius: "14px",
+    textDecoration: "none",
+    fontWeight: "900",
+  },
   warning: {
     margin: "24px 7% 0",
     background: "#ffedd5",
@@ -213,7 +422,9 @@ const styles = {
     background: "#000000",
   },
   sideAd: {
-    border: "2px dashed #cbd5e1",
+    borderWidth: "2px",
+    borderStyle: "dashed",
+    borderColor: "#cbd5e1",
     borderRadius: "18px",
     minHeight: "620px",
     display: "flex",
@@ -229,7 +440,9 @@ const styles = {
     margin: "0 auto 28px",
     maxWidth: "1100px",
     minHeight: "90px",
-    border: "2px dashed #cbd5e1",
+    borderWidth: "2px",
+    borderStyle: "dashed",
+    borderColor: "#cbd5e1",
     borderRadius: "18px",
     background: "#ffffff",
     display: "flex",
@@ -242,6 +455,56 @@ const styles = {
     background: "#ffffff",
     padding: "40px 7%",
     lineHeight: "1.7",
+  },
+  aboutGrid: {
+    display: "grid",
+    gridTemplateColumns: "minmax(0, 1fr) 320px",
+    gap: "28px",
+    alignItems: "start",
+  },
+  infoCard: {
+    background: "#f8fafc",
+    borderWidth: "1px",
+    borderStyle: "solid",
+    borderColor: "#e5e7eb",
+    borderRadius: "20px",
+    padding: "22px",
+    boxShadow: "0 12px 30px rgba(15,23,42,0.06)",
+  },
+  infoRow: {
+    display: "flex",
+    justifyContent: "space-between",
+    gap: "14px",
+    padding: "12px 0",
+    borderBottomWidth: "1px",
+    borderBottomStyle: "solid",
+    borderBottomColor: "#e5e7eb",
+  },
+  categoryLinksBox: {
+    marginTop: "34px",
+    background: "#f8fafc",
+    borderRadius: "20px",
+    padding: "22px",
+  },
+  categoryLinks: {
+    display: "flex",
+    flexWrap: "wrap",
+    gap: "12px",
+    marginTop: "14px",
+  },
+  categoryLink: {
+    background: "#111827",
+    color: "#ffffff",
+    padding: "10px 14px",
+    borderRadius: "999px",
+    textDecoration: "none",
+    fontWeight: "900",
+  },
+  adNote: {
+    marginTop: "24px",
+    background: "#f8fafc",
+    borderRadius: "20px",
+    padding: "22px",
   },
   related: {
     padding: "44px 7% 70px",

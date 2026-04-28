@@ -28,7 +28,7 @@ export const metadata = {
   creator: "FreeGameHub",
   publisher: "FreeGameHub",
   verification: {
-    google: "wTIW2yUuPvgch1RqVJGQ7E2IIaTYzsaYybR2T4Qzo0M",
+    google: "P4hEKwe7pRsMn2kYuOQzHjSk8vFiu7bkoifMpSmUl_c" ,
   },
     openGraph: {
     type: "website",

@@ -10,6 +10,23 @@ const categoryPages = {
       "Play clean casual browser games online with no downloads. Browse puzzle games, relaxing games, math games, hidden object games, and simple games for quick breaks.",
     filterType: "audience",
     filterValue: "Clean Casual",
+    faqs: [
+      {
+        question: "What are clean casual games?",
+        answer:
+          "Clean casual games are simple browser games focused on lighter gameplay, such as puzzles, math games, hidden object games, relaxing games, and easy driving games.",
+      },
+      {
+        question: "Do I need to download anything to play these games?",
+        answer:
+          "No. These games are browser-based, so you can play them online without downloading or installing software.",
+      },
+      {
+        question: "What types of games are included in this section?",
+        answer:
+          "This section includes puzzle games, relaxing games, math games, hidden object games, match games, and other casual browser games.",
+      },
+    ],
   },
   action: {
     title: "Action Games",
@@ -18,6 +35,23 @@ const categoryPages = {
       "Play free action browser games online. Browse shooting games, fighting games, crash games, military games, and intense games with no downloads.",
     filterType: "audience",
     filterValue: "Action",
+    faqs: [
+      {
+        question: "What are action browser games?",
+        answer:
+          "Action browser games are online games with faster gameplay, including shooting games, fighting games, crash games, military games, and other intense game styles.",
+      },
+      {
+        question: "Are action games separate from clean casual games?",
+        answer:
+          "Yes. FreeGameHub separates action games from clean casual games so visitors can choose the type of game experience they want.",
+      },
+      {
+        question: "Can I play action games without installing anything?",
+        answer:
+          "Yes. These action games are browser games, so they can be played online without installing software.",
+      },
+    ],
   },
   puzzle: {
     title: "Puzzle Games",
@@ -26,6 +60,23 @@ const categoryPages = {
       "Play free puzzle games online. Find match games, hidden object games, logic games, and casual puzzle games you can play instantly in your browser.",
     filterType: "category",
     filterValue: "Puzzle",
+    faqs: [
+      {
+        question: "What are puzzle games?",
+        answer:
+          "Puzzle games are games that focus on problem-solving, matching, logic, hidden objects, pattern recognition, or brain challenges.",
+      },
+      {
+        question: "Are these puzzle games free to play?",
+        answer:
+          "Yes. The puzzle games listed on FreeGameHub are free to play online in your browser.",
+      },
+      {
+        question: "Do puzzle games work on mobile?",
+        answer:
+          "Many browser puzzle games work on mobile devices, but performance can depend on the game, browser, and screen size.",
+      },
+    ],
   },
   racing: {
     title: "Racing Games",
@@ -34,6 +85,23 @@ const categoryPages = {
       "Play free racing and driving games online. Drive cars, SUVs, vehicles, and simulators directly in your browser with no downloads.",
     filterType: "category",
     filterValue: "Racing",
+    faqs: [
+      {
+        question: "What are racing browser games?",
+        answer:
+          "Racing browser games are online games where players drive cars, SUVs, trucks, or other vehicles through tracks, cities, or open areas.",
+      },
+      {
+        question: "Do I need a controller to play racing games?",
+        answer:
+          "No. Most browser racing games can be played with a keyboard, mouse, or touch controls depending on the game.",
+      },
+      {
+        question: "Are these racing games no-download games?",
+        answer:
+          "Yes. The racing games on this page are designed to run directly in the browser without a download.",
+      },
+    ],
   },
   educational: {
     title: "Educational Games",
@@ -42,6 +110,23 @@ const categoryPages = {
       "Play free educational browser games online. Practice math, quick thinking, logic, and brain games directly in your browser.",
     filterType: "category",
     filterValue: "Educational",
+    faqs: [
+      {
+        question: "What are educational browser games?",
+        answer:
+          "Educational browser games are online games designed around learning, practice, problem-solving, math, logic, typing, or brain skills.",
+      },
+      {
+        question: "Can educational games still be fun?",
+        answer:
+          "Yes. Many educational games use simple challenges, timers, scoring, and quick gameplay to make learning feel more entertaining.",
+      },
+      {
+        question: "Do educational games require downloads?",
+        answer:
+          "No. These educational games can be played directly in the browser without installing extra software.",
+      },
+    ],
   },
   relaxing: {
     title: "Relaxing Games",
@@ -50,6 +135,23 @@ const categoryPages = {
       "Play free relaxing browser games online. Enjoy calm casual games, aquarium games, puzzle games, and slow-paced games with no downloads.",
     filterType: "category",
     filterValue: "Relaxing",
+    faqs: [
+      {
+        question: "What are relaxing browser games?",
+        answer:
+          "Relaxing browser games are slower-paced online games designed for calm, simple, and casual play.",
+      },
+      {
+        question: "What types of relaxing games are on FreeGameHub?",
+        answer:
+          "Relaxing games may include aquarium games, calm puzzle games, matching games, casual games, and other low-pressure browser games.",
+      },
+      {
+        question: "Can I play relaxing games for quick breaks?",
+        answer:
+          "Yes. Relaxing browser games are a good fit for short play sessions because they are simple to start and do not require downloads.",
+      },
+    ],
   },
 };
 
@@ -85,8 +187,54 @@ export default async function CategoryPage({ params }) {
     return game.category === page.filterValue;
   });
 
+  const pageUrl = `https://free-gaming-website-ad-revenue.vercel.app/games/category/${resolvedParams.slug}`;
+
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: page.faqs.map((faq) => ({
+      "@type": "Question",
+      name: faq.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: faq.answer,
+      },
+    })),
+  };
+
+  const collectionSchema = {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    name: page.title,
+    description: page.description,
+    url: pageUrl,
+    mainEntity: {
+      "@type": "ItemList",
+      itemListElement: categoryGames.map((game, index) => ({
+        "@type": "ListItem",
+        position: index + 1,
+        name: game.title,
+        url: `https://free-gaming-website-ad-revenue.vercel.app/games/${game.slug}`,
+      })),
+    },
+  };
+
   return (
     <main style={styles.page}>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(faqSchema),
+        }}
+      />
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(collectionSchema),
+        }}
+      />
+
       <section style={styles.hero}>
         <p style={styles.badge}>Free Browser Games</p>
         <h1 style={styles.title}>{page.heading}</h1>
@@ -117,9 +265,7 @@ export default async function CategoryPage({ params }) {
         </div>
 
         {categoryGames.length === 0 ? (
-          <div style={styles.empty}>
-            No games found in this category yet.
-          </div>
+          <div style={styles.empty}>No games found in this category yet.</div>
         ) : (
           <div style={styles.grid}>
             {categoryGames.map((game) => (
@@ -162,6 +308,19 @@ export default async function CategoryPage({ params }) {
           </div>
         )}
 
+        <section style={styles.faqSection}>
+          <h2>Frequently Asked Questions</h2>
+
+          <div style={styles.faqGrid}>
+            {page.faqs.map((faq) => (
+              <div key={faq.question} style={styles.faqCard}>
+                <h3>{faq.question}</h3>
+                <p>{faq.answer}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
         <div style={styles.seoText}>
           <h2>Why Play {page.title}?</h2>
           <p>
@@ -173,7 +332,10 @@ export default async function CategoryPage({ params }) {
 
           <h2>More Game Categories</h2>
           <div style={styles.categoryLinks}>
-            <Link href="/games/category/clean-casual" style={styles.categoryLink}>
+            <Link
+              href="/games/category/clean-casual"
+              style={styles.categoryLink}
+            >
               Clean Casual
             </Link>
 
@@ -189,7 +351,10 @@ export default async function CategoryPage({ params }) {
               Action
             </Link>
 
-            <Link href="/games/category/educational" style={styles.categoryLink}>
+            <Link
+              href="/games/category/educational"
+              style={styles.categoryLink}
+            >
               Educational
             </Link>
 
@@ -369,6 +534,22 @@ const styles = {
     color: "#64748b",
     textAlign: "center",
     fontWeight: "800",
+  },
+  faqSection: {
+    marginTop: "34px",
+  },
+  faqGrid: {
+    display: "grid",
+    gridTemplateColumns: "repeat(3, minmax(0, 1fr))",
+    gap: "18px",
+    marginTop: "18px",
+  },
+  faqCard: {
+    background: "#ffffff",
+    padding: "22px",
+    borderRadius: "20px",
+    boxShadow: "0 12px 30px rgba(15,23,42,0.08)",
+    lineHeight: "1.6",
   },
   seoText: {
     marginTop: "34px",

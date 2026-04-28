@@ -122,7 +122,35 @@ export default function GamesPageClient() {
       </section>
 
       <section style={styles.adBanner}>Advertisement Placeholder</section>
+      <section style={styles.categorySeoLinks}>
+        <h2 style={styles.categorySeoTitle}>Browse Popular Game Categories</h2>
 
+        <div style={styles.categorySeoGrid}>
+          <Link href="/games/category/clean-casual" style={styles.categorySeoCard}>
+            Clean Casual Games
+          </Link>
+
+          <Link href="/games/category/puzzle" style={styles.categorySeoCard}>
+            Puzzle Games
+          </Link>
+
+          <Link href="/games/category/racing" style={styles.categorySeoCard}>
+            Racing Games
+          </Link>
+
+          <Link href="/games/category/action" style={styles.categorySeoCard}>
+            Action Games
+          </Link>
+
+          <Link href="/games/category/educational" style={styles.categorySeoCard}>
+            Educational Games
+          </Link>
+
+          <Link href="/games/category/relaxing" style={styles.categorySeoCard}>
+            Relaxing Games
+          </Link>
+        </div>
+      </section>
       {audience === "Clean Casual" && (
         <section style={styles.safeNotice}>
           <h2>Clean Casual Games</h2>
@@ -518,5 +546,31 @@ statCardActive: {
     color: "#64748b",
     textAlign: "center",
     fontWeight: "800",
+  },
+    categorySeoLinks: {
+    padding: "32px 7% 0",
+  },
+  categorySeoTitle: {
+    fontSize: "28px",
+    margin: "0 0 16px",
+    fontWeight: "900",
+  },
+  categorySeoGrid: {
+    display: "grid",
+    gridTemplateColumns: "repeat(6, minmax(0, 1fr))",
+    gap: "12px",
+  },
+  categorySeoCard: {
+    background: "#ffffff",
+    color: "#111827",
+    borderWidth: "1px",
+    borderStyle: "solid",
+    borderColor: "#e5e7eb",
+    borderRadius: "16px",
+    padding: "16px",
+    textDecoration: "none",
+    fontWeight: "900",
+    textAlign: "center",
+    boxShadow: "0 10px 24px rgba(15,23,42,0.06)",
   },
 };

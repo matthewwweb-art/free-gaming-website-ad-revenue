@@ -107,3 +107,14 @@ body {
     justify-content: flex-start !important;
   }
 }
+@media (max-width: 1100px) {
+  div[style*="grid-template-columns: repeat(6"] {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  }
+}
+
+@media (max-width: 700px) {
+  div[style*="grid-template-columns: repeat(6"] {
+    grid-template-columns: 1fr !important;
+  }
+}

@@ -7,18 +7,27 @@ export const metadata = {
   alternates: {
     canonical: "/",
   },
-  openGraph: {
+    openGraph: {
     title: "FreeGameHub | Free Browser Games Online",
     description:
       "Play free browser games online with no downloads. Browse clean casual games, puzzle games, racing games, educational games, relaxing games, and action games.",
     url: "/",
     type: "website",
+    images: [
+      {
+        url: "/opengraph-image",
+        width: 1200,
+        height: 630,
+        alt: "FreeGameHub | Free Browser Games Online",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "FreeGameHub | Free Browser Games Online",
     description:
       "Play free browser games online with no downloads. Browse clean casual games, puzzle games, racing games, educational games, relaxing games, and action games.",
+    images: ["/twitter-image"],
   },
 };
 export default function Home() {

@@ -301,11 +301,20 @@ export async function generateMetadata({ params }) {
       description: page.description,
       url: `/games/category/${resolvedParams.slug}`,
       type: "website",
+      images: [
+        {
+          url: "/opengraph-image",
+          width: 1200,
+          height: 630,
+          alt: `${page.title} | FreeGameHub`,
+        },
+      ],
     },
     twitter: {
       card: "summary_large_image",
       title: `${page.title} | FreeGameHub`,
       description: page.description,
+      images: ["/twitter-image"],
     },
   };
 }

@@ -6,6 +6,9 @@ export const metadata = {
   title: "FreeGameHub | Free Browser Games",
   description:
     "Play free browser games online, including clean casual games, puzzle games, racing games, relaxing games, and action games.",
+  verification: {
+    google: "wTIW2yUuPvgch1RqVJGQ7E2IIaTYzsaYybR2T4Qzo0M",
+  },
 };
 
 export default function RootLayout({ children }) {

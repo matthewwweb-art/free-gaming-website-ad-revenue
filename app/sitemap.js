@@ -14,13 +14,18 @@ export default function sitemap() {
     "/dmca",
   ];
 
-  const categoryPages = [
+    const categoryPages = [
     "/games/category/clean-casual",
     "/games/category/puzzle",
     "/games/category/racing",
     "/games/category/action",
     "/games/category/educational",
     "/games/category/relaxing",
+    "/games/category/sports",
+    "/games/category/skill",
+    "/games/category/simulation",
+    "/games/category/arcade",
+    "/games/category/adventure",
   ];
 
   const gamePages = games.map((game) => `/games/${game.slug}`);

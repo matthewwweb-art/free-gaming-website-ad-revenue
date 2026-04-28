@@ -149,6 +149,26 @@ export default function GamesPageClient() {
           <Link href="/games/category/relaxing" style={styles.categorySeoCard}>
             Relaxing Games
           </Link>
+
+                    <Link href="/games/category/sports" style={styles.categorySeoCard}>
+            Sports Games
+          </Link>
+
+          <Link href="/games/category/skill" style={styles.categorySeoCard}>
+            Skill Games
+          </Link>
+
+          <Link href="/games/category/simulation" style={styles.categorySeoCard}>
+            Simulation Games
+          </Link>
+
+          <Link href="/games/category/arcade" style={styles.categorySeoCard}>
+            Arcade Games
+          </Link>
+
+          <Link href="/games/category/adventure" style={styles.categorySeoCard}>
+            Adventure Games
+          </Link>
         </div>
       </section>
       {audience === "Clean Casual" && (
@@ -556,10 +576,10 @@ statCardActive: {
     fontWeight: "900",
   },
   categorySeoGrid: {
-    display: "grid",
-    gridTemplateColumns: "repeat(6, minmax(0, 1fr))",
-    gap: "12px",
-  },
+  display: "grid",
+  gridTemplateColumns: "repeat(4, minmax(0, 1fr))",
+  gap: "12px",
+},
   categorySeoCard: {
     background: "#ffffff",
     color: "#111827",

@@ -111,6 +111,51 @@ export default function Home() {
               games for quick breaks.
             </p>
           </Link>
+
+                    <Link href="/games/category/sports" style={styles.categoryCard}>
+            <span style={styles.categoryLabel}>Sports</span>
+            <h3>Sports Games</h3>
+            <p>
+              Play mini golf, billiards, snowboarding, and other sports-style
+              browser games with no downloads.
+            </p>
+          </Link>
+
+          <Link href="/games/category/skill" style={styles.categoryCard}>
+            <span style={styles.categoryLabel}>Skill</span>
+            <h3>Skill Games</h3>
+            <p>
+              Test your timing, accuracy, stacking, reactions, and focus with
+              simple skill-based browser games.
+            </p>
+          </Link>
+
+          <Link href="/games/category/simulation" style={styles.categoryCard}>
+            <span style={styles.categoryLabel}>Simulation</span>
+            <h3>Simulation Games</h3>
+            <p>
+              Try flight, vehicle, driving, and other simulator games directly
+              in your browser.
+            </p>
+          </Link>
+
+          <Link href="/games/category/arcade" style={styles.categoryCard}>
+            <span style={styles.categoryLabel}>Arcade</span>
+            <h3>Arcade Games</h3>
+            <p>
+              Play quick score-based arcade games that are easy to start and
+              simple to understand.
+            </p>
+          </Link>
+
+          <Link href="/games/category/adventure" style={styles.categoryCard}>
+            <span style={styles.categoryLabel}>Adventure</span>
+            <h3>Adventure Games</h3>
+            <p>
+              Explore, jump, climb, and move through adventure-style browser
+              games with no downloads.
+            </p>
+          </Link>
         </div>
       </section>
 

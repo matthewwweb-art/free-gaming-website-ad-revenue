@@ -153,6 +153,131 @@ const categoryPages = {
       },
     ],
   },
+  sports: {
+    title: "Sports Games",
+    heading: "Free Sports Games",
+    description:
+      "Play free sports browser games online. Enjoy mini golf, billiards, snowboarding, board-style sports games, and other no-download sports games.",
+    filterType: "category",
+    filterValue: "Sports",
+    faqs: [
+      {
+        question: "What are sports browser games?",
+        answer:
+          "Sports browser games are online games based on sports, activities, aiming, timing, competition, or skill-based challenges.",
+      },
+      {
+        question: "Do sports games require downloads?",
+        answer:
+          "No. The sports games on FreeGameHub are browser games, so they can be played online without installing extra software.",
+      },
+      {
+        question: "What sports games are on FreeGameHub?",
+        answer:
+          "FreeGameHub may include mini golf, billiards, snowboarding, pool, board-style sports games, and other casual sports games.",
+      },
+    ],
+  },
+  skill: {
+    title: "Skill Games",
+    heading: "Free Skill Games",
+    description:
+      "Play free skill browser games online. Test timing, focus, accuracy, stacking, balance, and quick reactions with no downloads.",
+    filterType: "category",
+    filterValue: "Skill",
+    faqs: [
+      {
+        question: "What are skill browser games?",
+        answer:
+          "Skill browser games are online games that focus on timing, accuracy, reaction speed, balance, focus, or careful movement.",
+      },
+      {
+        question: "Are skill games good for quick play?",
+        answer:
+          "Yes. Many skill games are simple to start and work well for short play sessions because the rules are easy to understand.",
+      },
+      {
+        question: "Can I play skill games for free?",
+        answer:
+          "Yes. The skill games listed on FreeGameHub are free to play directly in your browser.",
+      },
+    ],
+  },
+  simulation: {
+    title: "Simulation Games",
+    heading: "Free Simulation Games",
+    description:
+      "Play free simulation browser games online. Try flight simulators, driving simulators, vehicle simulators, and other no-download simulation games.",
+    filterType: "category",
+    filterValue: "Simulation",
+    faqs: [
+      {
+        question: "What are simulation browser games?",
+        answer:
+          "Simulation browser games are online games that recreate activities like flying, driving, controlling vehicles, or practicing real-world style tasks.",
+      },
+      {
+        question: "Do simulation games work in the browser?",
+        answer:
+          "Yes. Many simulation games can run directly in a web browser without needing a separate download or app.",
+      },
+      {
+        question: "What types of simulation games are on FreeGameHub?",
+        answer:
+          "FreeGameHub may include flight simulation, driving simulation, truck simulation, vehicle simulation, and other casual simulator games.",
+      },
+    ],
+  },
+  arcade: {
+    title: "Arcade Games",
+    heading: "Free Arcade Games",
+    description:
+      "Play free arcade browser games online. Enjoy quick, simple, score-based games with no downloads or installs.",
+    filterType: "category",
+    filterValue: "Arcade",
+    faqs: [
+      {
+        question: "What are arcade browser games?",
+        answer:
+          "Arcade browser games are quick online games with simple controls, fast sessions, scoring, movement, or classic casual gameplay.",
+      },
+      {
+        question: "Are arcade games easy to start?",
+        answer:
+          "Yes. Arcade games are usually simple to understand and are built for fast casual play.",
+      },
+      {
+        question: "Can I play arcade games without installing anything?",
+        answer:
+          "Yes. The arcade games on FreeGameHub are browser-based and do not require downloads.",
+      },
+    ],
+  },
+  adventure: {
+    title: "Adventure Games",
+    heading: "Free Adventure Games",
+    description:
+      "Play free adventure browser games online. Explore, jump, move through challenges, and play no-download adventure games directly in your browser.",
+    filterType: "category",
+    filterValue: "Adventure",
+    faqs: [
+      {
+        question: "What are adventure browser games?",
+        answer:
+          "Adventure browser games are online games focused on exploration, movement, challenges, jumping, missions, or progressing through different areas.",
+      },
+      {
+        question: "Are adventure games free on FreeGameHub?",
+        answer:
+          "Yes. The adventure games listed on FreeGameHub are free to play online in your browser.",
+      },
+      {
+        question: "Do adventure games require downloads?",
+        answer:
+          "No. These games are designed to run directly in the browser without requiring installation.",
+      },
+    ],
+  },
 };
 
 export async function generateMetadata({ params }) {
@@ -341,7 +466,9 @@ export default async function CategoryPage({ params }) {
             Browser games are quick to start, easy to share, and do not require
             downloads or installations. FreeGameHub organizes games by category
             so visitors can find clean casual games, puzzle games, relaxing
-            games, racing games, educational games, and action games faster.
+            games, racing games, educational games, action games, sports games,
+            skill games, simulation games, arcade games, and adventure games
+            faster.
           </p>
 
           <h2>More Game Categories</h2>
@@ -374,6 +501,26 @@ export default async function CategoryPage({ params }) {
 
             <Link href="/games/category/relaxing" style={styles.categoryLink}>
               Relaxing
+            </Link>
+
+            <Link href="/games/category/sports" style={styles.categoryLink}>
+              Sports
+            </Link>
+
+            <Link href="/games/category/skill" style={styles.categoryLink}>
+              Skill
+            </Link>
+
+            <Link href="/games/category/simulation" style={styles.categoryLink}>
+              Simulation
+            </Link>
+
+            <Link href="/games/category/arcade" style={styles.categoryLink}>
+              Arcade
+            </Link>
+
+            <Link href="/games/category/adventure" style={styles.categoryLink}>
+              Adventure
             </Link>
           </div>
         </div>

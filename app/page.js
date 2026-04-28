@@ -1,16 +1,17 @@
 import Link from "next/link";
+import { games } from "./games/gamesData";
 
 export const metadata = {
   title: "Free Browser Games Online",
   description:
-    "Play free browser games online with no downloads. Browse clean casual games, puzzle games, racing games, educational games, relaxing games, and action games.",
+    "Play free browser games online with no downloads. Browse clean casual games, puzzle games, racing games, educational games, relaxing games, sports games, arcade games, and action games.",
   alternates: {
     canonical: "/",
   },
-    openGraph: {
+  openGraph: {
     title: "FreeGameHub | Free Browser Games Online",
     description:
-      "Play free browser games online with no downloads. Browse clean casual games, puzzle games, racing games, educational games, relaxing games, and action games.",
+      "Play free browser games online with no downloads. Browse clean casual games, puzzle games, racing games, educational games, relaxing games, sports games, arcade games, and action games.",
     url: "/",
     type: "website",
     images: [
@@ -26,11 +27,31 @@ export const metadata = {
     card: "summary_large_image",
     title: "FreeGameHub | Free Browser Games Online",
     description:
-      "Play free browser games online with no downloads. Browse clean casual games, puzzle games, racing games, educational games, relaxing games, and action games.",
+      "Play free browser games online with no downloads. Browse clean casual games, puzzle games, racing games, educational games, relaxing games, sports games, arcade games, and action games.",
     images: ["/twitter-image"],
   },
 };
+
 export default function Home() {
+  const cleanCasualGames = games.filter(
+    (game) => game.audience === "Clean Casual"
+  );
+
+  const newGames = [...games].slice(-8).reverse();
+
+  const popularGames = [
+    "one-plus-two",
+    "mini-golf-3d",
+    "classic-checkers-forest",
+    "offroad-truck-driving-simulator",
+    "super-suv-driving",
+    "fish-aquarium-game",
+    "cookie-party-pop",
+    "3d-billiard-8-ball-pool",
+  ]
+    .map((slug) => games.find((game) => game.slug === slug))
+    .filter(Boolean);
+
   return (
     <main style={styles.page}>
       <section style={styles.hero}>
@@ -39,15 +60,19 @@ export default function Home() {
         <h1 style={styles.title}>Play Free Online Games Instantly</h1>
 
         <p style={styles.subtitle}>
-          No downloads. No installs. Just pick a game and start playing.
-          Browse clean casual games, puzzle games, racing games, relaxing games,
-          educational games, and action games.
+          No downloads. No installs. Just pick a game and start playing. Browse
+          clean casual games, puzzle games, racing games, relaxing games,
+          educational games, sports games, arcade games, and action games.
         </p>
 
         <div style={styles.buttons}>
           <Link href="/games" style={styles.primaryButton}>
             Play Games
           </Link>
+
+          <a href="#popular-games" style={styles.secondaryButton}>
+            Popular Games
+          </a>
 
           <a href="#popular-categories" style={styles.secondaryButton}>
             Browse Categories
@@ -57,12 +82,104 @@ export default function Home() {
 
       <section style={styles.adBanner}>Advertisement Placeholder</section>
 
+      <section id="new-games" style={styles.section}>
+        <div style={styles.sectionHeader}>
+          <h2 style={styles.sectionTitle}>New Games</h2>
+          <p style={styles.sectionText}>
+            Check out recently added free browser games. These no-download games
+            work directly from your browser.
+          </p>
+        </div>
+
+        <div style={styles.gameGrid}>
+          {newGames.map((game) => (
+            <Link href={`/games/${game.slug}`} key={game.slug} style={styles.gameCard}>
+              <div
+                style={{
+                  ...styles.gameImage,
+                  backgroundImage: `url(${game.thumbnail})`,
+                }}
+              />
+
+              <div style={styles.gameBody}>
+                <div style={styles.gameMeta}>
+                  <span>{game.category}</span>
+                  <span>{game.duration}</span>
+                </div>
+
+                <h3 style={styles.gameTitle}>{game.title}</h3>
+
+                <p style={styles.gameText}>{game.description}</p>
+
+                <div
+                  style={
+                    game.audience === "Clean Casual"
+                      ? styles.cleanTag
+                      : styles.actionTag
+                  }
+                >
+                  {game.audience}
+                </div>
+
+                <div style={styles.playButton}>Play Now</div>
+              </div>
+            </Link>
+          ))}
+        </div>
+      </section>
+
+      <section id="popular-games" style={styles.sectionAlt}>
+        <div style={styles.sectionHeader}>
+          <h2 style={styles.sectionTitle}>Popular Games</h2>
+          <p style={styles.sectionText}>
+            Start with these featured games from the FreeGameHub library.
+          </p>
+        </div>
+
+        <div style={styles.gameGrid}>
+          {popularGames.map((game) => (
+            <Link href={`/games/${game.slug}`} key={game.slug} style={styles.gameCard}>
+              <div
+                style={{
+                  ...styles.gameImage,
+                  backgroundImage: `url(${game.thumbnail})`,
+                }}
+              />
+
+              <div style={styles.gameBody}>
+                <div style={styles.gameMeta}>
+                  <span>{game.category}</span>
+                  <span>{game.duration}</span>
+                </div>
+
+                <h3 style={styles.gameTitle}>{game.title}</h3>
+
+                <p style={styles.gameText}>{game.description}</p>
+
+                <div
+                  style={
+                    game.audience === "Clean Casual"
+                      ? styles.cleanTag
+                      : styles.actionTag
+                  }
+                >
+                  {game.audience}
+                </div>
+
+                <div style={styles.playButton}>Play Now</div>
+              </div>
+            </Link>
+          ))}
+        </div>
+      </section>
+
       <section id="popular-categories" style={styles.section}>
         <div style={styles.sectionHeader}>
           <h2 style={styles.sectionTitle}>Popular Game Categories</h2>
           <p style={styles.sectionText}>
             Find free browser games by play style. Choose lighter casual games,
-            brain games, driving games, relaxing games, or faster action games.
+            brain games, driving games, relaxing games, sports games, or faster
+            action games.
           </p>
         </div>
 
@@ -121,7 +238,7 @@ export default function Home() {
             </p>
           </Link>
 
-                    <Link href="/games/category/sports" style={styles.categoryCard}>
+          <Link href="/games/category/sports" style={styles.categoryCard}>
             <span style={styles.categoryLabel}>Sports</span>
             <h3>Sports Games</h3>
             <p>
@@ -192,8 +309,8 @@ export default function Home() {
             <h3>Organized by Category</h3>
             <p>
               Games are grouped into clean casual, puzzle, racing, relaxing,
-              educational, and action categories so visitors can find games
-              faster.
+              educational, sports, arcade, simulation, adventure, and action
+              categories so visitors can find games faster.
             </p>
           </div>
         </div>
@@ -202,11 +319,12 @@ export default function Home() {
       <section style={styles.seoBlock}>
         <h2>Free No-Download Games Online</h2>
         <p>
-          FreeGameHub helps visitors find free online games that work directly in
-          a web browser. The site includes clean casual games for lighter play,
-          puzzle games for problem solving, racing games for driving fans,
+          FreeGameHub helps visitors find free online games that work directly
+          in a web browser. The site includes clean casual games for lighter
+          play, puzzle games for problem solving, racing games for driving fans,
           relaxing games for slower sessions, educational games for brain
-          practice, and action games for faster gameplay.
+          practice, sports games for skill-based play, and action games for
+          faster gameplay.
         </p>
 
         <p>
@@ -214,6 +332,12 @@ export default function Home() {
           play information, related games, and links to similar categories.
           These pages are designed to be simple for visitors and easier for
           search engines to understand.
+        </p>
+
+        <p>
+          FreeGameHub currently has {cleanCasualGames.length} clean casual games
+          and {games.length} total games in the library, with more browser games
+          being added over time.
         </p>
 
         <div style={styles.bottomButtons}>
@@ -332,6 +456,78 @@ const styles = {
     color: "#475569",
     lineHeight: "1.7",
     fontSize: "18px",
+  },
+  gameGrid: {
+    display: "grid",
+    gridTemplateColumns: "repeat(4, minmax(0, 1fr))",
+    gap: "20px",
+  },
+  gameCard: {
+    background: "#ffffff",
+    borderRadius: "22px",
+    overflow: "hidden",
+    textDecoration: "none",
+    color: "#111827",
+    boxShadow: "0 12px 30px rgba(15,23,42,0.08)",
+    borderWidth: "1px",
+    borderStyle: "solid",
+    borderColor: "#e5e7eb",
+  },
+  gameImage: {
+    height: "170px",
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+  },
+  gameBody: {
+    padding: "18px",
+  },
+  gameMeta: {
+    display: "flex",
+    justifyContent: "space-between",
+    gap: "10px",
+    color: "#64748b",
+    fontSize: "13px",
+    fontWeight: "800",
+    marginBottom: "10px",
+  },
+  gameTitle: {
+    fontSize: "22px",
+    margin: "0 0 8px",
+    fontWeight: "900",
+  },
+  gameText: {
+    color: "#475569",
+    lineHeight: "1.5",
+    minHeight: "92px",
+  },
+  cleanTag: {
+    display: "inline-block",
+    background: "#dcfce7",
+    color: "#166534",
+    padding: "6px 10px",
+    borderRadius: "999px",
+    fontSize: "12px",
+    fontWeight: "900",
+    marginTop: "8px",
+  },
+  actionTag: {
+    display: "inline-block",
+    background: "#ffedd5",
+    color: "#9a3412",
+    padding: "6px 10px",
+    borderRadius: "999px",
+    fontSize: "12px",
+    fontWeight: "900",
+    marginTop: "8px",
+  },
+  playButton: {
+    marginTop: "16px",
+    background: "#111827",
+    color: "#ffffff",
+    textAlign: "center",
+    padding: "12px",
+    borderRadius: "14px",
+    fontWeight: "900",
   },
   categoryGrid: {
     display: "grid",

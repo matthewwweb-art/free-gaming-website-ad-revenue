@@ -2,12 +2,61 @@ import "./globals.css";
 import SiteHeader from "../components/SiteHeader";
 import SiteFooter from "../components/SiteFooter";
 
+const siteUrl = "https://free-gaming-website-ad-revenue.vercel.app";
+
 export const metadata = {
-  title: "FreeGameHub | Free Browser Games",
+  metadataBase: new URL(siteUrl),
+  title: {
+    default: "FreeGameHub | Free Browser Games Online",
+    template: "%s | FreeGameHub",
+  },
   description:
-    "Play free browser games online, including clean casual games, puzzle games, racing games, relaxing games, and action games.",
+    "Play free browser games online with no downloads. Browse clean casual games, puzzle games, racing games, relaxing games, educational games, and action games.",
+  keywords: [
+    "free browser games",
+    "free online games",
+    "no download games",
+    "clean casual games",
+    "puzzle games",
+    "racing games",
+    "relaxing games",
+    "educational games",
+    "action games",
+  ],
+  authors: [{ name: "FreeGameHub" }],
+  creator: "FreeGameHub",
+  publisher: "FreeGameHub",
   verification: {
     google: "wTIW2yUuPvgch1RqVJGQ7E2IIaTYzsaYybR2T4Qzo0M",
+  },
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: siteUrl,
+    siteName: "FreeGameHub",
+    title: "FreeGameHub | Free Browser Games Online",
+    description:
+      "Play free browser games online with no downloads. Browse clean casual games, puzzle games, racing games, relaxing games, educational games, and action games.",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "FreeGameHub | Free Browser Games Online",
+    description:
+      "Play free browser games online with no downloads. Browse clean casual games, puzzle games, racing games, relaxing games, educational games, and action games.",
+  },
+  alternates: {
+    canonical: siteUrl,
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
   },
 };
 

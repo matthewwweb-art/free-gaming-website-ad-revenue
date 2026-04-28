@@ -1,11 +1,26 @@
 import Link from "next/link";
 
 export const metadata = {
-  title: "FreeGameHub | Free Browser Games Online",
+  title: "Free Browser Games Online",
   description:
     "Play free browser games online with no downloads. Browse clean casual games, puzzle games, racing games, educational games, relaxing games, and action games.",
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    title: "FreeGameHub | Free Browser Games Online",
+    description:
+      "Play free browser games online with no downloads. Browse clean casual games, puzzle games, racing games, educational games, relaxing games, and action games.",
+    url: "/",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "FreeGameHub | Free Browser Games Online",
+    description:
+      "Play free browser games online with no downloads. Browse clean casual games, puzzle games, racing games, educational games, relaxing games, and action games.",
+  },
 };
-
 export default function Home() {
   return (
     <main style={styles.page}>

@@ -166,8 +166,22 @@ export async function generateMetadata({ params }) {
   }
 
   return {
-    title: `${page.title} | FreeGameHub`,
+    title: page.title,
     description: page.description,
+    alternates: {
+      canonical: `/games/category/${resolvedParams.slug}`,
+    },
+    openGraph: {
+      title: `${page.title} | FreeGameHub`,
+      description: page.description,
+      url: `/games/category/${resolvedParams.slug}`,
+      type: "website",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${page.title} | FreeGameHub`,
+      description: page.description,
+    },
   };
 }
 

@@ -17,7 +17,6 @@ export default function ContactPage() {
         <div style={styles.card}>
           <h2>Contact Email</h2>
           <p>
-            Replace this with your real website email before launching:
           </p>
 
           <p style={styles.email}>matthewwweb@gmail.com</p>

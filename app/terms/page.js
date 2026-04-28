@@ -57,7 +57,6 @@ export default function TermsPage() {
         <h2>Contact</h2>
         <p>
           For questions about these terms, contact us at matthewwweb@gmail.com.
-          Replace this email before launching the website publicly.
         </p>
       </section>
     </main>

@@ -239,6 +239,226 @@ export const games = [
     width: 800,
     height: 600,
   },
+  {
+    id: "50701",
+    slug: "building-construction",
+    title: "Building Construction",
+    audience: "Clean Casual",
+    category: "Skill",
+    mood: "Focus",
+    duration: "5 minutes",
+    description:
+      "A simple stacking game where players place building floors and try to create the tallest tower possible.",
+    instructions: "Click the mouse or press Space to place each floor.",
+    thumbnail:
+      "https://img.gamemonetize.com/0pxd94iawcq5djp4gga1xhn2z08vbbnq/512x384.jpg",
+    iframeUrl:
+      "https://html5.gamemonetize.co/0pxd94iawcq5djp4gga1xhn2z08vbbnq/",
+    width: 800,
+    height: 600,
+  },
+  {
+    id: "76863",
+    slug: "mini-golf-3d",
+    title: "Mini Golf 3D",
+    audience: "Clean Casual",
+    category: "Sports",
+    mood: "Relaxing",
+    duration: "10 minutes",
+    description:
+      "A smooth mini golf game with many levels where players aim carefully, charge each shot, and avoid course hazards.",
+    instructions: "Use the mouse or tap to aim and play.",
+    thumbnail:
+      "https://img.gamemonetize.com/e3iz4assj31kbmfzgq647codbozk956c/512x384.jpg",
+    iframeUrl:
+      "https://html5.gamemonetize.co/e3iz4assj31kbmfzgq647codbozk956c/",
+    width: 800,
+    height: 600,
+  },
+  {
+    id: "76234",
+    slug: "snowboard-game",
+    title: "SnowBoard Game",
+    audience: "Clean Casual",
+    category: "Sports",
+    mood: "Fun",
+    duration: "10 minutes",
+    description:
+      "A winter sports browser game where players ride down snowy slopes, avoid obstacles, and reach the finish line.",
+    instructions: "Use the mouse to click buttons and play.",
+    thumbnail:
+      "https://img.gamemonetize.com/4jlpcom1sy0z4thlimget2ew3z6ow05d/512x384.jpg",
+    iframeUrl:
+      "https://html5.gamemonetize.co/4jlpcom1sy0z4thlimget2ew3z6ow05d/",
+    width: 800,
+    height: 600,
+  },
+  {
+    id: "76079",
+    slug: "offroad-truck-driving-simulator",
+    title: "Offroad Truck Driving Simulator",
+    audience: "Clean Casual",
+    category: "Racing",
+    mood: "Fun",
+    duration: "10 minutes",
+    description:
+      "An off-road truck driving simulator where players drive 4x4 trucks through rough terrain and complete driving challenges.",
+    instructions: "Use WASD or arrow keys to move the truck. Press H for horn and R for reverse.",
+    thumbnail:
+      "https://img.gamemonetize.com/bwrunfiqbjfxprp91bq5v0xhtqzmukno/512x384.jpg",
+    iframeUrl:
+      "https://html5.gamemonetize.co/bwrunfiqbjfxprp91bq5v0xhtqzmukno/",
+    width: 800,
+    height: 600,
+  },
+  {
+    id: "76019",
+    slug: "police-chase-car-simulator",
+    title: "Police Chase Car Simulator",
+    audience: "Action",
+    category: "Racing",
+    mood: "Action",
+    duration: "10 minutes",
+    description:
+      "A police driving simulator with chase missions, traffic tasks, escort missions, and action-focused driving gameplay.",
+    instructions: "Use WASD to move and tap or click to play.",
+    thumbnail:
+      "https://img.gamemonetize.com/1hf3m6hqeubtwjyibxy2p5qvlr0rk955/512x384.jpg",
+    iframeUrl:
+      "https://html5.gamemonetize.co/1hf3m6hqeubtwjyibxy2p5qvlr0rk955/",
+    width: 800,
+    height: 600,
+  },
+  {
+    id: "73372",
+    slug: "drift-x-driving-car-game",
+    title: "Drift X Driving Car Game",
+    audience: "Clean Casual",
+    category: "Racing",
+    mood: "Fun",
+    duration: "10 minutes",
+    description:
+      "A car drifting and driving game where players practice car control, freestyle drifting, and open-road driving.",
+    instructions:
+      "Use W or Arrow Up to move forward, S or Arrow Down to move back, A or Arrow Left to move left, and D or Arrow Right to move right.",
+    thumbnail:
+      "https://img.gamemonetize.com/1mf5gvj912ik2r7i0nkbfobb4ow3ax1t/512x384.jpg",
+    iframeUrl:
+      "https://html5.gamemonetize.co/1mf5gvj912ik2r7i0nkbfobb4ow3ax1t/",
+    width: 800,
+    height: 600,
+  },
+  {
+    id: "78523",
+    slug: "passenger-airplane-flight-3d",
+    title: "Passenger Airplane: Flight 3D",
+    audience: "Clean Casual",
+    category: "Simulation",
+    mood: "Relaxing",
+    duration: "10 minutes",
+    description:
+      "A passenger flight simulation game where players practice takeoffs, camera views, weather settings, and smooth flying.",
+    instructions:
+      "Use the joystick controls or arrow keys depending on the selected settings.",
+    thumbnail:
+      "https://img.gamemonetize.com/2xuago0gm0ss2dn7724havhlmtf38qqf/512x384.jpg",
+    iframeUrl:
+      "https://html5.gamemonetize.co/2xuago0gm0ss2dn7724havhlmtf38qqf/",
+    width: 800,
+    height: 600,
+  },
+  {
+    id: "71240",
+    slug: "classic-checkers-forest",
+    title: "Classic Checkers: Forest",
+    audience: "Clean Casual",
+    category: "Puzzle",
+    mood: "Strategy",
+    duration: "10 minutes",
+    description:
+      "A forest-themed checkers game where players can enjoy classic board game rules against another player or computer opponent.",
+    instructions:
+      "Choose your game mode and move your pieces according to classic checkers rules.",
+    thumbnail:
+      "https://img.gamemonetize.com/v7ec9hsu8m34cjuetzz8dj7zaasd3fpx/512x384.jpg",
+    iframeUrl:
+      "https://html5.gamemonetize.co/v7ec9hsu8m34cjuetzz8dj7zaasd3fpx/",
+    width: 1080,
+    height: 1920,
+  },
+  {
+    id: "76179",
+    slug: "mini-dice-chess",
+    title: "Mini Dice Chess",
+    audience: "Clean Casual",
+    category: "Puzzle",
+    mood: "Strategy",
+    duration: "10 minutes",
+    description:
+      "A fast chess variant where dice rolls decide which pieces can move, mixing strategy with luck.",
+    instructions: "Use the mouse or tap to play.",
+    thumbnail:
+      "https://img.gamemonetize.com/z2ymyafbvxwonucftx7io0ywt4llngkw/512x384.jpg",
+    iframeUrl:
+      "https://html5.gamemonetize.co/z2ymyafbvxwonucftx7io0ywt4llngkw/",
+    width: 720,
+    height: 1280,
+  },
+  {
+    id: "49889",
+    slug: "christmas-snowball-arena",
+    title: "Christmas Snowball Arena",
+    audience: "Clean Casual",
+    category: "Arcade",
+    mood: "Fun",
+    duration: "10 minutes",
+    description:
+      "A winter snowball arena game where players collect snow blocks, grow their snowball, and try to stay in the arena.",
+    instructions: "Drag and swipe to control your snowball.",
+    thumbnail:
+      "https://img.gamemonetize.com/8xzlb8k42m6kl77vd2mplzq63poxavui/512x384.jpg",
+    iframeUrl:
+      "https://html5.gamemonetize.co/8xzlb8k42m6kl77vd2mplzq63poxavui/",
+    width: 750,
+    height: 1334,
+  },
+  {
+    id: "52057",
+    slug: "only-up-parkour-2",
+    title: "Only Up Parkour 2",
+    audience: "Clean Casual",
+    category: "Adventure",
+    mood: "Focus",
+    duration: "10 minutes",
+    description:
+      "A vertical parkour game where players jump, climb, and react quickly while trying to reach higher platforms.",
+    instructions: "Use WASD to move and Space to jump.",
+    thumbnail:
+      "https://img.gamemonetize.com/853a4737nzy6vvrou31upd0nd41rbg2b/512x384.jpg",
+    iframeUrl:
+      "https://html5.gamemonetize.co/853a4737nzy6vvrou31upd0nd41rbg2b/",
+    width: 800,
+    height: 600,
+  },
+  {
+    id: "1674",
+    slug: "3d-billiard-8-ball-pool",
+    title: "3D Billiard 8 Ball Pool",
+    audience: "Clean Casual",
+    category: "Sports",
+    mood: "Strategy",
+    duration: "10 minutes",
+    description:
+      "A 3D billiards game where players aim, shoot, and try to pocket their group of balls before sinking the 8 ball.",
+    instructions:
+      "Break the balls, pocket either solids or stripes, then pocket the 8 ball to win.",
+    thumbnail:
+      "https://img.gamemonetize.com/jf2a06o1z5ezy7stb7c4lmm13syg12yk/512x384.jpg",
+    iframeUrl:
+      "https://html5.gamemonetize.co/jf2a06o1z5ezy7stb7c4lmm13syg12yk/",
+    width: 800,
+    height: 600,
+  },
 ];
 
 export const audiences = ["All", "Clean Casual", "Action"];
@@ -249,6 +469,11 @@ export const categories = [
   "Puzzle",
   "Relaxing",
   "Racing",
+  "Sports",
+  "Skill",
+  "Simulation",
+  "Arcade",
+  "Adventure",
   "Shooting",
   "Fighting",
 ];

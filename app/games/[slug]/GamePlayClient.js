@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 
-const siteUrl = "https://free-gaming-website-ad-revenue.vercel.app";
+const siteUrl = "https://games.matthew-web.com";
 
 function getCategorySlug(game) {
   if (game.audience === "Clean Casual") {

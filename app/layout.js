@@ -3,7 +3,7 @@ import SiteHeader from "../components/SiteHeader";
 import SiteFooter from "../components/SiteFooter";
 import { Analytics } from "@vercel/analytics/next";
 
-const siteUrl = "https://free-gaming-website-ad-revenue.vercel.app";
+const siteUrl = "https://games.matthew-web.com";
 
 export const metadata = {
   metadataBase: new URL(siteUrl),

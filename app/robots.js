@@ -1,4 +1,4 @@
-const siteUrl = "https://free-gaming-website-ad-revenue.vercel.app";
+const siteUrl = "https://games.matthew-web.com";
 
 export default function robots() {
   return {

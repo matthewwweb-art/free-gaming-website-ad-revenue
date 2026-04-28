@@ -335,7 +335,7 @@ export default async function CategoryPage({ params }) {
     return game.category === page.filterValue;
   });
 
-  const pageUrl = `https://free-gaming-website-ad-revenue.vercel.app/games/category/${resolvedParams.slug}`;
+  const pageUrl = `https://games.matthew-web.com/games/category/${resolvedParams.slug}`;
 
   const faqSchema = {
     "@context": "https://schema.org",
@@ -362,7 +362,7 @@ export default async function CategoryPage({ params }) {
         "@type": "ListItem",
         position: index + 1,
         name: game.title,
-        url: `https://free-gaming-website-ad-revenue.vercel.app/games/${game.slug}`,
+        url: `https://games.matthew-web.com/games/${game.slug}`,
       })),
     },
   };

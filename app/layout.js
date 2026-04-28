@@ -1,6 +1,7 @@
 import "./globals.css";
 import SiteHeader from "../components/SiteHeader";
 import SiteFooter from "../components/SiteFooter";
+import { Analytics } from "@vercel/analytics/next";
 
 const siteUrl = "https://free-gaming-website-ad-revenue.vercel.app";
 
@@ -67,6 +68,7 @@ export default function RootLayout({ children }) {
         <SiteHeader />
         {children}
         <SiteFooter />
+        <Analytics />
       </body>
     </html>
   );

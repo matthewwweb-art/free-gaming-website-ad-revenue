@@ -24,7 +24,14 @@ export default function GamePlayClient({ game, games }) {
     .filter((item) => item.slug !== game.slug && item.audience === game.audience)
     .slice(0, 3);
 
-  const gameHeight = isPortraitGame ? "min(82vh, 760px)" : "min(72vh, 620px)";
+  const gameWidth = Number(game.width || 800);
+  const gameHeightValue = Number(game.height || 600);
+  const isPortraitGame = gameHeightValue > gameWidth;
+
+  const gameFrameHeight = isPortraitGame
+    ? "min(82vh, 760px)"
+    : "min(72vh, 620px)";
+
   const gameUrl = `${siteUrl}/games/${game.slug}`;
   const categorySlug = getCategorySlug(game);
 
@@ -145,13 +152,22 @@ export default function GamePlayClient({ game, games }) {
         </section>
       )}
 
-      <section id="play-game" style={styles.gameShell}>
-        <div style={styles.sideAd}>Ad space reserved</div>
+      <section id="play-game" className="fg-game-shell" style={styles.gameShell}>
+        <div className="fg-side-ad" style={styles.sideAd}>
+          Ad space reserved
+        </div>
 
         <div
+          className={
+            isPortraitGame
+              ? "fg-game-box fg-game-box-portrait"
+              : "fg-game-box fg-game-box-landscape"
+          }
           style={{
             ...styles.gameBox,
-            ...(isPortraitGame ? styles.portraitGameBox : styles.landscapeGameBox),
+            ...(isPortraitGame
+              ? styles.portraitGameBox
+              : styles.landscapeGameBox),
           }}
         >
           <iframe
@@ -159,15 +175,17 @@ export default function GamePlayClient({ game, games }) {
             title={game.title}
             style={{
               ...styles.iframe,
-              height: gameHeight,
+              height: gameFrameHeight,
             }}
             allowFullScreen
             loading="lazy"
-         />
-       </div>
+          />
+        </div>
 
-       <div style={styles.sideAd}>Ad space reserved</div>
-     </section>
+        <div className="fg-side-ad" style={styles.sideAd}>
+          Ad space reserved
+        </div>
+      </section>
 
       <section style={styles.bottomAd}>Ad space reserved</section>
 
@@ -279,8 +297,9 @@ export default function GamePlayClient({ game, games }) {
         <div style={styles.adNote}>
           <h3>Advertising note</h3>
           <p>
-            Sponsored areas are kept separate from game controls and play buttons.
-            This helps keep the page clear and reduces accidental clicks.
+            Sponsored areas are kept separate from game controls and play
+            buttons. This helps keep the page clear and reduces accidental
+            clicks.
           </p>
         </div>
       </section>
@@ -288,7 +307,7 @@ export default function GamePlayClient({ game, games }) {
       <section style={styles.related}>
         <h2>More {game.audience} Games</h2>
 
-        <div style={styles.relatedGrid}>
+        <div className="fg-related-grid" style={styles.relatedGrid}>
           {relatedGames.map((item) => (
             <Link
               key={item.slug}
@@ -419,11 +438,11 @@ const styles = {
     lineHeight: "1.5",
   },
   gameShell: {
-  display: "grid",
-  gridTemplateColumns: "150px minmax(0, 1fr) 150px",
-  gap: "16px",
-  padding: "28px 7%",
-  alignItems: "stretch",
+    display: "grid",
+    gridTemplateColumns: "150px minmax(0, 1fr) 150px",
+    gap: "16px",
+    padding: "28px 7%",
+    alignItems: "stretch",
   },
   gameBox: {
     background: "#111827",
@@ -433,14 +452,14 @@ const styles = {
     boxShadow: "0 18px 45px rgba(15,23,42,0.18)",
   },
   portraitGameBox: {
-  width: "100%",
-  maxWidth: "520px",
-  margin: "0 auto",
+    width: "100%",
+    maxWidth: "520px",
+    margin: "0 auto",
   },
   landscapeGameBox: {
-  width: "100%",
-  maxWidth: "100%",
-  margin: "0",
+    width: "100%",
+    maxWidth: "100%",
+    margin: "0",
   },
   iframe: {
     width: "100%",
@@ -507,6 +526,25 @@ const styles = {
     borderBottomStyle: "solid",
     borderBottomColor: "#e5e7eb",
   },
+  reportBox: {
+    marginTop: "34px",
+    background: "#f8fafc",
+    borderWidth: "1px",
+    borderStyle: "solid",
+    borderColor: "#e5e7eb",
+    borderRadius: "20px",
+    padding: "22px",
+  },
+  reportButton: {
+    display: "inline-block",
+    marginTop: "10px",
+    background: "#111827",
+    color: "#ffffff",
+    padding: "12px 16px",
+    borderRadius: "14px",
+    textDecoration: "none",
+    fontWeight: "900",
+  },
   categoryLinksBox: {
     marginTop: "34px",
     background: "#f8fafc",
@@ -556,24 +594,5 @@ const styles = {
   },
   relatedBody: {
     padding: "16px",
-  },
-    reportBox: {
-    marginTop: "34px",
-    background: "#f8fafc",
-    borderWidth: "1px",
-    borderStyle: "solid",
-    borderColor: "#e5e7eb",
-    borderRadius: "20px",
-    padding: "22px",
-  },
-  reportButton: {
-    display: "inline-block",
-    marginTop: "10px",
-    background: "#111827",
-    color: "#ffffff",
-    padding: "12px 16px",
-    borderRadius: "14px",
-    textDecoration: "none",
-    fontWeight: "900",
   },
 };

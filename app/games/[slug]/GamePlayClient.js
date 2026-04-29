@@ -24,7 +24,7 @@ export default function GamePlayClient({ game, games }) {
     .filter((item) => item.slug !== game.slug && item.audience === game.audience)
     .slice(0, 3);
 
-  const gameHeight = game.height > game.width ? 760 : 620;
+  const gameHeight = isPortraitGame ? "min(82vh, 760px)" : "min(72vh, 620px)";
   const gameUrl = `${siteUrl}/games/${game.slug}`;
   const categorySlug = getCategorySlug(game);
 
@@ -148,21 +148,26 @@ export default function GamePlayClient({ game, games }) {
       <section id="play-game" style={styles.gameShell}>
         <div style={styles.sideAd}>Ad space reserved</div>
 
-        <div style={styles.gameBox}>
+        <div
+          style={{
+            ...styles.gameBox,
+            ...(isPortraitGame ? styles.portraitGameBox : styles.landscapeGameBox),
+          }}
+        >
           <iframe
             src={game.iframeUrl}
             title={game.title}
             style={{
               ...styles.iframe,
-              height: `${gameHeight}px`,
+              height: gameHeight,
             }}
             allowFullScreen
             loading="lazy"
-          />
-        </div>
+         />
+       </div>
 
-        <div style={styles.sideAd}>Ad space reserved</div>
-      </section>
+       <div style={styles.sideAd}>Ad space reserved</div>
+     </section>
 
       <section style={styles.bottomAd}>Ad space reserved</section>
 
@@ -414,11 +419,11 @@ const styles = {
     lineHeight: "1.5",
   },
   gameShell: {
-    display: "grid",
-    gridTemplateColumns: "160px minmax(0, 1fr) 160px",
-    gap: "16px",
-    padding: "28px 7%",
-    alignItems: "stretch",
+  display: "grid",
+  gridTemplateColumns: "150px minmax(0, 1fr) 150px",
+  gap: "16px",
+  padding: "28px 7%",
+  alignItems: "stretch",
   },
   gameBox: {
     background: "#111827",
@@ -426,6 +431,16 @@ const styles = {
     overflow: "hidden",
     minHeight: "620px",
     boxShadow: "0 18px 45px rgba(15,23,42,0.18)",
+  },
+  portraitGameBox: {
+  width: "100%",
+  maxWidth: "520px",
+  margin: "0 auto",
+  },
+  landscapeGameBox: {
+  width: "100%",
+  maxWidth: "100%",
+  margin: "0",
   },
   iframe: {
     width: "100%",

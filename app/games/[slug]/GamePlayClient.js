@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import Link from "next/link";
 
 const siteUrl = "https://games.matthew-web.com";
@@ -21,17 +21,20 @@ function getCategorySlug(game) {
 }
 
 export default function GamePlayClient({ game, games }) {
+  const gameBoxRef = useRef(null);
+  const [gameLoaded, setGameLoaded] = useState(false);
+
   const relatedGames = games
     .filter((item) => item.slug !== game.slug && item.audience === game.audience)
     .slice(0, 3);
 
-  const gameBoxRef = useRef(null);
-
   const gameWidth = Number(game.width || 800);
   const gameHeightValue = Number(game.height || 600);
   const isPortraitGame = gameHeightValue > gameWidth;
-
   const gameAspectRatio = `${gameWidth} / ${gameHeightValue}`;
+
+  const gameUrl = `${siteUrl}/games/${game.slug}`;
+  const categorySlug = getCategorySlug(game);
 
   function handleFullscreen() {
     const element = gameBoxRef.current;
@@ -46,9 +49,6 @@ export default function GamePlayClient({ game, games }) {
       element.msRequestFullscreen();
     }
   }
-
-  const gameUrl = `${siteUrl}/games/${game.slug}`;
-  const categorySlug = getCategorySlug(game);
 
   const videoGameSchema = {
     "@context": "https://schema.org",
@@ -182,36 +182,62 @@ export default function GamePlayClient({ game, games }) {
           style={{
             ...styles.gameBox,
             ...(isPortraitGame ? styles.portraitGameBox : styles.landscapeGameBox),
-           aspectRatio: gameAspectRatio,
-         }}
+            aspectRatio: gameAspectRatio,
+          }}
         >
-         <button
-           type="button"
-           onClick={handleFullscreen}
-           style={styles.fullscreenButton}
-          >
-           Full Screen
-         </button>
+          {!gameLoaded ? (
+            <div
+              style={{
+                ...styles.gameStart,
+                backgroundImage: `linear-gradient(rgba(15,23,42,0.72), rgba(15,23,42,0.72)), url(${game.thumbnail})`,
+              }}
+            >
+              <h2 style={styles.gameStartTitle}>{game.title}</h2>
+              <p style={styles.gameStartText}>
+                Tap below to load and play this browser game.
+              </p>
 
-         <iframe
-           src={game.iframeUrl}
-           title={game.title}
-           style={styles.iframe}
-           allowFullScreen
-           loading="lazy"
-         />
-       </div>
+              <button
+                type="button"
+                onClick={() => setGameLoaded(true)}
+                style={styles.loadGameButton}
+              >
+                Load Game
+              </button>
+            </div>
+          ) : (
+            <>
+              <button
+                type="button"
+                onClick={handleFullscreen}
+                style={styles.fullscreenButton}
+              >
+                Full Screen
+              </button>
 
-       <div className="fg-side-ad" style={styles.sideAd}>
-         Ad space reserved
-       </div>
-     </section>
+              <iframe
+                src={game.iframeUrl}
+                title={game.title}
+                style={styles.iframe}
+                allowFullScreen
+                loading="eager"
+              />
+            </>
+          )}
+        </div>
 
-      <section style={styles.bottomAd}>Ad space reserved</section>
+        <div className="fg-side-ad" style={styles.sideAd}>
+          Ad space reserved
+        </div>
+      </section>
+
+      <section className="fg-bottom-ad" style={styles.bottomAd}>
+        Ad space reserved
+      </section>
 
       <section style={styles.about}>
-        <div style={styles.aboutGrid}>
-          <div>
+        <div className="fg-about-grid" style={styles.aboutGrid}>
+          <div className="fg-game-copy" style={styles.copyColumn}>
             <h2>Play {game.title} Online</h2>
             <p>
               {game.title} is a free browser game you can play online without
@@ -236,7 +262,7 @@ export default function GamePlayClient({ game, games }) {
             </p>
           </div>
 
-          <aside style={styles.infoCard}>
+          <aside className="fg-info-card" style={styles.infoCard}>
             <h2>Game Details</h2>
 
             <div style={styles.infoRow}>
@@ -465,41 +491,77 @@ const styles = {
     alignItems: "stretch",
   },
   gameBox: {
-  position: "relative",
-  background: "#111827",
-  borderRadius: "24px",
-  overflow: "hidden",
-  boxShadow: "0 18px 45px rgba(15,23,42,0.18)",
+    position: "relative",
+    background: "#111827",
+    borderRadius: "24px",
+    overflow: "hidden",
+    boxShadow: "0 18px 45px rgba(15,23,42,0.18)",
   },
   portraitGameBox: {
-  width: "100%",
-  maxWidth: "520px",
-  margin: "0 auto",
+    width: "100%",
+    maxWidth: "520px",
+    margin: "0 auto",
   },
   landscapeGameBox: {
-  width: "100%",
-  maxWidth: "1100px",
-  margin: "0 auto",
+    width: "100%",
+    maxWidth: "1100px",
+    margin: "0 auto",
+  },
+  gameStart: {
+    width: "100%",
+    height: "100%",
+    minHeight: "360px",
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
+    textAlign: "center",
+    color: "#ffffff",
+    padding: "28px",
+  },
+  gameStartTitle: {
+    fontSize: "clamp(30px, 6vw, 54px)",
+    margin: "0 0 12px",
+    fontWeight: "900",
+  },
+  gameStartText: {
+    color: "#e5e7eb",
+    fontSize: "18px",
+    lineHeight: "1.5",
+    maxWidth: "520px",
+  },
+  loadGameButton: {
+    marginTop: "18px",
+    border: "0",
+    background: "#f97316",
+    color: "#ffffff",
+    padding: "15px 24px",
+    borderRadius: "14px",
+    fontWeight: "900",
+    fontSize: "16px",
+    cursor: "pointer",
   },
   fullscreenButton: {
-  position: "absolute",
-  top: "12px",
-  right: "12px",
-  zIndex: 5,
-  border: "0",
-  background: "rgba(15,23,42,0.9)",
-  color: "#ffffff",
-  padding: "10px 14px",
-  borderRadius: "12px",
-  fontWeight: "900",
-  cursor: "pointer",
+    position: "absolute",
+    top: "12px",
+    right: "12px",
+    zIndex: 5,
+    border: "0",
+    background: "rgba(15,23,42,0.9)",
+    color: "#ffffff",
+    padding: "10px 14px",
+    borderRadius: "12px",
+    fontWeight: "900",
+    cursor: "pointer",
   },
   iframe: {
-  width: "100%",
-  height: "100%",
-  border: "0",
-  display: "block",
-  background: "#000000",
+    width: "100%",
+    height: "100%",
+    border: "0",
+    display: "block",
+    background: "#000000",
   },
   sideAd: {
     borderWidth: "2px",
@@ -541,6 +603,10 @@ const styles = {
     gridTemplateColumns: "minmax(0, 1fr) 320px",
     gap: "28px",
     alignItems: "start",
+  },
+  copyColumn: {
+    minWidth: 0,
+    maxWidth: "760px",
   },
   infoCard: {
     background: "#f8fafc",

@@ -1,5 +1,6 @@
 "use client";
 
+import { useRef } from "react";
 import Link from "next/link";
 
 const siteUrl = "https://games.matthew-web.com";
@@ -24,13 +25,27 @@ export default function GamePlayClient({ game, games }) {
     .filter((item) => item.slug !== game.slug && item.audience === game.audience)
     .slice(0, 3);
 
+  const gameBoxRef = useRef(null);
+
   const gameWidth = Number(game.width || 800);
   const gameHeightValue = Number(game.height || 600);
   const isPortraitGame = gameHeightValue > gameWidth;
 
-  const gameFrameHeight = isPortraitGame
-    ? "min(82vh, 760px)"
-    : "min(72vh, 620px)";
+  const gameAspectRatio = `${gameWidth} / ${gameHeightValue}`;
+
+  function handleFullscreen() {
+    const element = gameBoxRef.current;
+
+    if (!element) return;
+
+    if (element.requestFullscreen) {
+      element.requestFullscreen();
+    } else if (element.webkitRequestFullscreen) {
+      element.webkitRequestFullscreen();
+    } else if (element.msRequestFullscreen) {
+      element.msRequestFullscreen();
+    }
+  }
 
   const gameUrl = `${siteUrl}/games/${game.slug}`;
   const categorySlug = getCategorySlug(game);
@@ -158,6 +173,7 @@ export default function GamePlayClient({ game, games }) {
         </div>
 
         <div
+          ref={gameBoxRef}
           className={
             isPortraitGame
               ? "fg-game-box fg-game-box-portrait"
@@ -165,27 +181,31 @@ export default function GamePlayClient({ game, games }) {
           }
           style={{
             ...styles.gameBox,
-            ...(isPortraitGame
-              ? styles.portraitGameBox
-              : styles.landscapeGameBox),
-          }}
+            ...(isPortraitGame ? styles.portraitGameBox : styles.landscapeGameBox),
+           aspectRatio: gameAspectRatio,
+         }}
         >
-          <iframe
-            src={game.iframeUrl}
-            title={game.title}
-            style={{
-              ...styles.iframe,
-              height: gameFrameHeight,
-            }}
-            allowFullScreen
-            loading="lazy"
-          />
-        </div>
+         <button
+           type="button"
+           onClick={handleFullscreen}
+           style={styles.fullscreenButton}
+          >
+           Full Screen
+         </button>
 
-        <div className="fg-side-ad" style={styles.sideAd}>
-          Ad space reserved
-        </div>
-      </section>
+         <iframe
+           src={game.iframeUrl}
+           title={game.title}
+           style={styles.iframe}
+           allowFullScreen
+           loading="lazy"
+         />
+       </div>
+
+       <div className="fg-side-ad" style={styles.sideAd}>
+         Ad space reserved
+       </div>
+     </section>
 
       <section style={styles.bottomAd}>Ad space reserved</section>
 
@@ -445,27 +465,41 @@ const styles = {
     alignItems: "stretch",
   },
   gameBox: {
-    background: "#111827",
-    borderRadius: "24px",
-    overflow: "hidden",
-    minHeight: "620px",
-    boxShadow: "0 18px 45px rgba(15,23,42,0.18)",
+  position: "relative",
+  background: "#111827",
+  borderRadius: "24px",
+  overflow: "hidden",
+  boxShadow: "0 18px 45px rgba(15,23,42,0.18)",
   },
   portraitGameBox: {
-    width: "100%",
-    maxWidth: "520px",
-    margin: "0 auto",
+  width: "100%",
+  maxWidth: "520px",
+  margin: "0 auto",
   },
   landscapeGameBox: {
-    width: "100%",
-    maxWidth: "100%",
-    margin: "0",
+  width: "100%",
+  maxWidth: "1100px",
+  margin: "0 auto",
+  },
+  fullscreenButton: {
+  position: "absolute",
+  top: "12px",
+  right: "12px",
+  zIndex: 5,
+  border: "0",
+  background: "rgba(15,23,42,0.9)",
+  color: "#ffffff",
+  padding: "10px 14px",
+  borderRadius: "12px",
+  fontWeight: "900",
+  cursor: "pointer",
   },
   iframe: {
-    width: "100%",
-    border: "0",
-    display: "block",
-    background: "#000000",
+  width: "100%",
+  height: "100%",
+  border: "0",
+  display: "block",
+  background: "#000000",
   },
   sideAd: {
     borderWidth: "2px",

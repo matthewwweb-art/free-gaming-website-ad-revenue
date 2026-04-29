@@ -28,7 +28,12 @@ export default function DmcaPage() {
         <h2>How to Submit a Request</h2>
         <p>
           Please email your request to{" "}
-          <strong>matthewwweb@gmail.com</strong> with the subject line:
+          <a
+            href="mailto:matthewwweb@gmail.com?subject=DMCA%20%2F%20Game%20Removal%20Request"
+            style={styles.emailLink}
+          >
+            matthewwweb@gmail.com
+          </a> with the subject line:
         </p>
 
         <p style={styles.emailBox}>DMCA / Game Removal Request</p>
@@ -67,7 +72,12 @@ export default function DmcaPage() {
         <h2>Contact Email</h2>
         <p>
           Send removal requests to{" "}
-          <strong>matthewwweb@gmail.com</strong>.
+          <a
+            href="mailto:matthewwweb@gmail.com?subject=DMCA%20%2F%20Game%20Removal%20Request"
+            style={styles.emailLink}
+          >
+            matthewwweb@gmail.com
+          </a>.
         </p>
       </section>
     </main>
@@ -111,5 +121,10 @@ const styles = {
     padding: "12px 16px",
     borderRadius: "14px",
     fontWeight: "900",
+  },
+    emailLink: {
+    color: "#f97316",
+    fontWeight: "900",
+    textDecoration: "none",
   },
 };

@@ -19,7 +19,12 @@ export default function ContactPage() {
           <p>
           </p>
 
-          <p style={styles.email}>matthewwweb@gmail.com</p>
+          <a
+            href="mailto:matthewwweb@gmail.com?subject=FreeGameHub%20Contact"
+            style={styles.email}
+          >
+            matthewwweb@gmail.com
+          </a>
 
           <h2>Game Removal Requests</h2>
           <p>
@@ -82,5 +87,6 @@ const styles = {
     padding: "12px 16px",
     borderRadius: "14px",
     fontWeight: "900",
+    textDecoration: "none",
   },
 };

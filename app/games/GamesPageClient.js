@@ -31,7 +31,7 @@ export default function GamesPageClient() {
 
   return (
     <main style={styles.page}>
-      <section style={styles.hero}>
+      <section className="fg-games-hero" style={styles.hero}>
         <div>
           <p style={styles.badge}>Free Browser Games</p>
 
@@ -124,7 +124,7 @@ export default function GamesPageClient() {
       <section style={styles.categorySeoLinks}>
         <h2 style={styles.categorySeoTitle}>Browse Popular Game Categories</h2>
 
-        <div style={styles.categorySeoGrid}>
+        <div className="fg-category-seo-grid" style={styles.categorySeoGrid}>
           <Link href="/games/category/clean-casual" style={styles.categorySeoCard}>
             Clean Casual Games
           </Link>
@@ -204,7 +204,7 @@ export default function GamesPageClient() {
           </div>
         </div>
 
-        <div style={styles.filters}>
+        <div className="fg-games-filters" style={styles.filters}>
           <input
             value={search}
             onChange={(e) => setSearch(e.target.value)}
@@ -252,7 +252,7 @@ export default function GamesPageClient() {
         {filteredGames.length === 0 ? (
           <div style={styles.empty}>No games found. Try another search.</div>
         ) : (
-          <div style={styles.grid}>
+          <div className="fg-games-grid" style={styles.grid}>
             {filteredGames.map((game) => (
               <Link
                 href={`/games/${game.slug}`}

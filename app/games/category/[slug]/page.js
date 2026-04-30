@@ -28,6 +28,33 @@ const categoryPages = {
       },
     ],
   },
+
+  "mobile-friendly": {
+    title: "Mobile-Friendly Games",
+    heading: "Free Mobile-Friendly Browser Games",
+    description:
+      "Play mobile-friendly browser games online with no downloads. Browse lighter puzzle games, board games, sports games, arcade games, and casual games that are better for phones and tablets.",
+    filterType: "mobileFriendly",
+    filterValue: true,
+    faqs: [
+      {
+        question: "What are mobile-friendly browser games?",
+        answer:
+          "Mobile-friendly browser games are games that are easier to play on phones and tablets. They are usually lighter, simpler, and better suited for touch screens.",
+      },
+      {
+        question: "Do mobile-friendly games work on every phone?",
+        answer:
+          "Performance can depend on the phone, browser, internet connection, and the game itself. Simple 2D, puzzle, board, and casual games usually work better on lower-cost phones than heavy 3D games.",
+      },
+      {
+        question: "Do I need to download these mobile games?",
+        answer:
+          "No. These games are browser-based, so you can play them online without downloading an app.",
+      },
+    ],
+  },
+
   action: {
     title: "Action Games",
     heading: "Free Action Games",
@@ -53,6 +80,7 @@ const categoryPages = {
       },
     ],
   },
+
   puzzle: {
     title: "Puzzle Games",
     heading: "Free Puzzle Games",
@@ -78,6 +106,7 @@ const categoryPages = {
       },
     ],
   },
+
   racing: {
     title: "Racing Games",
     heading: "Free Racing Games",
@@ -103,6 +132,7 @@ const categoryPages = {
       },
     ],
   },
+
   educational: {
     title: "Educational Games",
     heading: "Free Educational Games",
@@ -128,6 +158,7 @@ const categoryPages = {
       },
     ],
   },
+
   relaxing: {
     title: "Relaxing Games",
     heading: "Free Relaxing Games",
@@ -153,6 +184,7 @@ const categoryPages = {
       },
     ],
   },
+
   sports: {
     title: "Sports Games",
     heading: "Free Sports Games",
@@ -178,6 +210,7 @@ const categoryPages = {
       },
     ],
   },
+
   skill: {
     title: "Skill Games",
     heading: "Free Skill Games",
@@ -203,6 +236,7 @@ const categoryPages = {
       },
     ],
   },
+
   simulation: {
     title: "Simulation Games",
     heading: "Free Simulation Games",
@@ -228,6 +262,7 @@ const categoryPages = {
       },
     ],
   },
+
   arcade: {
     title: "Arcade Games",
     heading: "Free Arcade Games",
@@ -253,6 +288,7 @@ const categoryPages = {
       },
     ],
   },
+
   adventure: {
     title: "Adventure Games",
     heading: "Free Adventure Games",
@@ -276,31 +312,6 @@ const categoryPages = {
         answer:
           "No. These games are designed to run directly in the browser without requiring installation.",
       },
-        "mobile-friendly", {
-    title: "Mobile-Friendly Games",
-    heading: "Free Mobile-Friendly Browser Games",
-    description:
-      "Play mobile-friendly browser games online with no downloads. Browse lighter puzzle games, board games, sports games, arcade games, and casual games that are better for phones and tablets.",
-    filterType: "mobileFriendly",
-    filterValue: true,
-    faqs: [
-      {
-        question: "What are mobile-friendly browser games?",
-        answer:
-          "Mobile-friendly browser games are games that are easier to play on phones and tablets. They are usually lighter, simpler, and better suited for touch screens.",
-      },
-      {
-        question: "Do mobile-friendly games work on every phone?",
-        answer:
-          "Performance can depend on the phone, browser, internet connection, and the game itself. Simple 2D, puzzle, board, and casual games usually work better on lower-cost phones than heavy 3D games.",
-      },
-      {
-        question: "Do I need to download these mobile games?",
-        answer:
-          "No. These games are browser-based, so you can play them online without downloading an app.",
-      },
-    ],
-  },
     ],
   },
 };
@@ -352,17 +363,18 @@ export default async function CategoryPage({ params }) {
     notFound();
   }
 
-      const categoryGames = games.filter((game) => {
-        if (page.filterType === "audience") {
-          return game.audience === page.filterValue;
-        }
+  const categoryGames = games.filter((game) => {
+    if (page.filterType === "audience") {
+      return game.audience === page.filterValue;
+    }
 
-        if (page.filterType === "mobileFriendly") {
-         return game.mobileFriendly === true;
-        }
+    if (page.filterType === "mobileFriendly") {
+      return game.mobileFriendly === true;
+    }
 
-         return game.category === page.filterValue;
-       });
+    return game.category === page.filterValue;
+  });
+
   const pageUrl = `https://games.matthew-web.com/games/category/${resolvedParams.slug}`;
 
   const faqSchema = {
@@ -502,10 +514,10 @@ export default async function CategoryPage({ params }) {
           <p>
             Browser games are quick to start, easy to share, and do not require
             downloads or installations. FreeGameHub organizes games by category
-            so visitors can find clean casual games, puzzle games, relaxing
-            games, racing games, educational games, action games, sports games,
-            skill games, simulation games, arcade games, and adventure games
-            faster.
+            so visitors can find clean casual games, mobile-friendly games,
+            puzzle games, relaxing games, racing games, educational games,
+            action games, sports games, skill games, simulation games, arcade
+            games, and adventure games faster.
           </p>
 
           <h2>More Game Categories</h2>
@@ -517,15 +529,15 @@ export default async function CategoryPage({ params }) {
               Clean Casual
             </Link>
 
-            <Link href="/games/category/puzzle" style={styles.categoryLink}>
-              Puzzle
-            </Link>
-
             <Link
               href="/games/category/mobile-friendly"
               style={styles.categoryLink}
             >
               Mobile-Friendly
+            </Link>
+
+            <Link href="/games/category/puzzle" style={styles.categoryLink}>
+              Puzzle
             </Link>
 
             <Link href="/games/category/racing" style={styles.categoryLink}>

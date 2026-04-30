@@ -276,6 +276,31 @@ const categoryPages = {
         answer:
           "No. These games are designed to run directly in the browser without requiring installation.",
       },
+        "mobile-friendly", {
+    title: "Mobile-Friendly Games",
+    heading: "Free Mobile-Friendly Browser Games",
+    description:
+      "Play mobile-friendly browser games online with no downloads. Browse lighter puzzle games, board games, sports games, arcade games, and casual games that are better for phones and tablets.",
+    filterType: "mobileFriendly",
+    filterValue: true,
+    faqs: [
+      {
+        question: "What are mobile-friendly browser games?",
+        answer:
+          "Mobile-friendly browser games are games that are easier to play on phones and tablets. They are usually lighter, simpler, and better suited for touch screens.",
+      },
+      {
+        question: "Do mobile-friendly games work on every phone?",
+        answer:
+          "Performance can depend on the phone, browser, internet connection, and the game itself. Simple 2D, puzzle, board, and casual games usually work better on lower-cost phones than heavy 3D games.",
+      },
+      {
+        question: "Do I need to download these mobile games?",
+        answer:
+          "No. These games are browser-based, so you can play them online without downloading an app.",
+      },
+    ],
+  },
     ],
   },
 };
@@ -327,14 +352,17 @@ export default async function CategoryPage({ params }) {
     notFound();
   }
 
-  const categoryGames = games.filter((game) => {
-    if (page.filterType === "audience") {
-      return game.audience === page.filterValue;
-    }
+    const categoryGames = games.filter((game) => {
+      if (page.filterType === "audience") {
+        return game.audience === page.filterValue;
+      }
 
-    return game.category === page.filterValue;
-  });
+      if (page.filterType === "mobileFriendly") {
+        return game.mobileFriendly === true;
+      }
 
+      return game.category === page.filterValue;
+    });
   const pageUrl = `https://games.matthew-web.com/games/category/${resolvedParams.slug}`;
 
   const faqSchema = {
@@ -491,6 +519,13 @@ export default async function CategoryPage({ params }) {
 
             <Link href="/games/category/puzzle" style={styles.categoryLink}>
               Puzzle
+            </Link>
+
+            <Link
+              href="/games/category/mobile-friendly"
+              style={styles.categoryLink}
+            >
+              Mobile-Friendly
             </Link>
 
             <Link href="/games/category/racing" style={styles.categoryLink}>

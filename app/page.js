@@ -193,6 +193,15 @@ export default function Home() {
             </p>
           </Link>
 
+          <Link href="/games/category/mobile-friendly" style={styles.categoryCard}>
+            <span style={styles.categoryLabel}>Mobile-Friendly</span>
+            <h3>Mobile-Friendly Games</h3>
+            <p>
+              Play lighter browser games that are better for phones, tablets,
+              and lower-power devices.
+            </p>
+          </Link>
+
           <Link href="/games/category/puzzle" style={styles.categoryCard}>
             <span style={styles.categoryLabel}>Puzzle</span>
             <h3>Puzzle Games</h3>

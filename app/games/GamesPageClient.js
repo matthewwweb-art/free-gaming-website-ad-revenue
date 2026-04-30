@@ -129,6 +129,13 @@ export default function GamesPageClient() {
             Clean Casual Games
           </Link>
 
+          <Link
+            href="/games/category/mobile-friendly"
+            style={styles.categorySeoCard}
+          >
+            Mobile-Friendly Games
+          </Link>
+
           <Link href="/games/category/puzzle" style={styles.categorySeoCard}>
             Puzzle Games
           </Link>

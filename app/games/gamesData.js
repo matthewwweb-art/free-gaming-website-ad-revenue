@@ -7,6 +7,7 @@ export const games = [
     category: "Educational",
     mood: "Brain",
     duration: "5 minutes",
+    mobileFriendly: true,
     description:
       "A fun math quiz game where players solve quick arithmetic questions and choose the correct answer from three options.",
     instructions:
@@ -26,6 +27,7 @@ export const games = [
     category: "Puzzle",
     mood: "Focus",
     duration: "10 minutes",
+    mobileFriendly: true,
     description:
       "A hidden object puzzle game where players search for hidden letters and objects in dinosaur-themed scenes.",
     instructions: "Use your mouse to click the hidden items.",
@@ -44,9 +46,11 @@ export const games = [
     category: "Relaxing",
     mood: "Calm",
     duration: "10 minutes",
+    mobileFriendly: true,
     description:
       "A peaceful aquarium game where players can enjoy colorful fish, a calm underwater setting, and a relaxing casual experience.",
-    instructions: "Use the mouse to click buttons and interact with the aquarium.",
+    instructions:
+      "Use the mouse to click buttons and interact with the aquarium.",
     thumbnail:
       "https://img.gamemonetize.com/n6rj5pu853j5z31exseip818vqhvk12r/512x384.jpg",
     iframeUrl:
@@ -62,6 +66,7 @@ export const games = [
     category: "Puzzle",
     mood: "Relaxing",
     duration: "10 minutes",
+    mobileFriendly: true,
     description:
       "A colorful match-3 puzzle game where players match cookies and try to build a higher score.",
     instructions: "Match 3 or more of the same item to increase your score.",
@@ -80,6 +85,7 @@ export const games = [
     category: "Racing",
     mood: "Fun",
     duration: "10 minutes",
+    mobileFriendly: false,
     description:
       "A simple driving game where players choose different SUVs and drive around a big city.",
     instructions: "Use WASD to drive, Space to brake, and C to change camera.",
@@ -98,6 +104,7 @@ export const games = [
     category: "Racing",
     mood: "Action",
     duration: "10 minutes",
+    mobileFriendly: false,
     description:
       "A vehicle driving simulator where players test different military vehicles in a large desert area.",
     instructions: "Use WASD to drive, Space to brake, and C to change camera.",
@@ -116,9 +123,11 @@ export const games = [
     category: "Racing",
     mood: "Action",
     duration: "10 minutes",
+    mobileFriendly: false,
     description:
       "A realistic car crash simulator with detailed vehicle damage, open-world maps, and extreme driving gameplay.",
-    instructions: "Use WASD or arrow keys to drive. Use the mouse to click buttons.",
+    instructions:
+      "Use WASD or arrow keys to drive. Use the mouse to click buttons.",
     thumbnail:
       "https://img.gamemonetize.com/bevbu07wktcxyyg5hwz42yh36bg5maio/512x384.jpg",
     iframeUrl:
@@ -134,6 +143,7 @@ export const games = [
     category: "Shooting",
     mood: "Intense",
     duration: "15 minutes",
+    mobileFriendly: false,
     description:
       "A first-person action shooter where players explore backrooms-style levels, fight enemies, and search for the exit.",
     instructions:
@@ -153,6 +163,7 @@ export const games = [
     category: "Shooting",
     mood: "Intense",
     duration: "15 minutes",
+    mobileFriendly: false,
     description:
       "A multiplayer wild west shooter with action combat, weapons, and competitive battles.",
     instructions:
@@ -172,6 +183,7 @@ export const games = [
     category: "Shooting",
     mood: "Intense",
     duration: "15 minutes",
+    mobileFriendly: false,
     description:
       "An action shooter with modern graphics, weapons, enemies, and fast combat missions.",
     instructions:
@@ -191,6 +203,7 @@ export const games = [
     category: "Shooting",
     mood: "Intense",
     duration: "15 minutes",
+    mobileFriendly: false,
     description:
       "A block-style first-person shooter with action levels, weapons, enemies, and exit-based missions.",
     instructions:
@@ -210,6 +223,7 @@ export const games = [
     category: "Shooting",
     mood: "Action",
     duration: "10 minutes",
+    mobileFriendly: true,
     description:
       "A 3D action shooting game where players aim carefully, solve shooting angles, and complete missions.",
     instructions: "Use the mouse or touch controls to aim and shoot.",
@@ -228,6 +242,7 @@ export const games = [
     category: "Fighting",
     mood: "Action",
     duration: "10 minutes",
+    mobileFriendly: false,
     description:
       "A stickman fighting game where players battle opponents using punches, kicks, movement, and timing.",
     instructions:
@@ -247,6 +262,7 @@ export const games = [
     category: "Skill",
     mood: "Focus",
     duration: "5 minutes",
+    mobileFriendly: true,
     description:
       "A simple stacking game where players place building floors and try to create the tallest tower possible.",
     instructions: "Click the mouse or press Space to place each floor.",
@@ -265,6 +281,7 @@ export const games = [
     category: "Sports",
     mood: "Relaxing",
     duration: "10 minutes",
+    mobileFriendly: true,
     description:
       "A smooth mini golf game with many levels where players aim carefully, charge each shot, and avoid course hazards.",
     instructions: "Use the mouse or tap to aim and play.",
@@ -283,6 +300,7 @@ export const games = [
     category: "Sports",
     mood: "Fun",
     duration: "10 minutes",
+    mobileFriendly: true,
     description:
       "A winter sports browser game where players ride down snowy slopes, avoid obstacles, and reach the finish line.",
     instructions: "Use the mouse to click buttons and play.",
@@ -301,9 +319,11 @@ export const games = [
     category: "Racing",
     mood: "Fun",
     duration: "10 minutes",
+    mobileFriendly: false,
     description:
       "An off-road truck driving simulator where players drive 4x4 trucks through rough terrain and complete driving challenges.",
-    instructions: "Use WASD or arrow keys to move the truck. Press H for horn and R for reverse.",
+    instructions:
+      "Use WASD or arrow keys to move the truck. Press H for horn and R for reverse.",
     thumbnail:
       "https://img.gamemonetize.com/bwrunfiqbjfxprp91bq5v0xhtqzmukno/512x384.jpg",
     iframeUrl:
@@ -319,6 +339,7 @@ export const games = [
     category: "Racing",
     mood: "Action",
     duration: "10 minutes",
+    mobileFriendly: false,
     description:
       "A police driving simulator with chase missions, traffic tasks, escort missions, and action-focused driving gameplay.",
     instructions: "Use WASD to move and tap or click to play.",
@@ -337,6 +358,7 @@ export const games = [
     category: "Racing",
     mood: "Fun",
     duration: "10 minutes",
+    mobileFriendly: false,
     description:
       "A car drifting and driving game where players practice car control, freestyle drifting, and open-road driving.",
     instructions:
@@ -356,6 +378,7 @@ export const games = [
     category: "Simulation",
     mood: "Relaxing",
     duration: "10 minutes",
+    mobileFriendly: false,
     description:
       "A passenger flight simulation game where players practice takeoffs, camera views, weather settings, and smooth flying.",
     instructions:
@@ -375,6 +398,7 @@ export const games = [
     category: "Puzzle",
     mood: "Strategy",
     duration: "10 minutes",
+    mobileFriendly: true,
     description:
       "A forest-themed checkers game where players can enjoy classic board game rules against another player or computer opponent.",
     instructions:
@@ -394,6 +418,7 @@ export const games = [
     category: "Puzzle",
     mood: "Strategy",
     duration: "10 minutes",
+    mobileFriendly: true,
     description:
       "A fast chess variant where dice rolls decide which pieces can move, mixing strategy with luck.",
     instructions: "Use the mouse or tap to play.",
@@ -412,6 +437,7 @@ export const games = [
     category: "Arcade",
     mood: "Fun",
     duration: "10 minutes",
+    mobileFriendly: true,
     description:
       "A winter snowball arena game where players collect snow blocks, grow their snowball, and try to stay in the arena.",
     instructions: "Drag and swipe to control your snowball.",
@@ -430,6 +456,7 @@ export const games = [
     category: "Adventure",
     mood: "Focus",
     duration: "10 minutes",
+    mobileFriendly: false,
     description:
       "A vertical parkour game where players jump, climb, and react quickly while trying to reach higher platforms.",
     instructions: "Use WASD to move and Space to jump.",
@@ -448,6 +475,7 @@ export const games = [
     category: "Sports",
     mood: "Strategy",
     duration: "10 minutes",
+    mobileFriendly: true,
     description:
       "A 3D billiards game where players aim, shoot, and try to pocket their group of balls before sinking the 8 ball.",
     instructions:
@@ -485,6 +513,7 @@ export const moods = [
   "Calm",
   "Relaxing",
   "Fun",
+  "Strategy",
   "Action",
   "Intense",
 ];

@@ -16,6 +16,7 @@ export default function sitemap() {
 
     const categoryPages = [
     "/games/category/clean-casual",
+    "/games/category/mobile-friendly",
     "/games/category/puzzle",
     "/games/category/racing",
     "/games/category/action",

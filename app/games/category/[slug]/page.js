@@ -352,17 +352,17 @@ export default async function CategoryPage({ params }) {
     notFound();
   }
 
-    const categoryGames = games.filter((game) => {
-      if (page.filterType === "audience") {
-        return game.audience === page.filterValue;
-      }
+      const categoryGames = games.filter((game) => {
+        if (page.filterType === "audience") {
+          return game.audience === page.filterValue;
+        }
 
-      if (page.filterType === "mobileFriendly") {
-        return game.mobileFriendly === true;
-      }
+        if (page.filterType === "mobileFriendly") {
+         return game.mobileFriendly === true;
+        }
 
-      return game.category === page.filterValue;
-    });
+         return game.category === page.filterValue;
+       });
   const pageUrl = `https://games.matthew-web.com/games/category/${resolvedParams.slug}`;
 
   const faqSchema = {

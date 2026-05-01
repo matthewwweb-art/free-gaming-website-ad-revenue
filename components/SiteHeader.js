@@ -1,10 +1,22 @@
 import Link from "next/link";
 
+const logoUrl =
+  "https://cdn.imageurlgenerator.com/uploads/5e0d9325-ad82-4f88-8409-1e063ed7cc9f.png";
+
 export default function SiteHeader() {
   return (
     <header style={styles.header}>
-      <Link href="/" style={styles.logo}>
-        FreeGameHub
+      <Link href="/" style={styles.brandWrap}>
+        <img
+          src={logoUrl}
+          alt="mathew-web Free Game Hub logo"
+          style={styles.logoImage}
+        />
+
+        <span style={styles.brandTextWrap}>
+          <span style={styles.brandTop}>mathew-web</span>
+          <span style={styles.brandBottom}>Free Game Hub</span>
+        </span>
       </Link>
 
       <nav style={styles.nav}>
@@ -41,12 +53,41 @@ const styles = {
     background: "#111827",
     color: "#ffffff",
     borderBottom: "1px solid rgba(255,255,255,0.12)",
+    flexWrap: "wrap",
   },
-  logo: {
-    color: "#ffffff",
+  brandWrap: {
+    display: "flex",
+    alignItems: "center",
+    gap: "12px",
     textDecoration: "none",
-    fontSize: "24px",
+    minWidth: 0,
+  },
+  logoImage: {
+    width: "54px",
+    height: "54px",
+    borderRadius: "999px",
+    objectFit: "cover",
+    display: "block",
+    flexShrink: 0,
+    boxShadow: "0 0 0 2px rgba(255,255,255,0.08)",
+  },
+  brandTextWrap: {
+    display: "flex",
+    flexDirection: "column",
+    lineHeight: "1.05",
+  },
+  brandTop: {
+    color: "#f97316",
     fontWeight: "900",
+    fontSize: "15px",
+    letterSpacing: "0.3px",
+    textTransform: "lowercase",
+  },
+  brandBottom: {
+    color: "#ffffff",
+    fontWeight: "900",
+    fontSize: "24px",
+    letterSpacing: "-0.3px",
   },
   nav: {
     display: "flex",

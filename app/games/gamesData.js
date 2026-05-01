@@ -487,6 +487,376 @@ export const games = [
     width: 800,
     height: 600,
   },
+  {
+    id: "6608",
+    slug: "port-bike-stunt",
+    title: "Port Bike Stunt",
+    audience: "Clean Casual",
+    category: "Racing",
+    mood: "Fun",
+    duration: "10 minutes",
+    mobileFriendly: false,
+    description:
+      "A 3D bike stunt racing game where players ride across port containers, avoid traps, and complete stunt levels.",
+    instructions:
+      "Player 1 uses arrow keys to move, N for nitro, and C for camera. Player 2 uses WASD, T for nitro, and Q for camera.",
+    thumbnail:
+      "https://img.gamemonetize.com/lbwkhqasq8c6kemsshnwnyf8wsdfp8fa/512x384.jpg",
+    iframeUrl:
+      "https://html5.gamemonetize.co/lbwkhqasq8c6kemsshnwnyf8wsdfp8fa/",
+    width: 800,
+    height: 450,
+  },
+  {
+    id: "79084",
+    slug: "safe-box-crack",
+    title: "Safe Box Crack",
+    audience: "Clean Casual",
+    category: "Puzzle",
+    mood: "Focus",
+    duration: "5 minutes",
+    mobileFriendly: true,
+    description:
+      "A puzzle game where players spin safe dials, decode mechanisms, and choose the right moment to unlock each safe.",
+    instructions: "Use the mouse to play.",
+    thumbnail:
+      "https://img.gamemonetize.com/9a3lfytn9k01hwtqj0rztpy5kw3lb7hc/512x384.jpg",
+    iframeUrl:
+      "https://html5.gamemonetize.co/9a3lfytn9k01hwtqj0rztpy5kw3lb7hc/",
+    width: 1920,
+    height: 1080,
+  },
+  {
+    id: "79104",
+    slug: "moto-adventure",
+    title: "Moto Adventure",
+    audience: "Clean Casual",
+    category: "Racing",
+    mood: "Fun",
+    duration: "10 minutes",
+    mobileFriendly: true,
+    description:
+      "A 2D motorcycle adventure racing game where players move forward and backward to complete levels and reach the finish line.",
+    instructions:
+      "Control the motorcycle to move forward and backward and reach the finish line.",
+    thumbnail:
+      "https://img.gamemonetize.com/ifiockt551pv3vcfrsplz20ztctyk149/512x384.jpg",
+    iframeUrl:
+      "https://html5.gamemonetize.co/ifiockt551pv3vcfrsplz20ztctyk149/",
+    width: 1280,
+    height: 720,
+  },
+  {
+    id: "78848",
+    slug: "cosmic-hunt",
+    title: "Cosmic Hunt",
+    audience: "Clean Casual",
+    category: "Puzzle",
+    mood: "Brain",
+    duration: "10 minutes",
+    mobileFriendly: true,
+    description:
+      "A space-themed word search puzzle game where players find hidden words across categories like planets, stars, astronauts, and space technology.",
+    instructions: "Click or tap and drag across the letter grid to find words.",
+    thumbnail:
+      "https://img.gamemonetize.com/g9f69pf62argkjqg6gp1bj2vngru9nvp/512x384.jpg",
+    iframeUrl:
+      "https://html5.gamemonetize.co/g9f69pf62argkjqg6gp1bj2vngru9nvp/",
+    width: 800,
+    height: 600,
+  },
+  {
+    id: "78875",
+    slug: "hex-merge-puzzle",
+    title: "Hex Merge Puzzle",
+    audience: "Clean Casual",
+    category: "Puzzle",
+    mood: "Brain",
+    duration: "10 minutes",
+    mobileFriendly: true,
+    description:
+      "A number-merging puzzle game where players place blocks on a hex grid, merge matching numbers, and plan ahead for higher scores.",
+    instructions:
+      "Drag blocks onto the hex grid, match identical numbers to merge, and plan moves to avoid filling the board.",
+    thumbnail:
+      "https://img.gamemonetize.com/ozl9kxh16xz52opfrofprpvgtcbvu1z1/512x384.jpg",
+    iframeUrl:
+      "https://html5.gamemonetize.co/ozl9kxh16xz52opfrofprpvgtcbvu1z1/",
+    width: 800,
+    height: 600,
+  },
+  {
+    id: "78068",
+    slug: "helicopter-rescue-games-3d",
+    title: "Helicopter Rescue Games 3D",
+    audience: "Clean Casual",
+    category: "Simulation",
+    mood: "Focus",
+    duration: "10 minutes",
+    mobileFriendly: false,
+    description:
+      "A helicopter rescue simulation game where players complete rescue missions, transport passengers, and fly through city and mountain environments.",
+    instructions:
+      "Use the on-screen joystick to move the helicopter and the slider to control altitude.",
+    thumbnail:
+      "https://img.gamemonetize.com/x9t21c9tq5voetkce7vs6z7dvzgrymzb/512x384.jpg",
+    iframeUrl:
+      "https://html5.gamemonetize.co/x9t21c9tq5voetkce7vs6z7dvzgrymzb/",
+    width: 800,
+    height: 600,
+  },
+  {
+    id: "77704",
+    slug: "world-archery-league",
+    title: "World Archery League",
+    audience: "Clean Casual",
+    category: "Sports",
+    mood: "Focus",
+    duration: "10 minutes",
+    mobileFriendly: true,
+    description:
+      "An archery sports game where players aim carefully, test timing, and practice accurate shots in a competitive range setting.",
+    instructions: "Click or tap to aim and play.",
+    thumbnail:
+      "https://img.gamemonetize.com/tdcb5hzr1l1cv72zh24mjenpqwpoup7u/512x384.jpg",
+    iframeUrl:
+      "https://html5.gamemonetize.co/tdcb5hzr1l1cv72zh24mjenpqwpoup7u/",
+    width: 1280,
+    height: 720,
+  },
+  {
+    id: "77540",
+    slug: "space-rover",
+    title: "Space Rover",
+    audience: "Clean Casual",
+    category: "Adventure",
+    mood: "Fun",
+    duration: "10 minutes",
+    mobileFriendly: false,
+    description:
+      "A 3D space rover exploration game where players drive across planets and moons, avoid obstacles, and reach landing zones.",
+    instructions:
+      "Use W or Arrow Up to drive, S or Arrow Down to brake and reverse, A/D to steer, Shift for boost, Space for brake, C for camera, and R to reset.",
+    thumbnail:
+      "https://img.gamemonetize.com/xq5bk34wodk6p684qhpchyqbbtw5anse/512x384.jpg",
+    iframeUrl:
+      "https://html5.gamemonetize.co/xq5bk34wodk6p684qhpchyqbbtw5anse/",
+    width: 800,
+    height: 600,
+  },
+  {
+    id: "72614",
+    slug: "fishy-feast",
+    title: "Fishy Feast",
+    audience: "Clean Casual",
+    category: "Arcade",
+    mood: "Fun",
+    duration: "10 minutes",
+    mobileFriendly: true,
+    description:
+      "A colorful underwater arcade game where players control a fish, eat smaller fish, avoid bigger fish, and grow larger over time.",
+    instructions:
+      "Move with the mouse, touch drag, WASD, or arrow keys. Use Spacebar or Escape to pause and resume.",
+    thumbnail:
+      "https://img.gamemonetize.com/04t5e3o75gx15osfi4l16bv00b2m7rl1/512x384.jpg",
+    iframeUrl:
+      "https://html5.gamemonetize.co/04t5e3o75gx15osfi4l16bv00b2m7rl1/",
+    width: 1000,
+    height: 800,
+  },
+  {
+    id: "7486",
+    slug: "grand-prix-hero",
+    title: "Grand Prix Hero",
+    audience: "Clean Casual",
+    category: "Racing",
+    mood: "Fun",
+    duration: "10 minutes",
+    mobileFriendly: true,
+    description:
+      "An arcade racing game where players compete across multiple continents, dodge traffic, collect coins, boost speed, and upgrade their car.",
+    instructions:
+      "On mobile, use touch to steer. On desktop, use cursor keys or WASD.",
+    thumbnail:
+      "https://img.gamemonetize.com/xuwx294k0sxrwr1g8ct6vfj0dr9mxymu/512x384.jpg",
+    iframeUrl:
+      "https://html5.gamemonetize.co/xuwx294k0sxrwr1g8ct6vfj0dr9mxymu/",
+    width: 720,
+    height: 405,
+  },
+  {
+    id: "40317",
+    slug: "boat-rescue-simulator-mobile",
+    title: "Boat Rescue Simulator Mobile",
+    audience: "Clean Casual",
+    category: "Simulation",
+    mood: "Focus",
+    duration: "10 minutes",
+    mobileFriendly: false,
+    description:
+      "A boat rescue simulator where players drive a rescue boat, complete missions, and help passengers during emergency scenarios.",
+    instructions: "Use WASD to drive. On mobile, use the on-screen controls.",
+    thumbnail:
+      "https://img.gamemonetize.com/2w9dlniufvdyzaofwpkh19wlj28qwfvc/512x384.jpg",
+    iframeUrl:
+      "https://html5.gamemonetize.co/2w9dlniufvdyzaofwpkh19wlj28qwfvc/",
+    width: 800,
+    height: 600,
+  },
+  {
+    id: "38247",
+    slug: "gravity-breakout-mobile",
+    title: "Gravity Breakout Mobile",
+    audience: "Clean Casual",
+    category: "Arcade",
+    mood: "Relaxing",
+    duration: "10 minutes",
+    mobileFriendly: true,
+    description:
+      "A mobile-friendly clicker arcade game where players break gravity balls, earn money, buy helper balls, merge them, and upgrade abilities.",
+    instructions: "Use your touchscreen or mouse to control and play.",
+    thumbnail:
+      "https://img.gamemonetize.com/9qc1gmog25emcv8no1kjyhjnkoc0v3tq/512x384.jpg",
+    iframeUrl:
+      "https://html5.gamemonetize.co/9qc1gmog25emcv8no1kjyhjnkoc0v3tq/",
+    width: 600,
+    height: 1200,
+  },
+  {
+    id: "58814",
+    slug: "bridge-builder-3d",
+    title: "Bridge Builder 3D",
+    audience: "Clean Casual",
+    category: "Puzzle",
+    mood: "Brain",
+    duration: "10 minutes",
+    mobileFriendly: false,
+    description:
+      "A bridge-building puzzle simulator where players use materials to build structures strong enough to support vehicles.",
+    instructions:
+      "On desktop, use your mouse or touchpad to build. On mobile, use touchscreen and on-screen controls.",
+    thumbnail:
+      "https://img.gamemonetize.com/ukljsw8m1k5q4mixm7qfcqh5mov87u0r/512x384.jpg",
+    iframeUrl:
+      "https://html5.gamemonetize.co/ukljsw8m1k5q4mixm7qfcqh5mov87u0r/",
+    width: 960,
+    height: 600,
+  },
+  {
+    id: "6391",
+    slug: "city-construction-simulator-3d",
+    title: "City Construction Simulator 3D",
+    audience: "Clean Casual",
+    category: "Simulation",
+    mood: "Focus",
+    duration: "10 minutes",
+    mobileFriendly: false,
+    description:
+      "A city construction simulator where players drive construction vehicles and complete road-building and repair tasks.",
+    instructions:
+      "Use WASD or arrow keys to move vehicles. Use the left mouse button to adjust sliders.",
+    thumbnail:
+      "https://img.gamemonetize.com/3ldckzlz5spntjjoouthiz9q7vu8hb8k/512x384.jpg",
+    iframeUrl:
+      "https://html5.gamemonetize.co/3ldckzlz5spntjjoouthiz9q7vu8hb8k/",
+    width: 960,
+    height: 600,
+  },
+  {
+    id: "29555",
+    slug: "city-construction-simulator-excavator-games",
+    title: "City Construction Simulator Excavator Games",
+    audience: "Clean Casual",
+    category: "Simulation",
+    mood: "Focus",
+    duration: "10 minutes",
+    mobileFriendly: false,
+    description:
+      "A construction vehicle simulator where players complete building and transport missions using trucks and construction machinery.",
+    instructions: "Use WASD or the D-pad to move and C to change camera.",
+    thumbnail:
+      "https://img.gamemonetize.com/6xqod7awfq5n7x2puwkxi3ixqj4qztvn/512x384.jpg",
+    iframeUrl:
+      "https://html5.gamemonetize.co/6xqod7awfq5n7x2puwkxi3ixqj4qztvn/",
+    width: 1334,
+    height: 750,
+  },
+  {
+    id: "6633",
+    slug: "heavy-construction-vehicles",
+    title: "Heavy Construction Vehicles",
+    audience: "Clean Casual",
+    category: "Puzzle",
+    mood: "Relaxing",
+    duration: "5 minutes",
+    mobileFriendly: true,
+    description:
+      "A construction vehicle jigsaw puzzle game where players choose a difficulty mode and drag pieces into place to complete each image.",
+    instructions: "Use the mouse to drag and drop puzzle pieces.",
+    thumbnail:
+      "https://img.gamemonetize.com/mnc3fd52em6i2ifr0twwkf4g7tf6qu6d/512x384.jpg",
+    iframeUrl:
+      "https://html5.gamemonetize.co/mnc3fd52em6i2ifr0twwkf4g7tf6qu6d/",
+    width: 960,
+    height: 540,
+  },
+  {
+    id: "3487",
+    slug: "farming-town",
+    title: "Farming Town",
+    audience: "Clean Casual",
+    category: "Simulation",
+    mood: "Relaxing",
+    duration: "10 minutes",
+    mobileFriendly: false,
+    description:
+      "A farming simulator where players plow, sow, harvest, sell crops, and use different farming machines in an open-world career mode.",
+    instructions: "Use WASD or arrow keys to play.",
+    thumbnail:
+      "https://img.gamemonetize.com/ecrtnvt1p0t8x1g9keyoe3tw4nge8ydm/512x384.jpg",
+    iframeUrl:
+      "https://html5.gamemonetize.co/ecrtnvt1p0t8x1g9keyoe3tw4nge8ydm/",
+    width: 960,
+    height: 600,
+  },
+  {
+    id: "5119",
+    slug: "tractor-farming-simulator",
+    title: "Tractor Farming Simulator",
+    audience: "Clean Casual",
+    category: "Simulation",
+    mood: "Relaxing",
+    duration: "10 minutes",
+    mobileFriendly: false,
+    description:
+      "A tractor farming simulator where players drive farm vehicles, transport cargo, and complete farming tasks.",
+    instructions: "Use keyboard arrows to control the vehicles.",
+    thumbnail:
+      "https://img.gamemonetize.com/dua9hfpnob7b5hp25pz7woas7lmbikbw/512x384.jpg",
+    iframeUrl:
+      "https://html5.gamemonetize.co/dua9hfpnob7b5hp25pz7woas7lmbikbw/",
+    width: 800,
+    height: 600,
+  },
+  {
+    id: "69137",
+    slug: "school-stories-teacher-sim",
+    title: "School Stories: Teacher Sim",
+    audience: "Clean Casual",
+    category: "Simulation",
+    mood: "Fun",
+    duration: "10 minutes",
+    mobileFriendly: false,
+    description:
+      "A school simulation game where players act as a teacher, manage classroom activities, grade papers, explore school areas, and complete mini games.",
+    instructions: "Click or tap to play.",
+    thumbnail:
+      "https://img.gamemonetize.com/xnf3bxeet7w4y8rdmifw7hugjnyzt0ds/512x384.jpg",
+    iframeUrl:
+      "https://html5.gamemonetize.co/xnf3bxeet7w4y8rdmifw7hugjnyzt0ds/",
+    width: 800,
+    height: 600,
+  },
 ];
 
 export const audiences = ["All", "Clean Casual", "Action"];

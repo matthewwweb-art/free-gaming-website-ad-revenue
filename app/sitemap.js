@@ -6,6 +6,7 @@ export default function sitemap() {
   const staticPages = [
     "",
     "/games",
+    "/games/mathew-web",
     "/about",
     "/contact",
     "/privacy-policy",

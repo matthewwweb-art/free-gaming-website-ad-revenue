@@ -4,8 +4,6 @@ import SiteFooter from "../components/SiteFooter";
 import { Analytics } from "@vercel/analytics/next";
 
 const siteUrl = "https://games.matthew-web.com";
-const logoUrl =
-  "https://cdn.imageurlgenerator.com/uploads/5e0d9325-ad82-4f88-8409-1e063ed7cc9f.png";
 
 export const metadata = {
   metadataBase: new URL(siteUrl),
@@ -31,9 +29,27 @@ export const metadata = {
   creator: "mathew-web Free Game Hub",
   publisher: "mathew-web Free Game Hub",
   icons: {
-    icon: logoUrl,
-    shortcut: logoUrl,
-    apple: logoUrl,
+    icon: [
+      {
+        url: "/icon",
+        type: "image/png",
+        sizes: "512x512",
+      },
+    ],
+    shortcut: [
+      {
+        url: "/icon",
+        type: "image/png",
+        sizes: "512x512",
+      },
+    ],
+    apple: [
+      {
+        url: "/icon",
+        type: "image/png",
+        sizes: "512x512",
+      },
+    ],
   },
   verification: {
     google: "P4hEKwe7pRsMn2kYuOQzHjSk8vFiu7bkoifMpSmUl_c",

@@ -65,7 +65,7 @@ export default function GamePlayClient({ game, games }) {
     inLanguage: "en",
     publisher: {
       "@type": "Organization",
-      name: "FreeGameHub",
+      name: "mathew-web Free Game Hub",
       url: siteUrl,
     },
   };
@@ -146,6 +146,13 @@ export default function GamePlayClient({ game, games }) {
           <span>No download</span>
         </div>
 
+        {!game.mobileFriendly && (
+          <div style={styles.mobileNotice}>
+            Best on desktop or laptop. This game may require keyboard controls
+            like WASD or arrow keys and may not play well on all phones.
+          </div>
+        )}
+
         <div style={styles.heroButtons}>
           <a href="#play-game" style={styles.primaryButton}>
             Play Now
@@ -181,7 +188,9 @@ export default function GamePlayClient({ game, games }) {
           }
           style={{
             ...styles.gameBox,
-            ...(isPortraitGame ? styles.portraitGameBox : styles.landscapeGameBox),
+            ...(isPortraitGame
+              ? styles.portraitGameBox
+              : styles.landscapeGameBox),
             aspectRatio: gameAspectRatio,
           }}
         >
@@ -196,6 +205,12 @@ export default function GamePlayClient({ game, games }) {
               <p style={styles.gameStartText}>
                 Tap below to load and play this browser game.
               </p>
+
+              {!game.mobileFriendly && (
+                <p style={styles.gameStartWarning}>
+                  Desktop or laptop recommended for this game.
+                </p>
+              )}
 
               <button
                 type="button"
@@ -243,7 +258,7 @@ export default function GamePlayClient({ game, games }) {
               {game.title} is a free browser game you can play online without
               downloading or installing anything. This game is listed in the{" "}
               {game.category} category and is part of the {game.audience} game
-              collection on FreeGameHub.
+              collection on mathew-web Free Game Hub.
             </p>
 
             <h3>About This Game</h3>
@@ -252,13 +267,28 @@ export default function GamePlayClient({ game, games }) {
             <h3>How to Play</h3>
             <p>{game.instructions}</p>
 
+            <h3>Mobile Compatibility</h3>
+            {game.mobileFriendly ? (
+              <p>
+                This game is marked as mobile-friendly because it uses simple
+                controls such as tap, touch, click, drag, or lighter browser
+                gameplay.
+              </p>
+            ) : (
+              <p>
+                This game is best on desktop or laptop because it may require
+                keyboard controls, stronger graphics performance, or more screen
+                space than some phones provide.
+              </p>
+            )}
+
             <h3>Why Play Browser Games?</h3>
             <p>
               Browser games are quick to open, simple to play, and work directly
-              from a web page. FreeGameHub organizes games by category and play
-              style so visitors can quickly find clean casual games, puzzle
-              games, relaxing games, racing games, educational games, and action
-              games.
+              from a web page. mathew-web Free Game Hub organizes games by
+              category and play style so visitors can quickly find clean casual
+              games, mobile-friendly games, puzzle games, relaxing games,
+              racing games, educational games, and action games.
             </p>
           </div>
 
@@ -291,6 +321,11 @@ export default function GamePlayClient({ game, games }) {
             </div>
 
             <div style={styles.infoRow}>
+              <strong>Mobile</strong>
+              <span>{game.mobileFriendly ? "Friendly" : "Desktop recommended"}</span>
+            </div>
+
+            <div style={styles.infoRow}>
               <strong>Download</strong>
               <span>Not required</span>
             </div>
@@ -316,6 +351,10 @@ export default function GamePlayClient({ game, games }) {
           <div style={styles.categoryLinks}>
             <Link href="/games/category/clean-casual" style={styles.categoryLink}>
               Clean Casual Games
+            </Link>
+
+            <Link href="/games/category/mobile-friendly" style={styles.categoryLink}>
+              Mobile-Friendly Games
             </Link>
 
             <Link href="/games/category/puzzle" style={styles.categoryLink}>
@@ -452,6 +491,16 @@ const styles = {
     gap: "12px",
     marginTop: "20px",
   },
+  mobileNotice: {
+    marginTop: "18px",
+    background: "#ffedd5",
+    color: "#7c2d12",
+    padding: "14px 16px",
+    borderRadius: "14px",
+    fontWeight: "900",
+    lineHeight: "1.5",
+    maxWidth: "780px",
+  },
   heroButtons: {
     display: "flex",
     flexWrap: "wrap",
@@ -531,6 +580,13 @@ const styles = {
     fontSize: "18px",
     lineHeight: "1.5",
     maxWidth: "520px",
+  },
+  gameStartWarning: {
+    color: "#fed7aa",
+    fontSize: "15px",
+    fontWeight: "900",
+    marginTop: "8px",
+    marginBottom: "0",
   },
   loadGameButton: {
     marginTop: "18px",

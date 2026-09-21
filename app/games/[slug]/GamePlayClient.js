@@ -2,6 +2,7 @@
 
 import { useRef, useState } from "react";
 import Link from "next/link";
+import AdsterraAd from "../../../components/AdsterraAd";
 
 const siteUrl = "https://games.matthew-web.com";
 
@@ -65,7 +66,7 @@ export default function GamePlayClient({ game, games }) {
     inLanguage: "en",
     publisher: {
       "@type": "Organization",
-      name: "mathew-web Free Game Hub",
+      name: "matthew-web Free Game Hub",
       url: siteUrl,
     },
   };
@@ -144,14 +145,8 @@ export default function GamePlayClient({ game, games }) {
           <span>Mood: {game.mood}</span>
           <span>Play time: {game.duration}</span>
           <span>No download</span>
+          <span>{game.mobileFriendly ? "Mobile friendly" : "Desktop recommended"}</span>
         </div>
-
-        {!game.mobileFriendly && (
-          <div style={styles.mobileNotice}>
-            Best on desktop or laptop. This game may require keyboard controls
-            like WASD or arrow keys and may not play well on all phones.
-          </div>
-        )}
 
         <div style={styles.heroButtons}>
           <a href="#play-game" style={styles.primaryButton}>
@@ -174,9 +169,21 @@ export default function GamePlayClient({ game, games }) {
         </section>
       )}
 
+      {!game.mobileFriendly && (
+        <section style={styles.mobileNotice}>
+          Desktop recommended: this game may need keyboard controls such as WASD,
+          arrow keys, spacebar, or mouse aiming. Some mobile devices may not show
+          full controls.
+        </section>
+      )}
+
+      <section className="fg-mobile-ad" style={styles.mobileAd}>
+        <AdsterraAd type="mobile320x50" />
+      </section>
+
       <section id="play-game" className="fg-game-shell" style={styles.gameShell}>
         <div className="fg-side-ad" style={styles.sideAd}>
-          Ad space reserved
+          <AdsterraAd type="rectangle300x250" />
         </div>
 
         <div
@@ -188,9 +195,7 @@ export default function GamePlayClient({ game, games }) {
           }
           style={{
             ...styles.gameBox,
-            ...(isPortraitGame
-              ? styles.portraitGameBox
-              : styles.landscapeGameBox),
+            ...(isPortraitGame ? styles.portraitGameBox : styles.landscapeGameBox),
             aspectRatio: gameAspectRatio,
           }}
         >
@@ -205,12 +210,6 @@ export default function GamePlayClient({ game, games }) {
               <p style={styles.gameStartText}>
                 Tap below to load and play this browser game.
               </p>
-
-              {!game.mobileFriendly && (
-                <p style={styles.gameStartWarning}>
-                  Desktop or laptop recommended for this game.
-                </p>
-              )}
 
               <button
                 type="button"
@@ -242,12 +241,12 @@ export default function GamePlayClient({ game, games }) {
         </div>
 
         <div className="fg-side-ad" style={styles.sideAd}>
-          Ad space reserved
+          <div style={styles.adPlaceholderText}>Sponsored Area</div>
         </div>
       </section>
 
       <section className="fg-bottom-ad" style={styles.bottomAd}>
-        Ad space reserved
+        <AdsterraAd type="leaderboard728x90" />
       </section>
 
       <section style={styles.about}>
@@ -258,7 +257,7 @@ export default function GamePlayClient({ game, games }) {
               {game.title} is a free browser game you can play online without
               downloading or installing anything. This game is listed in the{" "}
               {game.category} category and is part of the {game.audience} game
-              collection on mathew-web Free Game Hub.
+              collection on matthew-web Free Game Hub.
             </p>
 
             <h3>About This Game</h3>
@@ -267,28 +266,13 @@ export default function GamePlayClient({ game, games }) {
             <h3>How to Play</h3>
             <p>{game.instructions}</p>
 
-            <h3>Mobile Compatibility</h3>
-            {game.mobileFriendly ? (
-              <p>
-                This game is marked as mobile-friendly because it uses simple
-                controls such as tap, touch, click, drag, or lighter browser
-                gameplay.
-              </p>
-            ) : (
-              <p>
-                This game is best on desktop or laptop because it may require
-                keyboard controls, stronger graphics performance, or more screen
-                space than some phones provide.
-              </p>
-            )}
-
             <h3>Why Play Browser Games?</h3>
             <p>
               Browser games are quick to open, simple to play, and work directly
-              from a web page. mathew-web Free Game Hub organizes games by
+              from a web page. matthew-web Free Game Hub organizes games by
               category and play style so visitors can quickly find clean casual
-              games, mobile-friendly games, puzzle games, relaxing games,
-              racing games, educational games, and action games.
+              games, puzzle games, relaxing games, racing games, educational
+              games, and action games.
             </p>
           </div>
 
@@ -322,7 +306,7 @@ export default function GamePlayClient({ game, games }) {
 
             <div style={styles.infoRow}>
               <strong>Mobile</strong>
-              <span>{game.mobileFriendly ? "Friendly" : "Desktop recommended"}</span>
+              <span>{game.mobileFriendly ? "Supported" : "Desktop recommended"}</span>
             </div>
 
             <div style={styles.infoRow}>
@@ -351,10 +335,6 @@ export default function GamePlayClient({ game, games }) {
           <div style={styles.categoryLinks}>
             <Link href="/games/category/clean-casual" style={styles.categoryLink}>
               Clean Casual Games
-            </Link>
-
-            <Link href="/games/category/mobile-friendly" style={styles.categoryLink}>
-              Mobile-Friendly Games
             </Link>
 
             <Link href="/games/category/puzzle" style={styles.categoryLink}>
@@ -491,16 +471,6 @@ const styles = {
     gap: "12px",
     marginTop: "20px",
   },
-  mobileNotice: {
-    marginTop: "18px",
-    background: "#ffedd5",
-    color: "#7c2d12",
-    padding: "14px 16px",
-    borderRadius: "14px",
-    fontWeight: "900",
-    lineHeight: "1.5",
-    maxWidth: "780px",
-  },
   heroButtons: {
     display: "flex",
     flexWrap: "wrap",
@@ -532,12 +502,27 @@ const styles = {
     fontWeight: "800",
     lineHeight: "1.5",
   },
+  mobileNotice: {
+    margin: "18px 7% 0",
+    background: "#eef2ff",
+    color: "#312e81",
+    padding: "18px",
+    borderRadius: "16px",
+    fontWeight: "800",
+    lineHeight: "1.5",
+  },
+  mobileAd: {
+    display: "none",
+    margin: "20px auto 0",
+    padding: "0 12px",
+    maxWidth: "360px",
+  },
   gameShell: {
     display: "grid",
-    gridTemplateColumns: "150px minmax(0, 1fr) 150px",
+    gridTemplateColumns: "300px minmax(0, 1fr) 300px",
     gap: "16px",
     padding: "28px 7%",
-    alignItems: "stretch",
+    alignItems: "start",
   },
   gameBox: {
     position: "relative",
@@ -581,13 +566,6 @@ const styles = {
     lineHeight: "1.5",
     maxWidth: "520px",
   },
-  gameStartWarning: {
-    color: "#fed7aa",
-    fontSize: "15px",
-    fontWeight: "900",
-    marginTop: "8px",
-    marginBottom: "0",
-  },
   loadGameButton: {
     marginTop: "18px",
     border: "0",
@@ -624,15 +602,19 @@ const styles = {
     borderStyle: "dashed",
     borderColor: "#cbd5e1",
     borderRadius: "18px",
-    minHeight: "620px",
+    minHeight: "270px",
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
     color: "#64748b",
     fontWeight: "900",
     background: "#ffffff",
-    writingMode: "vertical-rl",
-    textOrientation: "mixed",
+    overflow: "hidden",
+  },
+  adPlaceholderText: {
+    padding: "20px",
+    color: "#64748b",
+    textAlign: "center",
   },
   bottomAd: {
     margin: "0 auto 28px",
@@ -648,6 +630,7 @@ const styles = {
     justifyContent: "center",
     color: "#64748b",
     fontWeight: "900",
+    overflow: "hidden",
   },
   about: {
     background: "#ffffff",

@@ -293,3 +293,85 @@ body {
     grid-template-columns: 1fr !important;
   }
 }
+
+/* Free Game Hub responsive game/ad layout */
+
+.fg-game-box:fullscreen {
+  width: 100vw !important;
+  height: 100vh !important;
+  max-width: none !important;
+  border-radius: 0 !important;
+  aspect-ratio: auto !important;
+}
+
+.fg-game-box:fullscreen iframe {
+  width: 100vw !important;
+  height: 100vh !important;
+}
+
+@media (max-width: 1200px) {
+  .fg-game-shell {
+    grid-template-columns: 1fr !important;
+  }
+
+  .fg-side-ad {
+    display: none !important;
+  }
+
+  .fg-bottom-ad {
+    max-width: 728px !important;
+  }
+}
+
+@media (max-width: 900px) {
+  .fg-about-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .fg-related-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .fg-game-copy {
+    max-width: none !important;
+  }
+
+  .fg-info-card {
+    width: 100% !important;
+  }
+}
+
+@media (max-width: 760px) {
+  .fg-mobile-ad {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+  }
+
+  .fg-bottom-ad {
+    display: none !important;
+  }
+
+  .fg-game-shell {
+    padding-left: 12px !important;
+    padding-right: 12px !important;
+  }
+
+  .fg-game-box-landscape {
+    min-height: 320px !important;
+  }
+
+  .fg-game-box-portrait {
+    max-width: 420px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .fg-game-box-landscape {
+    min-height: 260px !important;
+  }
+
+  .fg-game-box-portrait {
+    max-width: 100% !important;
+  }
+}

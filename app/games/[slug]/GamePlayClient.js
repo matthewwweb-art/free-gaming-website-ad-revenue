@@ -1,6 +1,6 @@
-"use client";
+﻿"use client";
 
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import AdsterraAd from "../../../components/AdsterraAd";
 
@@ -24,6 +24,7 @@ function getCategorySlug(game) {
 export default function GamePlayClient({ game, games }) {
   const gameBoxRef = useRef(null);
   const [gameLoaded, setGameLoaded] = useState(false);
+  const [isFullscreen, setIsFullscreen] = useState(false);
 
   const relatedGames = games
     .filter((item) => item.slug !== game.slug && item.audience === game.audience)
@@ -42,6 +43,24 @@ export default function GamePlayClient({ game, games }) {
 
     if (!element) return;
 
+    const fullscreenElement =
+      document.fullscreenElement ||
+      document.webkitFullscreenElement ||
+      document.msFullscreenElement;
+
+    if (fullscreenElement) {
+      if (document.exitFullscreen) {
+        document.exitFullscreen();
+      } else if (document.webkitExitFullscreen) {
+        document.webkitExitFullscreen();
+      } else if (document.msExitFullscreen) {
+        document.msExitFullscreen();
+      }
+
+      setIsFullscreen(false);
+      return;
+    }
+
     if (element.requestFullscreen) {
       element.requestFullscreen();
     } else if (element.webkitRequestFullscreen) {
@@ -49,7 +68,30 @@ export default function GamePlayClient({ game, games }) {
     } else if (element.msRequestFullscreen) {
       element.msRequestFullscreen();
     }
+
+    setIsFullscreen(true);
   }
+
+  useEffect(() => {
+    function handleFullscreenChange() {
+      const fullscreenElement =
+        document.fullscreenElement ||
+        document.webkitFullscreenElement ||
+        document.msFullscreenElement;
+
+      setIsFullscreen(Boolean(fullscreenElement));
+    }
+
+    document.addEventListener("fullscreenchange", handleFullscreenChange);
+    document.addEventListener("webkitfullscreenchange", handleFullscreenChange);
+    document.addEventListener("msfullscreenchange", handleFullscreenChange);
+
+    return () => {
+      document.removeEventListener("fullscreenchange", handleFullscreenChange);
+      document.removeEventListener("webkitfullscreenchange", handleFullscreenChange);
+      document.removeEventListener("msfullscreenchange", handleFullscreenChange);
+    };
+  }, []);
 
   const videoGameSchema = {
     "@context": "https://schema.org",
@@ -66,7 +108,7 @@ export default function GamePlayClient({ game, games }) {
     inLanguage: "en",
     publisher: {
       "@type": "Organization",
-      name: "matthew-web Free Game Hub",
+      name: "Matthew Web Free Game Hub",
       url: siteUrl,
     },
   };
@@ -120,7 +162,7 @@ export default function GamePlayClient({ game, games }) {
 
       <section style={styles.topBar}>
         <Link href="/games" style={styles.backLink}>
-          ← Back to Games
+          â† Back to Games
         </Link>
 
         <div className="fg-top-ad" style={styles.topAd}>
@@ -129,6 +171,8 @@ export default function GamePlayClient({ game, games }) {
       </section>
 
       <section style={styles.hero}>
+        <p style={styles.kicker}>Matthew Web Free Game Hub</p>
+
         <p
           style={
             game.audience === "Clean Casual"
@@ -140,14 +184,15 @@ export default function GamePlayClient({ game, games }) {
         </p>
 
         <h1 style={styles.title}>{game.title}</h1>
+
         <p style={styles.description}>{game.description}</p>
 
         <div style={styles.metaRow}>
-          <span>Category: {game.category}</span>
-          <span>Mood: {game.mood}</span>
-          <span>Play time: {game.duration}</span>
-          <span>No download</span>
-          <span>
+          <span style={styles.metaPill}>Category: {game.category}</span>
+          <span style={styles.metaPill}>Mood: {game.mood}</span>
+          <span style={styles.metaPill}>Play time: {game.duration}</span>
+          <span style={styles.metaPill}>No download</span>
+          <span style={styles.metaPill}>
             {game.mobileFriendly ? "Mobile friendly" : "Desktop recommended"}
           </span>
         </div>
@@ -207,12 +252,16 @@ export default function GamePlayClient({ game, games }) {
             <div
               style={{
                 ...styles.gameStart,
-                backgroundImage: `linear-gradient(rgba(15,23,42,0.72), rgba(15,23,42,0.72)), url(${game.thumbnail})`,
+                backgroundImage: `linear-gradient(rgba(2,3,4,0.72), rgba(2,3,4,0.82)), url(${game.thumbnail})`,
               }}
             >
+              <p style={styles.gameStartKicker}>Ready to Play</p>
+
               <h2 style={styles.gameStartTitle}>{game.title}</h2>
+
               <p style={styles.gameStartText}>
-                Tap below to load and play this browser game.
+                Tap below to load this browser game. Loading only starts when
+                you choose to play.
               </p>
 
               <button
@@ -228,9 +277,9 @@ export default function GamePlayClient({ game, games }) {
               <button
                 type="button"
                 onClick={handleFullscreen}
-                style={styles.fullscreenButton}
+                style={isFullscreen ? styles.exitFullscreenButton : styles.fullscreenButton}
               >
-                Full Screen
+                {isFullscreen ? "Exit Full Screen" : "Full Screen"}
               </button>
 
               <iframe
@@ -257,11 +306,12 @@ export default function GamePlayClient({ game, games }) {
         <div className="fg-about-grid" style={styles.aboutGrid}>
           <div className="fg-game-copy" style={styles.copyColumn}>
             <h2>Play {game.title} Online</h2>
+
             <p>
               {game.title} is a free browser game you can play online without
               downloading or installing anything. This game is listed in the{" "}
               {game.category} category and is part of the {game.audience} game
-              collection on matthew-web Free Game Hub.
+              collection on Matthew Web Free Game Hub.
             </p>
 
             <h3>About This Game</h3>
@@ -273,15 +323,15 @@ export default function GamePlayClient({ game, games }) {
             <h3>Why Play Browser Games?</h3>
             <p>
               Browser games are quick to open, simple to play, and work directly
-              from a web page. matthew-web Free Game Hub organizes games by
-              category and play style so visitors can quickly find clean casual
-              games, puzzle games, relaxing games, racing games, educational
-              games, and action games.
+              from a web page. Matthew Web Free Game Hub organizes games by
+              category and play style so visitors can find clean casual games,
+              puzzle games, relaxing games, racing games, educational games, and
+              action games.
             </p>
           </div>
 
           <aside className="fg-info-card" style={styles.infoCard}>
-            <h2>Game Details</h2>
+            <h2 style={styles.infoTitle}>Game Details</h2>
 
             <div style={styles.infoRow}>
               <strong>Title</strong>
@@ -324,6 +374,7 @@ export default function GamePlayClient({ game, games }) {
 
         <div style={styles.reportBox}>
           <h2>Report or Request Game Removal</h2>
+
           <p>
             If you are a game developer, publisher, or rights holder and believe
             a game should be reviewed or removed, please contact us through the
@@ -340,33 +391,34 @@ export default function GamePlayClient({ game, games }) {
 
           <div style={styles.categoryLinks}>
             <Link href="/games/category/clean-casual" style={styles.categoryLink}>
-              Clean Casual Games
+              Clean Casual
+            </Link>
+
+            <Link href="/games/category/mobile-friendly" style={styles.categoryLink}>
+              Mobile-Friendly
             </Link>
 
             <Link href="/games/category/puzzle" style={styles.categoryLink}>
-              Puzzle Games
+              Puzzle
             </Link>
 
             <Link href="/games/category/racing" style={styles.categoryLink}>
-              Racing Games
+              Racing
             </Link>
 
             <Link href="/games/category/action" style={styles.categoryLink}>
-              Action Games
-            </Link>
-
-            <Link href="/games/category/educational" style={styles.categoryLink}>
-              Educational Games
+              Action
             </Link>
 
             <Link href="/games/category/relaxing" style={styles.categoryLink}>
-              Relaxing Games
+              Relaxing
             </Link>
           </div>
         </div>
 
         <div style={styles.adNote}>
           <h3>Advertising note</h3>
+
           <p>
             Sponsored areas are kept separate from game controls and play
             buttons. This helps keep the page clear and reduces accidental
@@ -424,7 +476,7 @@ const styles = {
   backLink: {
     color: "#111827",
     textDecoration: "none",
-    fontWeight: "900",
+    fontWeight: "950",
   },
   topAd: {
     borderWidth: "2px",
@@ -441,10 +493,18 @@ const styles = {
     overflow: "hidden",
   },
   hero: {
-    padding: "44px 7%",
+    padding: "52px 7%",
     background:
-      "linear-gradient(135deg, #111827 0%, #1f2937 50%, #0f172a 100%)",
+      "radial-gradient(circle at top right, rgba(255,121,0,0.18), transparent 30%), linear-gradient(135deg, #020304 0%, #071018 48%, #0f172a 100%)",
     color: "#ffffff",
+  },
+  kicker: {
+    margin: "0 0 12px",
+    color: "#ff7900",
+    fontWeight: "950",
+    textTransform: "uppercase",
+    letterSpacing: "0.7px",
+    fontSize: "13px",
   },
   cleanBadge: {
     display: "inline-block",
@@ -452,57 +512,68 @@ const styles = {
     padding: "7px 12px",
     borderRadius: "999px",
     fontSize: "13px",
-    fontWeight: "900",
+    fontWeight: "950",
     marginBottom: "14px",
   },
   actionBadge: {
     display: "inline-block",
-    background: "#f97316",
+    background: "#ff7900",
     padding: "7px 12px",
     borderRadius: "999px",
     fontSize: "13px",
-    fontWeight: "900",
+    fontWeight: "950",
     marginBottom: "14px",
   },
   title: {
-    fontSize: "clamp(36px, 6vw, 64px)",
-    lineHeight: "1",
-    margin: "0 0 14px",
-    fontWeight: "900",
+    fontSize: "clamp(38px, 6vw, 70px)",
+    lineHeight: "0.98",
+    margin: "0 0 16px",
+    fontWeight: "950",
+    letterSpacing: "-1px",
   },
   description: {
     color: "#d1d5db",
-    maxWidth: "780px",
-    fontSize: "18px",
+    maxWidth: "840px",
+    fontSize: "19px",
     lineHeight: "1.7",
   },
   metaRow: {
     display: "flex",
     flexWrap: "wrap",
-    gap: "12px",
-    marginTop: "20px",
+    gap: "10px",
+    marginTop: "22px",
+  },
+  metaPill: {
+    display: "inline-flex",
+    background: "rgba(255,255,255,0.08)",
+    border: "1px solid rgba(255,255,255,0.12)",
+    borderRadius: "999px",
+    padding: "8px 12px",
+    color: "#e5e7eb",
+    fontWeight: "800",
+    fontSize: "13px",
   },
   heroButtons: {
     display: "flex",
     flexWrap: "wrap",
     gap: "14px",
-    marginTop: "24px",
+    marginTop: "26px",
   },
   primaryButton: {
-    background: "#f97316",
+    background: "#ff7900",
     color: "#ffffff",
-    padding: "13px 20px",
+    padding: "14px 22px",
     borderRadius: "14px",
     textDecoration: "none",
-    fontWeight: "900",
+    fontWeight: "950",
   },
   secondaryButton: {
     background: "#ffffff",
     color: "#111827",
-    padding: "13px 20px",
+    padding: "14px 22px",
     borderRadius: "14px",
     textDecoration: "none",
-    fontWeight: "900",
+    fontWeight: "950",
   },
   warning: {
     margin: "24px 7% 0",
@@ -566,25 +637,33 @@ const styles = {
     color: "#ffffff",
     padding: "28px",
   },
+  gameStartKicker: {
+    color: "#ff7900",
+    fontWeight: "950",
+    textTransform: "uppercase",
+    letterSpacing: "0.7px",
+    fontSize: "13px",
+    margin: "0 0 10px",
+  },
   gameStartTitle: {
     fontSize: "clamp(30px, 6vw, 54px)",
     margin: "0 0 12px",
-    fontWeight: "900",
+    fontWeight: "950",
   },
   gameStartText: {
     color: "#e5e7eb",
     fontSize: "18px",
     lineHeight: "1.5",
-    maxWidth: "520px",
+    maxWidth: "560px",
   },
   loadGameButton: {
     marginTop: "18px",
     border: "0",
-    background: "#f97316",
+    background: "#ff7900",
     color: "#ffffff",
     padding: "15px 24px",
     borderRadius: "14px",
-    fontWeight: "900",
+    fontWeight: "950",
     fontSize: "16px",
     cursor: "pointer",
   },
@@ -640,18 +719,18 @@ const styles = {
   },
   about: {
     background: "#ffffff",
-    padding: "40px 7%",
+    padding: "44px 7%",
     lineHeight: "1.7",
   },
   aboutGrid: {
     display: "grid",
-    gridTemplateColumns: "minmax(0, 1fr) 320px",
+    gridTemplateColumns: "minmax(0, 1fr) 340px",
     gap: "28px",
     alignItems: "start",
   },
   copyColumn: {
     minWidth: 0,
-    maxWidth: "760px",
+    maxWidth: "800px",
   },
   infoCard: {
     background: "#f8fafc",
@@ -661,6 +740,9 @@ const styles = {
     borderRadius: "20px",
     padding: "22px",
     boxShadow: "0 12px 30px rgba(15,23,42,0.06)",
+  },
+  infoTitle: {
+    marginTop: 0,
   },
   infoRow: {
     display: "flex",

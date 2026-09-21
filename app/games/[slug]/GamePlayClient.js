@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import AdsterraAd from "../../../components/AdsterraAd";
+import MobileAdsterraAd from "../../../components/MobileAdsterraAd";
 
 const siteUrl = "https://games.matthew-web.com";
 
@@ -161,14 +162,12 @@ export default function GamePlayClient({ game, games }) {
       />
 
       <section style={styles.topBar}>
-        <Link href="/games" style={styles.backLink}>
-          â† Back to Games
-        </Link>
+        <Link href="/games" style={styles.backLink}>Back to Games</Link>
 
-        <div className="fg-top-ad" style={styles.topAd}>
-          <AdsterraAd type="leaderboard728x90" />
-        </div>
+        <AdsterraAd unit="leaderboard" className="fg-top-ad" style={styles.topAd} />
       </section>
+
+      <MobileAdsterraAd />
 
       <section style={styles.hero}>
         <p style={styles.kicker}>Matthew Web Free Game Hub</p>
@@ -226,14 +225,8 @@ export default function GamePlayClient({ game, games }) {
         </section>
       )}
 
-      <section className="fg-mobile-ad" style={styles.mobileAd}>
-        <AdsterraAd type="mobile320x50" />
-      </section>
-
       <section id="play-game" className="fg-game-shell" style={styles.gameShell}>
-        <div className="fg-side-ad" style={styles.sideAd}>
-          <AdsterraAd type="rectangle300x250" />
-        </div>
+        <AdsterraAd unit="rectangle" className="fg-side-ad" style={styles.sideAd} />
 
         <div
           ref={gameBoxRef}
@@ -293,14 +286,10 @@ export default function GamePlayClient({ game, games }) {
           )}
         </div>
 
-        <div className="fg-side-ad" style={styles.sideAd}>
-          <AdsterraAd type="rectangle300x250" />
-        </div>
+        <AdsterraAd unit="rectangle" className="fg-side-ad" style={styles.sideAd} />
       </section>
 
-      <section className="fg-bottom-ad" style={styles.bottomAd}>
-        <AdsterraAd type="leaderboard728x90" />
-      </section>
+      <AdsterraAd unit="leaderboard" className="fg-bottom-ad" style={styles.bottomAd} />
 
       <section style={styles.about}>
         <div className="fg-about-grid" style={styles.aboutGrid}>
@@ -823,3 +812,8 @@ const styles = {
     padding: "16px",
   },
 };
+
+
+
+
+

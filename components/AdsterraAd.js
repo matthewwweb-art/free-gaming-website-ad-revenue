@@ -1,86 +1,175 @@
-"use client";
+﻿"use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const AD_UNITS = {
-  mobile320x50: {
-    key: "8bf8d49c4871b83adee34e43a6b9b38c",
+  mobile: {
     width: 320,
     height: 50,
+    key: "8bf8d49c4871b83adee34e43a6b9b38c",
+    src: "https://www.highrevenueformat.com/8bf8d49c4871b83adee34e43a6b9b38c/invoke.js",
   },
-  leaderboard728x90: {
-    key: "712e3a8edb4f28a580b41207ffaeec70",
+  mobileBanner: {
+    width: 320,
+    height: 50,
+    key: "8bf8d49c4871b83adee34e43a6b9b38c",
+    src: "https://www.highrevenueformat.com/8bf8d49c4871b83adee34e43a6b9b38c/invoke.js",
+  },
+  "320x50": {
+    width: 320,
+    height: 50,
+    key: "8bf8d49c4871b83adee34e43a6b9b38c",
+    src: "https://www.highrevenueformat.com/8bf8d49c4871b83adee34e43a6b9b38c/invoke.js",
+  },
+  leaderboard: {
     width: 728,
     height: 90,
+    key: "712e3a8edb4f28a580b41207ffaeec70",
+    src: "https://www.highrevenueformat.com/712e3a8edb4f28a580b41207ffaeec70/invoke.js",
   },
-  rectangle300x250: {
-    key: "fb4cd2e2ed5edfadff8a1d86891528cf",
+  desktop: {
+    width: 728,
+    height: 90,
+    key: "712e3a8edb4f28a580b41207ffaeec70",
+    src: "https://www.highrevenueformat.com/712e3a8edb4f28a580b41207ffaeec70/invoke.js",
+  },
+  "728x90": {
+    width: 728,
+    height: 90,
+    key: "712e3a8edb4f28a580b41207ffaeec70",
+    src: "https://www.highrevenueformat.com/712e3a8edb4f28a580b41207ffaeec70/invoke.js",
+  },
+  rectangle: {
     width: 300,
     height: 250,
+    key: "fb4cd2e2ed5edfadff8a1d86891528cf",
+    src: "https://www.highrevenueformat.com/fb4cd2e2ed5edfadff8a1d86891528cf/invoke.js",
+  },
+  box: {
+    width: 300,
+    height: 250,
+    key: "fb4cd2e2ed5edfadff8a1d86891528cf",
+    src: "https://www.highrevenueformat.com/fb4cd2e2ed5edfadff8a1d86891528cf/invoke.js",
+  },
+  "300x250": {
+    width: 300,
+    height: 250,
+    key: "fb4cd2e2ed5edfadff8a1d86891528cf",
+    src: "https://www.highrevenueformat.com/fb4cd2e2ed5edfadff8a1d86891528cf/invoke.js",
   },
 };
 
-export default function AdsterraAd({ type }) {
-  const adRef = useRef(null);
+export default function AdsterraAd(props) {
+  const {
+    unit,
+    adUnit,
+    type,
+    size,
+    className = "",
+    style = {},
+  } = props || {};
+
+  const unitName = unit || adUnit || type || size || "mobile";
+  const config = AD_UNITS[unitName] || AD_UNITS.mobile;
+
+  const adBoxRef = useRef(null);
+  const [shouldLoad, setShouldLoad] = useState(false);
 
   useEffect(() => {
-    const ad = AD_UNITS[type];
-    const container = adRef.current;
+    function checkViewport() {
+      const isPhone = window.matchMedia("(max-width: 760px)").matches;
 
-    if (!ad || !container) return;
+      const isMobileSlot =
+        className.includes("fg-mobile-ad") ||
+        unitName === "mobile" ||
+        unitName === "mobileBanner" ||
+        unitName === "320x50";
 
-    container.innerHTML = "";
+      const isDesktopSlot =
+        className.includes("fg-top-ad") ||
+        className.includes("fg-bottom-ad") ||
+        className.includes("fg-side-ad") ||
+        unitName === "leaderboard" ||
+        unitName === "desktop" ||
+        unitName === "728x90";
 
-    const optionsScript = document.createElement("script");
-    optionsScript.type = "text/javascript";
-    optionsScript.innerHTML = `
-      atOptions = {
-        'key' : '${ad.key}',
-        'format' : 'iframe',
-        'height' : ${ad.height},
-        'width' : ${ad.width},
-        'params' : {}
-      };
-    `;
+      if (isPhone && isDesktopSlot) {
+        setShouldLoad(false);
+        return;
+      }
 
-    const invokeScript = document.createElement("script");
-    invokeScript.type = "text/javascript";
-    invokeScript.async = true;
-    invokeScript.src = `https://www.highrevenueformat.com/${ad.key}/invoke.js`;
+      if (!isPhone && isMobileSlot) {
+        setShouldLoad(false);
+        return;
+      }
 
-    container.appendChild(optionsScript);
-    container.appendChild(invokeScript);
+      setShouldLoad(true);
+    }
+
+    checkViewport();
+    window.addEventListener("resize", checkViewport);
 
     return () => {
-      container.innerHTML = "";
+      window.removeEventListener("resize", checkViewport);
     };
-  }, [type]);
+  }, [className, unitName]);
 
-  const ad = AD_UNITS[type];
+  useEffect(() => {
+    if (!shouldLoad || !adBoxRef.current) return;
 
-  if (!ad) return null;
+    adBoxRef.current.innerHTML = "";
+
+    window.atOptions = {
+      key: config.key,
+      format: "iframe",
+      height: config.height,
+      width: config.width,
+      params: {},
+    };
+
+    const script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src = config.src;
+    script.async = false;
+
+    adBoxRef.current.appendChild(script);
+
+    return () => {
+      if (adBoxRef.current) {
+        adBoxRef.current.innerHTML = "";
+      }
+    };
+  }, [shouldLoad, config.key, config.src, config.height, config.width]);
+
+  if (!shouldLoad) {
+    return null;
+  }
 
   return (
     <div
-      aria-label="Advertisement"
+      className={className}
       style={{
-        width: "100%",
-        minHeight: `${ad.height}px`,
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        overflow: "hidden",
+        width: config.width,
+        maxWidth: "100%",
+        minHeight: config.height,
+        marginLeft: "auto",
+        marginRight: "auto",
+        overflow: "visible",
+        ...style,
       }}
     >
       <div
-        ref={adRef}
+        ref={adBoxRef}
         style={{
-          width: `${ad.width}px`,
-          minHeight: `${ad.height}px`,
+          width: config.width,
           maxWidth: "100%",
-          overflow: "hidden",
+          minHeight: config.height,
+          marginLeft: "auto",
+          marginRight: "auto",
+          overflow: "visible",
         }}
       />
     </div>
   );
 }
+

@@ -1348,3 +1348,122 @@ body {
     z-index: 2;
   }
 }
+
+/* Mobile-only ad repair: do not affect laptop */
+@media (max-width: 760px) {
+  .fg-mobile-ad {
+    display: block !important;
+    width: 320px !important;
+    max-width: 320px !important;
+    height: 50px !important;
+    min-height: 50px !important;
+    margin: 18px auto !important;
+    padding: 0 !important;
+    border: 0 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    overflow: visible !important;
+  }
+
+  .fg-mobile-ad::before {
+    content: none !important;
+    display: none !important;
+  }
+
+  .fg-mobile-ad > div,
+  .fg-mobile-ad iframe,
+  .fg-mobile-ad [id^="container-"] {
+    display: block !important;
+    width: 320px !important;
+    max-width: 320px !important;
+    height: 50px !important;
+    min-height: 50px !important;
+    margin: 0 auto !important;
+    padding: 0 !important;
+    overflow: visible !important;
+  }
+}
+
+/* Restore phone rectangle ad without changing laptop */
+@media (max-width: 760px) {
+  .mw-games-hero-ad {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    width: 300px !important;
+    max-width: 300px !important;
+    min-height: 250px !important;
+    margin: 18px auto 22px auto !important;
+    padding: 0 !important;
+    border: 0 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    overflow: visible !important;
+  }
+
+  .mw-games-hero-ad > div,
+  .mw-games-hero-ad iframe,
+  .mw-games-hero-ad [id^="container-"] {
+    display: block !important;
+    width: 300px !important;
+    max-width: 300px !important;
+    min-height: 250px !important;
+    margin: 0 auto !important;
+    overflow: visible !important;
+  }
+}
+
+/* Game page: mobile ad directly under Back to Games */
+@media (max-width: 760px) {
+  .game-page-top-mobile-ad {
+    display: block !important;
+    width: 320px !important;
+    max-width: 320px !important;
+    min-height: 50px !important;
+    margin: 16px auto 10px auto !important;
+    padding: 0 !important;
+    border: 0 !important;
+    background: transparent !important;
+    overflow: visible !important;
+  }
+
+  .game-page-top-mobile-ad > div,
+  .game-page-top-mobile-ad iframe,
+  .game-page-top-mobile-ad [id^="container-"] {
+    display: block !important;
+    width: 320px !important;
+    max-width: 320px !important;
+    min-height: 50px !important;
+    margin: 0 auto !important;
+    overflow: visible !important;
+  }
+}
+
+/* Raw mobile Adsterra ad on individual game pages */
+.mw-raw-mobile-ad {
+  display: none;
+}
+
+@media (max-width: 760px) {
+  .mw-raw-mobile-ad {
+    display: block !important;
+    width: 320px !important;
+    max-width: 320px !important;
+    min-height: 50px !important;
+    margin: 16px auto 12px auto !important;
+    padding: 0 !important;
+    background: transparent !important;
+    border: 0 !important;
+    overflow: visible !important;
+  }
+
+  .mw-raw-mobile-ad > div,
+  .mw-raw-mobile-ad iframe {
+    display: block !important;
+    width: 320px !important;
+    max-width: 320px !important;
+    min-height: 50px !important;
+    margin: 0 auto !important;
+    overflow: visible !important;
+  }
+}

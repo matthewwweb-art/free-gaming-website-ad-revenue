@@ -3,6 +3,7 @@
 import { useMemo, useState } from "react";
 import Link from "next/link";
 import { games, categories, moods, audiences } from "./gamesData";
+import AdsterraAd from "../../components/AdsterraAd";
 
 export default function GamesPageClient() {
   const [search, setSearch] = useState("");
@@ -12,7 +13,8 @@ export default function GamesPageClient() {
 
   const filteredGames = useMemo(() => {
     return games.filter((game) => {
-      const searchText = `${game.title} ${game.description} ${game.category} ${game.mood} ${game.audience}`.toLowerCase();
+      const searchText =
+        `${game.title} ${game.description} ${game.category} ${game.mood} ${game.audience}`.toLowerCase();
 
       const matchesSearch = searchText.includes(search.toLowerCase());
       const matchesAudience = audience === "All" || game.audience === audience;
@@ -73,12 +75,7 @@ export default function GamesPageClient() {
         </div>
 
         <div style={styles.adBox}>
-          <span style={styles.adLabel}>Sponsored Area</span>
-          <h2 style={styles.adTitle}>Ad space reserved</h2>
-          <p style={styles.adText}>
-            This area is reserved for future sponsor or advertising placements.
-            Ads will stay separate from game controls and play buttons.
-          </p>
+          <AdsterraAd type="rectangle300x250" />
         </div>
       </section>
 
@@ -120,7 +117,14 @@ export default function GamesPageClient() {
         </button>
       </section>
 
-      <section style={styles.adBanner}>Ad space reserved</section>
+      <section className="fg-mobile-ad" style={styles.mobileAd}>
+        <AdsterraAd type="mobile320x50" />
+      </section>
+
+      <section className="fg-bottom-ad" style={styles.adBanner}>
+        <AdsterraAd type="leaderboard728x90" />
+      </section>
+
       <section style={styles.categorySeoLinks}>
         <h2 style={styles.categorySeoTitle}>Browse Popular Game Categories</h2>
 
@@ -129,10 +133,7 @@ export default function GamesPageClient() {
             Clean Casual Games
           </Link>
 
-          <Link
-            href="/games/category/mobile-friendly"
-            style={styles.categorySeoCard}
-          >
+          <Link href="/games/category/mobile-friendly" style={styles.categorySeoCard}>
             Mobile-Friendly Games
           </Link>
 
@@ -156,7 +157,7 @@ export default function GamesPageClient() {
             Relaxing Games
           </Link>
 
-                    <Link href="/games/category/sports" style={styles.categorySeoCard}>
+          <Link href="/games/category/sports" style={styles.categorySeoCard}>
             Sports Games
           </Link>
 
@@ -177,6 +178,7 @@ export default function GamesPageClient() {
           </Link>
         </div>
       </section>
+
       {audience === "Clean Casual" && (
         <section style={styles.safeNotice}>
           <h2>Clean Casual Games</h2>
@@ -313,7 +315,7 @@ const styles = {
   },
   hero: {
     display: "grid",
-    gridTemplateColumns: "minmax(0, 1.35fr) minmax(280px, 0.65fr)",
+    gridTemplateColumns: "minmax(0, 1.35fr) 320px",
     gap: "32px",
     padding: "70px 7%",
     background:
@@ -379,28 +381,17 @@ const styles = {
     fontWeight: "900",
   },
   adBox: {
+    width: "320px",
+    minHeight: "270px",
     background: "rgba(255,255,255,0.08)",
     border: "1px solid rgba(255,255,255,0.16)",
     borderRadius: "24px",
-    padding: "28px",
+    padding: "10px",
     alignSelf: "center",
-  },
-  adLabel: {
-    display: "inline-block",
-    background: "#334155",
-    color: "#cbd5e1",
-    padding: "6px 10px",
-    borderRadius: "999px",
-    fontSize: "12px",
-    marginBottom: "16px",
-  },
-  adTitle: {
-    fontSize: "28px",
-    margin: "0 0 12px",
-  },
-  adText: {
-    color: "#d1d5db",
-    lineHeight: "1.6",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    overflow: "hidden",
   },
   statsBar: {
     display: "grid",
@@ -408,23 +399,29 @@ const styles = {
     gap: "16px",
     padding: "24px 7% 0",
   },
-statCard: {
-  cursor: "pointer",
-  borderWidth: "2px",
-  borderStyle: "solid",
-  borderColor: "#e5e7eb",
-  background: "#ffffff",
-  borderRadius: "18px",
-  padding: "18px",
-  textAlign: "left",
-  boxShadow: "0 12px 30px rgba(15,23,42,0.06)",
-  display: "flex",
-  flexDirection: "column",
-  gap: "4px",
-},
-statCardActive: {
-  borderColor: "#f97316",
-},
+  statCard: {
+    cursor: "pointer",
+    borderWidth: "2px",
+    borderStyle: "solid",
+    borderColor: "#e5e7eb",
+    background: "#ffffff",
+    borderRadius: "18px",
+    padding: "18px",
+    textAlign: "left",
+    boxShadow: "0 12px 30px rgba(15,23,42,0.06)",
+    display: "flex",
+    flexDirection: "column",
+    gap: "4px",
+  },
+  statCardActive: {
+    borderColor: "#f97316",
+  },
+  mobileAd: {
+    display: "none",
+    margin: "20px auto 0",
+    padding: "0 12px",
+    maxWidth: "360px",
+  },
   adBanner: {
     margin: "24px auto 0",
     maxWidth: "1100px",
@@ -437,6 +434,7 @@ statCardActive: {
     color: "#64748b",
     fontWeight: "900",
     background: "#ffffff",
+    overflow: "hidden",
   },
   safeNotice: {
     margin: "28px 7% 0",
@@ -573,7 +571,7 @@ statCardActive: {
     textAlign: "center",
     fontWeight: "800",
   },
-    categorySeoLinks: {
+  categorySeoLinks: {
     padding: "32px 7% 0",
   },
   categorySeoTitle: {
@@ -582,10 +580,10 @@ statCardActive: {
     fontWeight: "900",
   },
   categorySeoGrid: {
-  display: "grid",
-  gridTemplateColumns: "repeat(4, minmax(0, 1fr))",
-  gap: "12px",
-},
+    display: "grid",
+    gridTemplateColumns: "repeat(4, minmax(0, 1fr))",
+    gap: "12px",
+  },
   categorySeoCard: {
     background: "#ffffff",
     color: "#111827",

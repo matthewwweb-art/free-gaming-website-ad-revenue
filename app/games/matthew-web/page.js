@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { games } from "../gamesData";
+import AdsterraAd from "../../../components/AdsterraAd";
 
 const mathewWebGames = games.filter((game) => game.creator === "mathew-web");
 
@@ -8,13 +9,13 @@ export const metadata = {
   description:
     "Play original browser games created by mathew-web. This page will feature future games built by mathew-web for Free Game Hub.",
   alternates: {
-    canonical: "/games/mathew-web",
+    canonical: "/games/matthew-web",
   },
   openGraph: {
     title: "Games by mathew-web | mathew-web Free Game Hub",
     description:
       "Play original browser games created by mathew-web. This page will feature future games built by mathew-web for Free Game Hub.",
-    url: "/games/mathew-web",
+    url: "/games/matthew-web",
     type: "website",
     images: [
       {
@@ -58,7 +59,13 @@ export default function MathewWebGamesPage() {
         </div>
       </section>
 
-      <section style={styles.adBanner}>Ad space reserved</section>
+      <section className="fg-mobile-ad" style={styles.mobileAd}>
+        <AdsterraAd type="mobile320x50" />
+      </section>
+
+      <section className="fg-bottom-ad" style={styles.adBanner}>
+        <AdsterraAd type="leaderboard728x90" />
+      </section>
 
       <section style={styles.content}>
         {mathewWebGames.length === 0 ? (
@@ -204,6 +211,12 @@ const styles = {
     textDecoration: "none",
     fontWeight: "900",
   },
+  mobileAd: {
+    display: "none",
+    margin: "20px auto 0",
+    padding: "0 12px",
+    maxWidth: "360px",
+  },
   adBanner: {
     margin: "24px auto 0",
     maxWidth: "1100px",
@@ -218,6 +231,7 @@ const styles = {
     color: "#64748b",
     fontWeight: "900",
     background: "#ffffff",
+    overflow: "hidden",
   },
   content: {
     padding: "56px 7% 80px",

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { games } from "../../gamesData";
+import AdsterraAd from "../../../../components/AdsterraAd";
 
 const categoryPages = {
   "clean-casual": {
@@ -439,7 +440,13 @@ export default async function CategoryPage({ params }) {
         </div>
       </section>
 
-      <section style={styles.adBanner}>Ad space reserved</section>
+      <section className="fg-mobile-ad" style={styles.mobileAd}>
+        <AdsterraAd type="mobile320x50" />
+      </section>
+
+      <section className="fg-bottom-ad" style={styles.adBanner}>
+        <AdsterraAd type="leaderboard728x90" />
+      </section>
 
       <section style={styles.content}>
         <div style={styles.intro}>
@@ -522,17 +529,11 @@ export default async function CategoryPage({ params }) {
 
           <h2>More Game Categories</h2>
           <div style={styles.categoryLinks}>
-            <Link
-              href="/games/category/clean-casual"
-              style={styles.categoryLink}
-            >
+            <Link href="/games/category/clean-casual" style={styles.categoryLink}>
               Clean Casual
             </Link>
 
-            <Link
-              href="/games/category/mobile-friendly"
-              style={styles.categoryLink}
-            >
+            <Link href="/games/category/mobile-friendly" style={styles.categoryLink}>
               Mobile-Friendly
             </Link>
 
@@ -548,10 +549,7 @@ export default async function CategoryPage({ params }) {
               Action
             </Link>
 
-            <Link
-              href="/games/category/educational"
-              style={styles.categoryLink}
-            >
+            <Link href="/games/category/educational" style={styles.categoryLink}>
               Educational
             </Link>
 
@@ -648,6 +646,12 @@ const styles = {
     textDecoration: "none",
     fontWeight: "900",
   },
+  mobileAd: {
+    display: "none",
+    margin: "20px auto 0",
+    padding: "0 12px",
+    maxWidth: "360px",
+  },
   adBanner: {
     margin: "24px auto 0",
     maxWidth: "1100px",
@@ -662,6 +666,7 @@ const styles = {
     color: "#64748b",
     fontWeight: "900",
     background: "#ffffff",
+    overflow: "hidden",
   },
   content: {
     padding: "56px 7% 80px",

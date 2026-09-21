@@ -123,7 +123,9 @@ export default function GamePlayClient({ game, games }) {
           ← Back to Games
         </Link>
 
-        <div style={styles.adSmall}>Sponsored Area</div>
+        <div className="fg-top-ad" style={styles.topAd}>
+          <AdsterraAd type="leaderboard728x90" />
+        </div>
       </section>
 
       <section style={styles.hero}>
@@ -145,7 +147,9 @@ export default function GamePlayClient({ game, games }) {
           <span>Mood: {game.mood}</span>
           <span>Play time: {game.duration}</span>
           <span>No download</span>
-          <span>{game.mobileFriendly ? "Mobile friendly" : "Desktop recommended"}</span>
+          <span>
+            {game.mobileFriendly ? "Mobile friendly" : "Desktop recommended"}
+          </span>
         </div>
 
         <div style={styles.heroButtons}>
@@ -241,7 +245,7 @@ export default function GamePlayClient({ game, games }) {
         </div>
 
         <div className="fg-side-ad" style={styles.sideAd}>
-          <div style={styles.adPlaceholderText}>Sponsored Area</div>
+          <AdsterraAd type="rectangle300x250" />
         </div>
       </section>
 
@@ -306,7 +310,9 @@ export default function GamePlayClient({ game, games }) {
 
             <div style={styles.infoRow}>
               <strong>Mobile</strong>
-              <span>{game.mobileFriendly ? "Supported" : "Desktop recommended"}</span>
+              <span>
+                {game.mobileFriendly ? "Supported" : "Desktop recommended"}
+              </span>
             </div>
 
             <div style={styles.infoRow}>
@@ -413,21 +419,26 @@ const styles = {
     padding: "18px 7%",
     background: "#ffffff",
     borderBottom: "1px solid #e5e7eb",
+    flexWrap: "wrap",
   },
   backLink: {
     color: "#111827",
     textDecoration: "none",
     fontWeight: "900",
   },
-  adSmall: {
+  topAd: {
     borderWidth: "2px",
     borderStyle: "dashed",
     borderColor: "#cbd5e1",
-    borderRadius: "12px",
-    padding: "10px 18px",
-    color: "#64748b",
-    fontSize: "13px",
-    fontWeight: "800",
+    borderRadius: "18px",
+    minHeight: "90px",
+    width: "728px",
+    maxWidth: "100%",
+    background: "#ffffff",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    overflow: "hidden",
   },
   hero: {
     padding: "44px 7%",
@@ -610,11 +621,6 @@ const styles = {
     fontWeight: "900",
     background: "#ffffff",
     overflow: "hidden",
-  },
-  adPlaceholderText: {
-    padding: "20px",
-    color: "#64748b",
-    textAlign: "center",
   },
   bottomAd: {
     margin: "0 auto 28px",

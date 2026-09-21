@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { games } from "./games/gamesData";
+import AdsterraAd from "../components/AdsterraAd";
 
 export const metadata = {
   title: "Free Browser Games Online",
@@ -80,7 +81,13 @@ export default function Home() {
         </div>
       </section>
 
-      <section style={styles.adBanner}>Ad space reserved</section>
+      <section className="fg-mobile-ad" style={styles.mobileAd}>
+        <AdsterraAd type="mobile320x50" />
+      </section>
+
+      <section className="fg-bottom-ad" style={styles.adBanner}>
+        <AdsterraAd type="leaderboard728x90" />
+      </section>
 
       <section id="new-games" style={styles.section}>
         <div style={styles.sectionHeader}>
@@ -93,7 +100,11 @@ export default function Home() {
 
         <div style={styles.gameGrid}>
           {newGames.map((game) => (
-            <Link href={`/games/${game.slug}`} key={game.slug} style={styles.gameCard}>
+            <Link
+              href={`/games/${game.slug}`}
+              key={game.slug}
+              style={styles.gameCard}
+            >
               <div
                 style={{
                   ...styles.gameImage,
@@ -138,7 +149,11 @@ export default function Home() {
 
         <div style={styles.gameGrid}>
           {popularGames.map((game) => (
-            <Link href={`/games/${game.slug}`} key={game.slug} style={styles.gameCard}>
+            <Link
+              href={`/games/${game.slug}`}
+              key={game.slug}
+              style={styles.gameCard}
+            >
               <div
                 style={{
                   ...styles.gameImage,
@@ -193,7 +208,10 @@ export default function Home() {
             </p>
           </Link>
 
-          <Link href="/games/category/mobile-friendly" style={styles.categoryCard}>
+          <Link
+            href="/games/category/mobile-friendly"
+            style={styles.categoryCard}
+          >
             <span style={styles.categoryLabel}>Mobile-Friendly</span>
             <h3>Mobile-Friendly Games</h3>
             <p>
@@ -430,6 +448,12 @@ const styles = {
     fontWeight: "900",
     display: "inline-block",
   },
+  mobileAd: {
+    display: "none",
+    margin: "20px auto 0",
+    padding: "0 12px",
+    maxWidth: "360px",
+  },
   adBanner: {
     margin: "24px auto",
     maxWidth: "1100px",
@@ -444,6 +468,7 @@ const styles = {
     justifyContent: "center",
     color: "#64748b",
     fontWeight: "900",
+    overflow: "hidden",
   },
   section: {
     padding: "56px 7% 80px",

@@ -1,4 +1,4 @@
-import { games } from "./games/gamesData";
+﻿import { games } from "./games/gamesData";
 
 const siteUrl = "https://games.matthew-web.com";
 
@@ -6,7 +6,7 @@ export default function sitemap() {
   const staticPages = [
     "",
     "/games",
-    "/games/mathew-web",
+    "/games/matthew-web",
     "/about",
     "/contact",
     "/privacy-policy",
@@ -15,7 +15,7 @@ export default function sitemap() {
     "/dmca",
   ];
 
-    const categoryPages = [
+  const categoryPages = [
     "/games/category/clean-casual",
     "/games/category/mobile-friendly",
     "/games/category/puzzle",

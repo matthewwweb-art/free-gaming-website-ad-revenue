@@ -1,4 +1,4 @@
-const siteUrl = "https://games.matthew-web.com";
+﻿const siteUrl = "https://games.matthew-web.com";
 
 export default function robots() {
   return {

@@ -2,19 +2,19 @@
 import { games } from "../gamesData";
 import AdsterraAd from "../../../components/AdsterraAd";
 
-const mathewWebGames = games.filter((game) => game.creator === "mathew-web");
+const matthewWebGames = games.filter((game) => game.creator === "matthew-web");
 
 export const metadata = {
-  title: "Games by mathew-web",
+  title: "Games by Matthew Web",
   description:
-    "Play original browser games created by mathew-web. This page will feature future games built by mathew-web for Free Game Hub.",
+    "Play original browser games created by Matthew Web. This page will feature future games built by Matthew Web for Free Game Hub.",
   alternates: {
     canonical: "/games/matthew-web",
   },
   openGraph: {
-    title: "Games by mathew-web | mathew-web Free Game Hub",
+    title: "Games by Matthew Web | Matthew Web Free Game Hub",
     description:
-      "Play original browser games created by mathew-web. This page will feature future games built by mathew-web for Free Game Hub.",
+      "Play original browser games created by Matthew Web. This page will feature future games built by Matthew Web for Free Game Hub.",
     url: "/games/matthew-web",
     type: "website",
     images: [
@@ -22,15 +22,15 @@ export const metadata = {
         url: "/opengraph-image",
         width: 1200,
         height: 630,
-        alt: "Games by mathew-web",
+        alt: "Games by Matthew Web",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Games by mathew-web | mathew-web Free Game Hub",
+    title: "Games by Matthew Web | Matthew Web Free Game Hub",
     description:
-      "Play original browser games created by mathew-web. This page will feature future games built by mathew-web for Free Game Hub.",
+      "Play original browser games created by Matthew Web. This page will feature future games built by Matthew Web for Free Game Hub.",
     images: ["/twitter-image"],
   },
 };
@@ -41,11 +41,11 @@ export default function MathewWebGamesPage() {
       <section style={styles.hero}>
         <p style={styles.badge}>Original Games</p>
 
-        <h1 style={styles.title}>Games by mathew-web</h1>
+        <h1 style={styles.title}>Games by Matthew Web</h1>
 
         <p style={styles.subtitle}>
           This page is reserved for original browser games created by
-          mathew-web. Future games built for Free Game Hub will appear here.
+          Matthew Web. Future games built for Free Game Hub will appear here.
         </p>
 
         <div style={styles.buttons}>
@@ -68,20 +68,20 @@ export default function MathewWebGamesPage() {
       </section>
 
       <section style={styles.content}>
-        {mathewWebGames.length === 0 ? (
+        {matthewWebGames.length === 0 ? (
           <div style={styles.comingSoonBox}>
-            <h2>Original mathew-web Games Coming Soon</h2>
+            <h2>Original Matthew Web Games Coming Soon</h2>
 
             <p>
-              No original mathew-web games are published yet. This page is ready
-              for future games that are built directly by mathew-web, including
+              No original Matthew Web games are published yet. This page is ready
+              for future games that are built directly by Matthew Web, including
               simple browser games, mobile-friendly games, puzzle games, arcade
               games, and custom HTML5 games.
             </p>
 
             <p>
-              When a mathew-web game is added to the game library, it can be
-              marked with <strong>creator: &quot;mathew-web&quot;</strong> and it will
+              When a Matthew Web game is added to the game library, it can be
+              marked with <strong>creator: &quot;matthew-web&quot;</strong> and it will
               appear on this page automatically.
             </p>
 
@@ -91,7 +91,7 @@ export default function MathewWebGamesPage() {
           </div>
         ) : (
           <div style={styles.grid}>
-            {mathewWebGames.map((game) => (
+            {matthewWebGames.map((game) => (
               <Link
                 key={game.slug}
                 href={`/games/${game.slug}`}
@@ -114,7 +114,7 @@ export default function MathewWebGamesPage() {
 
                   <p style={styles.cardText}>{game.description}</p>
 
-                  <div style={styles.originalTag}>Created by mathew-web</div>
+                  <div style={styles.originalTag}>Created by Matthew Web</div>
 
                   <div style={styles.playButton}>Play Now</div>
                 </div>
@@ -124,10 +124,10 @@ export default function MathewWebGamesPage() {
         )}
 
         <div style={styles.seoText}>
-          <h2>About mathew-web Original Games</h2>
+          <h2>About Matthew Web Original Games</h2>
 
           <p>
-            Games by mathew-web will focus on simple, fast, browser-based games
+            Games by Matthew Web will focus on simple, fast, browser-based games
             that work without downloads. The goal is to create original games
             that are easy to open, easy to understand, and useful for quick play
             sessions.
@@ -313,3 +313,4 @@ const styles = {
     maxWidth: "900px",
   },
 };
+

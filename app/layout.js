@@ -1,4 +1,4 @@
-import "./globals.css";
+﻿import "./globals.css";
 import SiteHeader from "../components/SiteHeader";
 import SiteFooter from "../components/SiteFooter";
 import { Analytics } from "@vercel/analytics/next";
@@ -8,8 +8,8 @@ const siteUrl = "https://games.matthew-web.com";
 export const metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "mathew-web Free Game Hub | Free Browser Games Online",
-    template: "%s | mathew-web Free Game Hub",
+    default: "Matthew Web Free Game Hub | Free Browser Games Online",
+    template: "%s | Matthew Web Free Game Hub",
   },
   description:
     "Play free browser games online with no downloads. Browse clean casual games, puzzle games, racing games, relaxing games, educational games, and action games.",
@@ -23,11 +23,11 @@ export const metadata = {
     "relaxing games",
     "educational games",
     "action games",
-    "mathew-web free game hub",
+    "Matthew Web free game hub",
   ],
-  authors: [{ name: "mathew-web Free Game Hub" }],
-  creator: "mathew-web Free Game Hub",
-  publisher: "mathew-web Free Game Hub",
+  authors: [{ name: "Matthew Web Free Game Hub" }],
+  creator: "Matthew Web Free Game Hub",
+  publisher: "Matthew Web Free Game Hub",
   icons: {
     icon: [
       {
@@ -61,8 +61,8 @@ export const metadata = {
     type: "website",
     locale: "en_US",
     url: siteUrl,
-    siteName: "mathew-web Free Game Hub",
-    title: "mathew-web Free Game Hub | Free Browser Games Online",
+    siteName: "Matthew Web Free Game Hub",
+    title: "Matthew Web Free Game Hub | Free Browser Games Online",
     description:
       "Play free browser games online with no downloads. Browse clean casual games, puzzle games, racing games, relaxing games, educational games, and action games.",
     images: [
@@ -70,13 +70,13 @@ export const metadata = {
         url: "/opengraph-image",
         width: 1200,
         height: 630,
-        alt: "mathew-web Free Game Hub | Free Browser Games Online",
+        alt: "Matthew Web Free Game Hub | Free Browser Games Online",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "mathew-web Free Game Hub | Free Browser Games Online",
+    title: "Matthew Web Free Game Hub | Free Browser Games Online",
     description:
       "Play free browser games online with no downloads. Browse clean casual games, puzzle games, racing games, relaxing games, educational games, and action games.",
     images: ["/twitter-image"],

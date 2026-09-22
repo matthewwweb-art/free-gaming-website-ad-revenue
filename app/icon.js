@@ -28,7 +28,7 @@ export default function Icon() {
       >
         <img
           src={logoUrl}
-          alt="mathew-web Free Game Hub logo"
+          alt="Matthew Web Free Game Hub logo"
           style={{
             width: "512px",
             height: "512px",
@@ -44,3 +44,4 @@ export default function Icon() {
     }
   );
 }
+

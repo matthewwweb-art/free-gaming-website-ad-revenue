@@ -70,7 +70,14 @@ export default function AdsterraAd(props) {
   } = props || {};
 
   const unitName = unit || adUnit || type || size || "mobile";
-  const config = AD_UNITS[unitName] || AD_UNITS.mobile;
+  const aliasMap = {
+    mobile320x50: "mobile",
+    leaderboard728x90: "leaderboard",
+    rectangle300x250: "rectangle",
+  };
+
+  const normalizedUnitName = aliasMap[unitName] || unitName;
+  const config = AD_UNITS[normalizedUnitName] || AD_UNITS.mobile;
 
   const adBoxRef = useRef(null);
   const [shouldLoad, setShouldLoad] = useState(false);
@@ -83,7 +90,8 @@ export default function AdsterraAd(props) {
         className.includes("fg-mobile-ad") ||
         unitName === "mobile" ||
         unitName === "mobileBanner" ||
-        unitName === "320x50";
+        unitName === "320x50" ||
+        unitName === "mobile320x50";
 
       const isDesktopSlot =
         className.includes("fg-top-ad") ||
@@ -91,7 +99,8 @@ export default function AdsterraAd(props) {
         className.includes("fg-side-ad") ||
         unitName === "leaderboard" ||
         unitName === "desktop" ||
-        unitName === "728x90";
+        unitName === "728x90" ||
+        unitName === "leaderboard728x90";
 
       if (isPhone && isDesktopSlot) {
         setShouldLoad(false);
@@ -172,4 +181,5 @@ export default function AdsterraAd(props) {
     </div>
   );
 }
+
 

@@ -2,6 +2,7 @@
 import SiteHeader from "../components/SiteHeader";
 import SiteFooter from "../components/SiteFooter";
 import { Analytics } from "@vercel/analytics/next";
+import ReferralClickTracker from "../components/ReferralClickTracker";
 
 const siteUrl = "https://games.matthew-web.com";
 
@@ -112,8 +113,10 @@ export default function RootLayout({ children }) {
         <SiteHeader />
         {children}
         <SiteFooter />
+        <ReferralClickTracker />
         <Analytics />
       </body>
     </html>
   );
 }
+

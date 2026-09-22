@@ -1,4 +1,4 @@
-import Link from "next/link";
+﻿import Link from "next/link";
 import { notFound } from "next/navigation";
 import { games } from "../../gamesData";
 import AdsterraAd from "../../../../components/AdsterraAd";
@@ -462,7 +462,7 @@ export default async function CategoryPage({ params }) {
         {categoryGames.length === 0 ? (
           <div style={styles.empty}>No games found in this category yet.</div>
         ) : (
-          <div style={styles.grid}>
+          <div className="category-game-grid" style={styles.grid}>
             {categoryGames.map((game) => (
               <Link
                 key={game.slug}
@@ -476,7 +476,7 @@ export default async function CategoryPage({ params }) {
                   }}
                 />
 
-                <div style={styles.cardBody}>
+                <div className="category-game-card-body" style={styles.cardBody}>
                   <div style={styles.cardMeta}>
                     <span>{game.category}</span>
                     <span>{game.duration}</span>
@@ -484,7 +484,7 @@ export default async function CategoryPage({ params }) {
 
                   <h3 style={styles.cardTitle}>{game.title}</h3>
 
-                  <p style={styles.cardText}>{game.description}</p>
+                  <p className="category-game-card-text" style={styles.cardText}>{game.description}</p>
 
                   <div
                     style={

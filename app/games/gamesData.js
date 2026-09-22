@@ -292,25 +292,7 @@ export const games = [
     width: 800,
     height: 600,
   },
-  {
-    id: "76234",
-    slug: "snowboard-game",
-    title: "SnowBoard Game",
-    audience: "Clean Casual",
-    category: "Sports",
-    mood: "Fun",
-    duration: "10 minutes",
-    mobileFriendly: true,
-    description:
-      "A winter sports browser game where players ride down snowy slopes, avoid obstacles, and reach the finish line.",
-    instructions: "Use the mouse to click buttons and play.",
-    thumbnail:
-      "https://img.gamemonetize.com/4jlpcom1sy0z4thlimget2ew3z6ow05d/512x384.jpg",
-    iframeUrl:
-      "https://html5.gamemonetize.co/4jlpcom1sy0z4thlimget2ew3z6ow05d/",
-    width: 800,
-    height: 600,
-  },
+  
   {
     id: "76079",
     slug: "offroad-truck-driving-simulator",
@@ -410,25 +392,7 @@ export const games = [
     width: 1080,
     height: 1920,
   },
-  {
-    id: "76179",
-    slug: "mini-dice-chess",
-    title: "Mini Dice Chess",
-    audience: "Clean Casual",
-    category: "Puzzle",
-    mood: "Strategy",
-    duration: "10 minutes",
-    mobileFriendly: true,
-    description:
-      "A fast chess variant where dice rolls decide which pieces can move, mixing strategy with luck.",
-    instructions: "Use the mouse or tap to play.",
-    thumbnail:
-      "https://img.gamemonetize.com/z2ymyafbvxwonucftx7io0ywt4llngkw/512x384.jpg",
-    iframeUrl:
-      "https://html5.gamemonetize.co/z2ymyafbvxwonucftx7io0ywt4llngkw/",
-    width: 720,
-    height: 1280,
-  },
+  
   {
     id: "49889",
     slug: "christmas-snowball-arena",
@@ -546,25 +510,7 @@ export const games = [
     width: 1280,
     height: 720,
   },
-  {
-    id: "78848",
-    slug: "cosmic-hunt",
-    title: "Cosmic Hunt",
-    audience: "Clean Casual",
-    category: "Puzzle",
-    mood: "Brain",
-    duration: "10 minutes",
-    mobileFriendly: true,
-    description:
-      "A space-themed word search puzzle game where players find hidden words across categories like planets, stars, astronauts, and space technology.",
-    instructions: "Click or tap and drag across the letter grid to find words.",
-    thumbnail:
-      "https://img.gamemonetize.com/g9f69pf62argkjqg6gp1bj2vngru9nvp/512x384.jpg",
-    iframeUrl:
-      "https://html5.gamemonetize.co/g9f69pf62argkjqg6gp1bj2vngru9nvp/",
-    width: 800,
-    height: 600,
-  },
+  
   {
     id: "78875",
     slug: "hex-merge-puzzle",
@@ -664,64 +610,9 @@ export const games = [
     width: 1000,
     height: 800,
   },
-  {
-    id: "7486",
-    slug: "grand-prix-hero",
-    title: "Grand Prix Hero",
-    audience: "Clean Casual",
-    category: "Racing",
-    mood: "Fun",
-    duration: "10 minutes",
-    mobileFriendly: true,
-    description:
-      "An arcade racing game where players compete across multiple continents, dodge traffic, collect coins, boost speed, and upgrade their car.",
-    instructions:
-      "On mobile, use touch to steer. On desktop, use cursor keys or WASD.",
-    thumbnail:
-      "https://img.gamemonetize.com/xuwx294k0sxrwr1g8ct6vfj0dr9mxymu/512x384.jpg",
-    iframeUrl:
-      "https://html5.gamemonetize.co/xuwx294k0sxrwr1g8ct6vfj0dr9mxymu/",
-    width: 720,
-    height: 405,
-  },
-  {
-    id: "40317",
-    slug: "boat-rescue-simulator-mobile",
-    title: "Boat Rescue Simulator Mobile",
-    audience: "Clean Casual",
-    category: "Simulation",
-    mood: "Focus",
-    duration: "10 minutes",
-    mobileFriendly: false,
-    description:
-      "A boat rescue simulator where players drive a rescue boat, complete missions, and help passengers during emergency scenarios.",
-    instructions: "Use WASD to drive. On mobile, use the on-screen controls.",
-    thumbnail:
-      "https://img.gamemonetize.com/2w9dlniufvdyzaofwpkh19wlj28qwfvc/512x384.jpg",
-    iframeUrl:
-      "https://html5.gamemonetize.co/2w9dlniufvdyzaofwpkh19wlj28qwfvc/",
-    width: 800,
-    height: 600,
-  },
-  {
-    id: "38247",
-    slug: "gravity-breakout-mobile",
-    title: "Gravity Breakout Mobile",
-    audience: "Clean Casual",
-    category: "Arcade",
-    mood: "Relaxing",
-    duration: "10 minutes",
-    mobileFriendly: true,
-    description:
-      "A mobile-friendly clicker arcade game where players break gravity balls, earn money, buy helper balls, merge them, and upgrade abilities.",
-    instructions: "Use your touchscreen or mouse to control and play.",
-    thumbnail:
-      "https://img.gamemonetize.com/9qc1gmog25emcv8no1kjyhjnkoc0v3tq/512x384.jpg",
-    iframeUrl:
-      "https://html5.gamemonetize.co/9qc1gmog25emcv8no1kjyhjnkoc0v3tq/",
-    width: 600,
-    height: 1200,
-  },
+  
+  
+  
   {
     id: "58814",
     slug: "bridge-builder-3d",
@@ -762,25 +653,7 @@ export const games = [
     width: 960,
     height: 600,
   },
-  {
-    id: "29555",
-    slug: "city-construction-simulator-excavator-games",
-    title: "City Construction Simulator Excavator Games",
-    audience: "Clean Casual",
-    category: "Simulation",
-    mood: "Focus",
-    duration: "10 minutes",
-    mobileFriendly: false,
-    description:
-      "A construction vehicle simulator where players complete building and transport missions using trucks and construction machinery.",
-    instructions: "Use WASD or the D-pad to move and C to change camera.",
-    thumbnail:
-      "https://img.gamemonetize.com/6xqod7awfq5n7x2puwkxi3ixqj4qztvn/512x384.jpg",
-    iframeUrl:
-      "https://html5.gamemonetize.co/6xqod7awfq5n7x2puwkxi3ixqj4qztvn/",
-    width: 1334,
-    height: 750,
-  },
+  
   {
     id: "6633",
     slug: "heavy-construction-vehicles",

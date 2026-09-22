@@ -27,6 +27,18 @@ export default function GamePlayClient({ game, games }) {
   const [gameLoaded, setGameLoaded] = useState(false);
   const [isFullscreen, setIsFullscreen] = useState(false);
 
+  function handlePlayNow(event) {
+    event.preventDefault();
+    setGameLoaded(true);
+
+    setTimeout(() => {
+      document.getElementById("play-game")?.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }, 75);
+  }
+
   const relatedGames = games
     .filter((item) => item.slug !== game.slug && item.audience === game.audience)
     .slice(0, 3);
@@ -197,9 +209,9 @@ export default function GamePlayClient({ game, games }) {
         </div>
 
         <div style={styles.heroButtons}>
-          <a href="#play-game" style={styles.primaryButton}>
+          <button type="button" onClick={handlePlayNow} style={styles.primaryButton}>
             Play Now
-          </a>
+          </button>
 
           <Link
             href={`/games/category/${categorySlug}`}
@@ -812,6 +824,7 @@ const styles = {
     padding: "16px",
   },
 };
+
 
 
 

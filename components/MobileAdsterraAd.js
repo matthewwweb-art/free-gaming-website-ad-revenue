@@ -9,7 +9,8 @@ export default function MobileAdsterraAd() {
     if (!window.matchMedia("(max-width: 760px)").matches) return;
     if (!adBoxRef.current) return;
 
-    adBoxRef.current.innerHTML = "";
+    const adBox = adBoxRef.current;
+    adBox.innerHTML = "";
 
     window.atOptions = {
       key: "8bf8d49c4871b83adee34e43a6b9b38c",
@@ -24,12 +25,10 @@ export default function MobileAdsterraAd() {
     script.src = "https://www.highrevenueformat.com/8bf8d49c4871b83adee34e43a6b9b38c/invoke.js";
     script.async = false;
 
-    adBoxRef.current.appendChild(script);
+    adBox.appendChild(script);
 
     return () => {
-      if (adBoxRef.current) {
-        adBoxRef.current.innerHTML = "";
-      }
+      adBox.innerHTML = "";
     };
   }, []);
 
@@ -39,3 +38,4 @@ export default function MobileAdsterraAd() {
     </div>
   );
 }
+

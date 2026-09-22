@@ -1,4 +1,4 @@
-import Link from "next/link";
+﻿import Link from "next/link";
 import { games } from "../gamesData";
 import AdsterraAd from "../../../components/AdsterraAd";
 
@@ -81,7 +81,7 @@ export default function MathewWebGamesPage() {
 
             <p>
               When a mathew-web game is added to the game library, it can be
-              marked with <strong>creator: "mathew-web"</strong> and it will
+              marked with <strong>creator: &quot;mathew-web&quot;</strong> and it will
               appear on this page automatically.
             </p>
 

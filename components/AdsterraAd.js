@@ -126,7 +126,8 @@ export default function AdsterraAd(props) {
   useEffect(() => {
     if (!shouldLoad || !adBoxRef.current) return;
 
-    adBoxRef.current.innerHTML = "";
+    const adBox = adBoxRef.current;
+    adBox.innerHTML = "";
 
     window.atOptions = {
       key: config.key,
@@ -141,12 +142,10 @@ export default function AdsterraAd(props) {
     script.src = config.src;
     script.async = false;
 
-    adBoxRef.current.appendChild(script);
+    adBox.appendChild(script);
 
     return () => {
-      if (adBoxRef.current) {
-        adBoxRef.current.innerHTML = "";
-      }
+      adBox.innerHTML = "";
     };
   }, [shouldLoad, config.key, config.src, config.height, config.width]);
 
@@ -181,5 +180,6 @@ export default function AdsterraAd(props) {
     </div>
   );
 }
+
 
 

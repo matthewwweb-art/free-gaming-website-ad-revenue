@@ -1,5 +1,7 @@
 ﻿"use client";
 
+ /* eslint-disable @next/next/no-img-element */
+
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -61,7 +63,13 @@ export default function SiteHeader() {
   }
 
   useEffect(() => {
-    closeEverything();
+    const timeoutId = window.setTimeout(() => {
+      closeEverything();
+    }, 0);
+
+    return () => {
+      window.clearTimeout(timeoutId);
+    };
   }, [pathname]);
 
   useEffect(() => {
@@ -456,3 +464,5 @@ export default function SiteHeader() {
     </header>
   );
 }
+
+

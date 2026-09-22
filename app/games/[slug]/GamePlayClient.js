@@ -27,9 +27,30 @@ export default function GamePlayClient({ game, games }) {
   const [gameLoaded, setGameLoaded] = useState(false);
   const [isFullscreen, setIsFullscreen] = useState(false);
 
+  function trackGameEvent(eventName, details = {}) {
+    track(eventName, {
+      game_slug: game.slug,
+      game_title: game.title,
+      category: game.category,
+      audience: game.audience,
+      mobile_friendly: game.mobileFriendly ? "yes" : "no",
+      ...details,
+    });
+  }
+
+  function loadGame(source) {
+    if (!gameLoaded) {
+      trackGameEvent("game_loaded", { source });
+    }
+
+    setGameLoaded(true);
+  }
+
   function handlePlayNow(event) {
     event.preventDefault();
-    setGameLoaded(true);
+
+    trackGameEvent("game_play_clicked", { source: "hero_button" });
+    loadGame("play_now");
 
     setTimeout(() => {
       document.getElementById("play-game")?.scrollIntoView({
@@ -62,6 +83,8 @@ export default function GamePlayClient({ game, games }) {
       document.msFullscreenElement;
 
     if (fullscreenElement) {
+      trackGameEvent("fullscreen_exited", { source: "button" });
+
       if (document.exitFullscreen) {
         document.exitFullscreen();
       } else if (document.webkitExitFullscreen) {
@@ -73,6 +96,8 @@ export default function GamePlayClient({ game, games }) {
       setIsFullscreen(false);
       return;
     }
+
+    trackGameEvent("fullscreen_entered", { source: "button" });
 
     if (element.requestFullscreen) {
       element.requestFullscreen();
@@ -271,7 +296,7 @@ export default function GamePlayClient({ game, games }) {
 
               <button
                 type="button"
-                onClick={() => setGameLoaded(true)}
+                onClick={() => loadGame("load_game_button")}
                 style={styles.loadGameButton}
               >
                 Load Game
@@ -824,6 +849,7 @@ const styles = {
     padding: "16px",
   },
 };
+
 
 
 

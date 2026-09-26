@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
+import { track } from "@vercel/analytics";
 import AdsterraAd from "../../../components/AdsterraAd";
 import MobileAdsterraAd from "../../../components/MobileAdsterraAd";
 
@@ -28,14 +29,18 @@ export default function GamePlayClient({ game, games }) {
   const [isFullscreen, setIsFullscreen] = useState(false);
 
   function trackGameEvent(eventName, details = {}) {
-    track(eventName, {
-      game_slug: game.slug,
-      game_title: game.title,
-      category: game.category,
-      audience: game.audience,
-      mobile_friendly: game.mobileFriendly ? "yes" : "no",
-      ...details,
-    });
+    try {
+      track(eventName, {
+        game_slug: game.slug,
+        game_title: game.title,
+        category: game.category,
+        audience: game.audience,
+        mobile_friendly: game.mobileFriendly ? "yes" : "no",
+        ...details,
+      });
+    } catch (error) {
+      console.warn("Analytics event failed:", eventName, error);
+    }
   }
 
   function loadGame(source) {
@@ -849,6 +854,8 @@ const styles = {
     padding: "16px",
   },
 };
+
+
 
 
 

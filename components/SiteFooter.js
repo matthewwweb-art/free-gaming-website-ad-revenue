@@ -27,6 +27,9 @@ export default function SiteFooter() {
               Visit Matthew Web
             </a>
 
+            <a href="https://buy.stripe.com/5kQeVf0IT9HX75w2YW8og0k" target="_blank" rel="noopener noreferrer" style={styles.secondaryButton}>
+              Support Us
+            </a>
             <Link href="/games/matthew-web" style={styles.secondaryButton}>
               MW Games
             </Link>

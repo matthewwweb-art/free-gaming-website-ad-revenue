@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
  /* eslint-disable @next/next/no-img-element */
 
@@ -325,6 +325,15 @@ export default function SiteHeader() {
           </Link>
 
           <a
+            href="https://buy.stripe.com/5kQeVf0IT9HX75w2YW8og0k"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mwx-game-main-link"
+            onClick={closeEverything}
+          >
+            Support Us
+          </a>
+          <a
             href="https://matthew-web.com"
             target="_blank"
             rel="noopener noreferrer"
@@ -450,6 +459,15 @@ export default function SiteHeader() {
 
           <div className="mwx-game-divider" />
 
+          <a
+            href="https://buy.stripe.com/5kQeVf0IT9HX75w2YW8og0k"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mwx-game-main-link"
+            onClick={closeEverything}
+          >
+            Support Us
+          </a>
           <a
             href="https://matthew-web.com"
             target="_blank"

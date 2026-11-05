@@ -1,4 +1,4 @@
-﻿import { games } from "./games/gamesData";
+import { games } from "./games/gamesData";
 
 const siteUrl = "https://games.matthew-web.com";
 
@@ -9,6 +9,7 @@ export default function sitemap() {
     "/games/matthew-web",
     "/about",
     "/contact",
+    "/support",
     "/privacy-policy",
     "/terms",
     "/disclaimer",

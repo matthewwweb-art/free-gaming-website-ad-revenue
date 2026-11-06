@@ -89,6 +89,9 @@ export default function SiteFooter() {
           <div style={styles.linkGroup}>
             <h3 style={styles.linkHeading}>Legal</h3>
 
+            <Link href="/community-guidelines" style={styles.link}>
+              Community Guidelines
+            </Link>
             <Link href="/privacy-policy" style={styles.link}>
               Privacy Policy
             </Link>

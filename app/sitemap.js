@@ -10,6 +10,7 @@ export default function sitemap() {
     "/about",
     "/contact",
     "/support",
+    "/community-guidelines",
     "/privacy-policy",
     "/terms",
     "/disclaimer",

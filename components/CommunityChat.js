@@ -1,5 +1,7 @@
 "use client";
 
+import Link from "next/link";
+
 import { useCallback, useEffect, useRef, useState } from "react";
 import { communityClient as client, communityEnabled } from "../lib/communityClient";
 import styles from "./CommunityChat.module.css";
@@ -193,7 +195,7 @@ export default function CommunityChat() {
           <header className={styles.header}>
             <div>
               <h2 className={styles.headerTitle}>Free Game Hub Chat</h2>
-              <div className={styles.headerSubtitle}>Global community · moderated · 18+ to post</div>
+              <div className={styles.headerSubtitle}>Global community · moderated · 18+ to post | <Link href="/community-guidelines">Rules</Link></div>
             </div>
             <button type="button" className={styles.iconButton} onClick={() => setOpen(false)} aria-label="Close chat">✕</button>
           </header>

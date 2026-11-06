@@ -5,6 +5,9 @@ import Link from "next/link";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { communityClient as client, communityEnabled } from "../lib/communityClient";
 import styles from "./CommunityChat.module.css";
+import CommunityTurnstile from "./CommunityTurnstile";
+
+const turnstileSiteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || "";
 
 // One room for the whole site. No messages are saved in the browser.
 export default function CommunityChat() {
@@ -21,6 +24,8 @@ export default function CommunityChat() {
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
   const [notice, setNotice] = useState("");
+  const [captchaToken, setCaptchaToken] = useState("");
+  const [captchaReset, setCaptchaReset] = useState(0);
   const scrollRef = useRef(null);
 
   const refreshMessages = useCallback(async () => {
@@ -120,12 +125,15 @@ export default function CommunityChat() {
     event.preventDefault();
     setError(""); setNotice("");
     if (!adult) { setError("Confirm you are at least 18 and agree to the chat rules."); return; }
+    if (turnstileSiteKey && !captchaToken) { setError("Complete the anti-spam verification first."); return; }
     setBusy(true);
     const { error: signInError } = await client.auth.signInWithOtp({
       email: email.trim(),
-      options: { emailRedirectTo: window.location.origin + window.location.pathname },
+      options: { emailRedirectTo: window.location.origin + window.location.pathname, ...(turnstileSiteKey ? { captchaToken } : {}) },
     });
     setBusy(false);
+    setCaptchaToken("");
+    setCaptchaReset((value) => value + 1);
     if (signInError) setError(signInError.message);
     else setNotice("Check your email for the secure sign-in link.");
   }
@@ -237,7 +245,8 @@ export default function CommunityChat() {
                 <p className={styles.note}>Read messages freely. Sign in by email to participate. Your email is never displayed.</p>
                 <input className={styles.input} type="email" value={email} onChange={(e) => setEmail(e.target.value)} required placeholder="Your email" aria-label="Email for chat sign-in" />
                 <label className={styles.checkboxRow}><input type="checkbox" checked={adult} onChange={(e) => setAdult(e.target.checked)} />I am 18 or older. I agree: no personal details, links, bullying, or spam.</label>
-                <button type="submit" disabled={busy || !adult} className={styles.button}>Email me a sign-in link</button>
+                {turnstileSiteKey && <CommunityTurnstile siteKey={turnstileSiteKey} onToken={setCaptchaToken} resetVersion={captchaReset} />}
+                <button type="submit" disabled={busy || !adult || (Boolean(turnstileSiteKey) && !captchaToken)} className={styles.button}>Email me a sign-in link</button>
               </form>
             ) : !profile ? (
               <form className={styles.form} onSubmit={saveProfile}>

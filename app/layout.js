@@ -1,7 +1,8 @@
-﻿import "./globals.css";
+import "./globals.css";
 import SiteHeader from "../components/SiteHeader";
 import SiteFooter from "../components/SiteFooter";
 import { Analytics } from "@vercel/analytics/next";
+import CommunityChat from "../components/CommunityChat";
 import ReferralClickTracker from "../components/ReferralClickTracker";
 
 const siteUrl = "https://games.matthew-web.com";
@@ -114,6 +115,7 @@ export default function RootLayout({ children }) {
         {children}
         <SiteFooter />
         <ReferralClickTracker />
+        <CommunityChat />
         <Analytics />
       </body>
     </html>

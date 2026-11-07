@@ -88,17 +88,8 @@ export default function AdsterraAd(props) {
     function checkViewport() {
       const isPhone = window.matchMedia("(max-width: 760px)").matches;
 
-      // Emergency pause: disable third-party ads on phones.
-      // Keep ordinary mobile visitors ad-free; only the explicit pilot may load.
-      if (
-        isPhone &&
-        !(config.width === 320 &&
-          new URLSearchParams(window.location.search).get("mobileAdTest") === "1")
-      ) {
-        setShouldLoad(false);
-        return;
-      }
-
+      // Mobile banners use the separate isolated iframe.
+      // Keep desktop-format placements disabled on phones.
       const isMobileSlot =
         className.includes("fg-mobile-ad") ||
         unitName === "mobile" ||
@@ -200,7 +191,7 @@ export default function AdsterraAd(props) {
           }}
           onLoad={() => setPilotStatus("Isolated page loaded; inspect banner")}
         />
-        <p style={{
+        <p style={{ display: "none",
           fontSize: 12,
           lineHeight: 1.4,
           color: "#777",

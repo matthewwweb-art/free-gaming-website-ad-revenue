@@ -80,6 +80,8 @@ export default function AdsterraAd(props) {
   const config = AD_UNITS[normalizedUnitName] || AD_UNITS.mobile;
 
   const adBoxRef = useRef(null);
+  const pilotFrameRef = useRef(null);
+  const [pilotStatus, setPilotStatus] = useState("Starting pilotâ€¦");
   const [shouldLoad, setShouldLoad] = useState(false);
 
   useEffect(() => {
@@ -132,10 +134,10 @@ export default function AdsterraAd(props) {
     return () => {
       window.removeEventListener("resize", checkViewport);
     };
-  }, [className, unitName]);
+  }, [className, unitName, config.width]);
 
   useEffect(() => {
-    if (!shouldLoad || !adBoxRef.current) return;
+    if (!shouldLoad || config.width === 320 || !adBoxRef.current) return;
 
     const adBox = adBoxRef.current;
     adBox.innerHTML = "";
@@ -160,12 +162,24 @@ export default function AdsterraAd(props) {
     };
   }, [shouldLoad, config.key, config.src, config.height, config.width]);
 
+  useEffect(() => {
+    if (config.width !== 320) return;
+    function onPilotMessage(event) {
+      if (event.source !== pilotFrameRef.current?.contentWindow) return;
+      if (event.data?.type !== "fgh-mobile-ad-pilot-v3") return;
+      if (typeof event.data.status === "string") {
+        setPilotStatus(event.data.status.slice(0, 180));
+      }
+    }
+    window.addEventListener("message", onPilotMessage);
+    return () => window.removeEventListener("message", onPilotMessage);
+  }, [config.width]);
   if (!shouldLoad) {
     return null;
   }
 
   if (config.width === 320) {
-    // Experimental, opt-in mobile banner. Do not enable sitewide yet.
+    // fgh-mobile-ad-pilot-v3: opt-in diagnostic only. Not live for ordinary phones.
     const adOptions = {
       key: config.key,
       format: "iframe",
@@ -177,32 +191,43 @@ export default function AdsterraAd(props) {
     const adHtml = [
       '<!doctype html><html><head><meta charset="utf-8"></head>',
       '<body style="margin:0;padding:0;overflow:hidden">',
-      `<script>window.atOptions=${JSON.stringify(adOptions)};<\/script>`,
-      `<script src="${config.src}"><\/script>`,
+      `<script>
+        window.atOptions = ${JSON.stringify(adOptions)};
+        window.__fghPilotReport = function (status) {
+          window.parent.postMessage({ type: "fgh-mobile-ad-pilot-v3", status: status }, "*");
+        };
+        window.__fghPilotReport("Frame initialized; requesting Adsterra script");
+      <\/script>`,
+      `<script src="${config.src}" onload="window.__fghPilotReport && window.__fghPilotReport('Adsterra script loaded; checking for creative')" onerror="window.__fghPilotReport && window.__fghPilotReport('Adsterra script blocked or failed')"><\/script>`,
+      `<script>
+        setTimeout(function () {
+          var count = document.querySelectorAll('iframe, img, a, object').length;
+          window.__fghPilotReport && window.__fghPilotReport(
+            count > 0 ? 'Creative-like elements found: ' + count : 'No creative elements detected after script request'
+          );
+        }, 2500);
+      <\/script>`,
       '</body></html>',
     ].join("");
 
     return (
-      <iframe
-        title="Sponsored banner"
-        srcDoc={adHtml}
-        sandbox="allow-scripts allow-popups allow-top-navigation-by-user-activation"
-        referrerPolicy="strict-origin-when-cross-origin"
-        scrolling="no"
-        className={className}
-        style={{
-          width: config.width,
-          height: config.height,
-          maxWidth: "100%",
-          border: 0,
-          display: "block",
-          margin: "0 auto",
-          ...style,
-        }}
-      />
+      <div className={className} style={{ width: 320, maxWidth: "100%", margin: "0 auto", ...style }}>
+        <iframe
+          ref={pilotFrameRef}
+          title="Sponsored banner diagnostic (opt-in)"
+          srcDoc={adHtml}
+          sandbox="allow-scripts"
+          referrerPolicy="strict-origin-when-cross-origin"
+          scrolling="no"
+          style={{ width: 320, height: 50, maxWidth: "100%", border: 0, display: "block" }}
+          onLoad={() => setPilotStatus((s) => s === "Starting pilotâ€¦" ? "Frame loaded; awaiting script diagnostics" : s)}
+        />
+        <p style={{ fontSize: 12, lineHeight: 1.4, color: "#777", margin: "8px 0 0", overflowWrap: "anywhere" }}>
+          Mobile Adsterra test: {pilotStatus}
+        </p>
+      </div>
     );
   }
-
   return (
     <div
       className={className}

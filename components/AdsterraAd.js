@@ -87,7 +87,12 @@ export default function AdsterraAd(props) {
       const isPhone = window.matchMedia("(max-width: 760px)").matches;
 
       // Emergency pause: disable third-party ads on phones.
-      if (isPhone) {
+      // Keep ordinary mobile visitors ad-free; only the explicit pilot may load.
+      if (
+        isPhone &&
+        !(config.width === 320 &&
+          new URLSearchParams(window.location.search).get("mobileAdTest") === "1")
+      ) {
         setShouldLoad(false);
         return;
       }
@@ -157,6 +162,45 @@ export default function AdsterraAd(props) {
 
   if (!shouldLoad) {
     return null;
+  }
+
+  if (config.width === 320) {
+    // Experimental, opt-in mobile banner. Do not enable sitewide yet.
+    const adOptions = {
+      key: config.key,
+      format: "iframe",
+      height: config.height,
+      width: config.width,
+      params: {},
+    };
+
+    const adHtml = [
+      '<!doctype html><html><head><meta charset="utf-8"></head>',
+      '<body style="margin:0;padding:0;overflow:hidden">',
+      `<script>window.atOptions=${JSON.stringify(adOptions)};<\/script>`,
+      `<script src="${config.src}"><\/script>`,
+      '</body></html>',
+    ].join("");
+
+    return (
+      <iframe
+        title="Sponsored banner"
+        srcDoc={adHtml}
+        sandbox="allow-scripts allow-popups allow-top-navigation-by-user-activation"
+        referrerPolicy="strict-origin-when-cross-origin"
+        scrolling="no"
+        className={className}
+        style={{
+          width: config.width,
+          height: config.height,
+          maxWidth: "100%",
+          border: 0,
+          display: "block",
+          margin: "0 auto",
+          ...style,
+        }}
+      />
+    );
   }
 
   return (

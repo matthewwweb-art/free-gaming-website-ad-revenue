@@ -90,6 +90,12 @@ export default function AdsterraAd(props) {
 
       // Mobile banners use the separate isolated iframe.
       // Keep desktop-format placements disabled on phones.
+      // On phones, permit only the isolated 320x50 format.
+      if (isPhone && config.width !== 320) {
+        setShouldLoad(false);
+        return;
+      }
+
       const isMobileSlot =
         className.includes("fg-mobile-ad") ||
         unitName === "mobile" ||

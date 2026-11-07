@@ -193,19 +193,34 @@ export default function AdsterraAd(props) {
       '<body style="margin:0;padding:0;overflow:hidden">',
       `<script>
         window.atOptions = ${JSON.stringify(adOptions)};
+        window.__fghScriptState = "pending";
         window.__fghPilotReport = function (status) {
-          window.parent.postMessage({ type: "fgh-mobile-ad-pilot-v3", status: status }, "*");
+          window.parent.postMessage({
+            type: "fgh-mobile-ad-pilot-v3",
+            status: status
+          }, "*");
         };
-        window.__fghPilotReport("Frame initialized; requesting Adsterra script");
+        window.__fghPilotReport("Frame initialized; requesting script");
       <\/script>`,
-      `<script src="${config.src}" onload="window.__fghPilotReport && window.__fghPilotReport('Adsterra script loaded; checking for creative')" onerror="window.__fghPilotReport && window.__fghPilotReport('Adsterra script blocked or failed')"><\/script>`,
+      `<script src="${config.src}"
+        onload="window.__fghScriptState='loaded';window.__fghPilotReport('Script loaded');"
+        onerror="window.__fghScriptState='failed';window.__fghPilotReport('Script failed to load');"><\/script>`,
       `<script>
-        setTimeout(function () {
-          var count = document.querySelectorAll('iframe, img, a, object').length;
-          window.__fghPilotReport && window.__fghPilotReport(
-            count > 0 ? 'Creative-like elements found: ' + count : 'No creative elements detected after script request'
-          );
-        }, 2500);
+        (function () {
+          function inspect(seconds) {
+            var elements = document.querySelectorAll(
+              'iframe, img, a, object'
+            ).length;
+            window.__fghPilotReport(
+              'After ' + seconds + 's: script=' +
+              window.__fghScriptState +
+              ', elements=' + elements
+            );
+          }
+          setTimeout(function () { inspect(2.5); }, 2500);
+          setTimeout(function () { inspect(7); }, 7000);
+          setTimeout(function () { inspect(12); }, 12000);
+        })();
       <\/script>`,
       '</body></html>',
     ].join("");

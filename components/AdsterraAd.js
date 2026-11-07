@@ -194,6 +194,22 @@ export default function AdsterraAd(props) {
       `<script>
         window.atOptions = ${JSON.stringify(adOptions)};
         window.__fghScriptState = "pending";
+        window.__fghFaults = [];
+
+        window.addEventListener("error", function (event) {
+          var message = event.message || "resource-error";
+          if (window.__fghFaults.length < 3) {
+            window.__fghFaults.push(String(message).slice(0, 70));
+          }
+        }, true);
+
+        window.addEventListener("unhandledrejection", function (event) {
+          if (window.__fghFaults.length < 3) {
+            window.__fghFaults.push(
+              "promise:" + String(event.reason).slice(0, 70)
+            );
+          }
+        });
         window.__fghPilotReport = function (status) {
           window.parent.postMessage({
             type: "fgh-mobile-ad-pilot-v3",
@@ -214,7 +230,7 @@ export default function AdsterraAd(props) {
             window.__fghPilotReport(
               'After ' + seconds + 's: script=' +
               window.__fghScriptState +
-              ', elements=' + elements
+              ', elements=' + elements + ', faults=' + window.__fghFaults.length + ', first=' + (window.__fghFaults[0] || 'none')
             );
           }
           setTimeout(function () { inspect(2.5); }, 2500);

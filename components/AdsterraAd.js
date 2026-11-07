@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useEffect, useRef, useState } from "react";
 
@@ -85,6 +85,12 @@ export default function AdsterraAd(props) {
   useEffect(() => {
     function checkViewport() {
       const isPhone = window.matchMedia("(max-width: 760px)").matches;
+
+      // Emergency pause: disable third-party ads on phones.
+      if (isPhone) {
+        setShouldLoad(false);
+        return;
+      }
 
       const isMobileSlot =
         className.includes("fg-mobile-ad") ||

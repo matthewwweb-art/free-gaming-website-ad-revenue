@@ -179,81 +179,33 @@ export default function AdsterraAd(props) {
   }
 
   if (config.width === 320) {
-    // fgh-mobile-ad-pilot-v3: opt-in diagnostic only. Not live for ordinary phones.
-    const adOptions = {
-      key: config.key,
-      format: "iframe",
-      height: config.height,
-      width: config.width,
-      params: {},
-    };
-
-    const adHtml = [
-      '<!doctype html><html><head><meta charset="utf-8"></head>',
-      '<body style="margin:0;padding:0;overflow:hidden">',
-      `<script>
-        window.atOptions = ${JSON.stringify(adOptions)};
-        window.__fghScriptState = "pending";
-        window.__fghFaults = [];
-
-        window.addEventListener("error", function (event) {
-          var message = event.message || "resource-error";
-          if (window.__fghFaults.length < 3) {
-            window.__fghFaults.push(String(message).slice(0, 70));
-          }
-        }, true);
-
-        window.addEventListener("unhandledrejection", function (event) {
-          if (window.__fghFaults.length < 3) {
-            window.__fghFaults.push(
-              "promise:" + String(event.reason).slice(0, 70)
-            );
-          }
-        });
-        window.__fghPilotReport = function (status) {
-          window.parent.postMessage({
-            type: "fgh-mobile-ad-pilot-v3",
-            status: status
-          }, "*");
-        };
-        window.__fghPilotReport("Frame initialized; requesting script");
-      <\/script>`,
-      `<script src="${config.src}"
-        onload="window.__fghScriptState='loaded';window.__fghPilotReport('Script loaded');"
-        onerror="window.__fghScriptState='failed';window.__fghPilotReport('Script failed to load');"><\/script>`,
-      `<script>
-        (function () {
-          function inspect(seconds) {
-            var elements = document.querySelectorAll(
-              'iframe, img, a, object'
-            ).length;
-            window.__fghPilotReport(
-              'After ' + seconds + 's: script=' +
-              window.__fghScriptState +
-              ', elements=' + elements + ', faults=' + window.__fghFaults.length + ', first=' + (window.__fghFaults[0] || 'none')
-            );
-          }
-          setTimeout(function () { inspect(2.5); }, 2500);
-          setTimeout(function () { inspect(7); }, 7000);
-          setTimeout(function () { inspect(12); }, 12000);
-        })();
-      <\/script>`,
-      '</body></html>',
-    ].join("");
-
     return (
-      <div className={className} style={{ width: 320, maxWidth: "100%", margin: "0 auto", ...style }}>
+      <div
+        className={className}
+        style={{ width: 320, maxWidth: "100%", margin: "0 auto", ...style }}
+      >
         <iframe
           ref={pilotFrameRef}
-          title="Sponsored banner diagnostic (opt-in)"
-          srcDoc={adHtml}
-          sandbox="allow-scripts"
+          title="Isolated mobile advertising test"
+          src="https://fgh-mobile-ad-isolation.vercel.app/"
+          sandbox="allow-scripts allow-same-origin"
           referrerPolicy="strict-origin-when-cross-origin"
           scrolling="no"
-          style={{ width: 320, height: 50, maxWidth: "100%", border: 0, display: "block" }}
-          onLoad={() => setPilotStatus((s) => s === "Starting pilotâ€¦" ? "Frame loaded; awaiting script diagnostics" : s)}
+          style={{
+            width: 320,
+            height: 50,
+            maxWidth: "100%",
+            border: 0,
+            display: "block"
+          }}
+          onLoad={() => setPilotStatus("Isolated page loaded; inspect banner")}
         />
-        <p style={{ fontSize: 12, lineHeight: 1.4, color: "#777", margin: "8px 0 0", overflowWrap: "anywhere" }}>
+        <p style={{
+          fontSize: 12,
+          lineHeight: 1.4,
+          color: "#777",
+          margin: "8px 0 0"
+        }}>
           Mobile Adsterra test: {pilotStatus}
         </p>
       </div>
